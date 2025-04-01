@@ -1,0 +1,27 @@
+n:number of moles:mole:None
+Np:number of particles:dimensionless:None
+NA:Avogadro constant:1/mole:6.02E23
+M:molar mass:kg/mole:None
+mps:mass of pure substance:kg:None
+Vsm:volume of solid mixture:m**3:None
+C:molar concentration:mole/m**3:None
+T:absolute temperature:K:None
+R:universal gas constant:J/(mole*K):8.31
+P:pressure:Pa:None
+Vpg:volume of pure gas:m**3:None
+V0:molar volume of gas:m**3/mole:None
+mpg:mass of pure gas:kg:None
+ppg:density of pure gas:kg/m**3:None
+Wvv:volume fraction:dimensionless:None
+mmol:mass of a molecule:kg:None
+Mel:mass of a single element:kg/mole:None
+Wel:mass fraction of an element:dimensionless:None
+Mo:reference mass for relative density:kg/mole:None
+d:relative density of a gas:dimensionless:None
+Vps:volume of pure solid:m**3:None
+pps:density of pure solid:kg/m**3:None
+Smsub:sum of masses of all but one substances:kg:None
+Wmm:mass fraction:dimensionless:None
+msm:mass of solid mixture:kg:None
+psm:density of solid mixture:kg/m**3:None
+Vgm:volume of gas mixture:m**3:None

@@ -1,0 +1,16 @@
+n-Np/NA
+n-mps/M
+n-mpg/M
+n-Vsm*C
+n-Vpg/V0
+n-Vgm/V0
+P*Vpg-n*R*T
+M-mmol*NA
+Wel-Mel/M
+d-M/Mo
+pps-mps/Vps
+msm-Smsub-mps
+Wmm-mps/msm
+psm-msm/Vsm
+Wvv-Vpg/Vgm
+ppg-mpg/Vpg

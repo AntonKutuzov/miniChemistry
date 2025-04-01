@@ -1,0 +1,41 @@
+Effective class 1;Effective class 2;mechanism;restriction
+Ternary salt;Ternary salt;SE;WER
+Ternary salt;Binary salt;SE;WER
+Ternary salt;base;SE;WER
+Ternary salt;Ternary acid;SE;WER
+Ternary salt;Binary acid;SE;WER
+Binary salt;Ternary salt;SE;WER
+Binary salt;Binary salt;SE;WER
+Binary salt;base;SE;WER
+Binary salt;Ternary acid;SE;WER
+Binary salt;Binary acid;SE;WER
+Base;Ternary acid;SE;WER
+Base;Binary acid;SE;WER
+Ternary acid;nitrate;SE;WER
+Binary acid;nitrate;SE;WER
+Ternary salt;nitrate;SE;WER
+Binary salt;nitrate;SE;WER
+Metal;nitrate;SS;MAR
+base;nitrate;SE;WER
+Binary salt;Metal;SS;MAR
+Ternary salt;Metal;SS;MAR
+Binary acid;Metal;SS;MAR
+Ternary acid;Metal;SS;MAR
+Water;Metal;SS;MAW
+Binary salt;None;SD;None
+Binary acid;None;SD;None
+Acidic oxide;None;SD;None
+Basic oxide;None;SD;None
+Water;None;SD;None
+Metal;nonmetal;SA;None
+nonmetal;nonmetal;SA;None
+Ternary salt;None;CD;None
+Base;None;CD;None
+Ternary acid;None;CD;None
+base;Acidic oxide;CN;None
+Basic oxide;Ternary acid;CN;None
+Basic oxide;Binary acid;CN;None
+Basic oxide;Acidic oxide;CA;None
+Nitrate;None;ND;None
+Basic oxide;water;CA;None
+Acidic oxide;water;CA;None
