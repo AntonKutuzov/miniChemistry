@@ -18,8 +18,7 @@ class CannotSelectCoefficients(EqualizerException):
         self.description = f'\n'
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class InvalidFormula(ParsingException):
@@ -32,8 +31,7 @@ class InvalidFormula(ParsingException):
                             f'is raised.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class CannotEquateReaction(EqualizerException):
@@ -43,5 +41,4 @@ class CannotEquateReaction(EqualizerException):
         self.description = ''
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    

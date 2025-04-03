@@ -14,8 +14,7 @@ class MultipleElementCation(SubstanceException):
                             f'Currently, miniChemistry does not support this kind of ions.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class ElementNotFound(SubstanceException):
@@ -27,8 +26,7 @@ class ElementNotFound(SubstanceException):
                             f' if the element you are trying to use really exists.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class SubstanceConvertionError(SubstanceException):
@@ -41,8 +39,7 @@ class SubstanceConvertionError(SubstanceException):
                             f'itself). The data types the function can take can always be found in documentation.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class UnsupportedSubstanceSize(SubstanceException):
@@ -56,8 +53,7 @@ class UnsupportedSubstanceSize(SubstanceException):
                             f'into a Simple, which can only consist of one element.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class ChargeError(SubstanceException):

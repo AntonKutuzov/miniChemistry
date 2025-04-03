@@ -17,8 +17,7 @@ class SubstanceNotFound(CompatibilityTableException):
                             f'NOTE 2: Please note, that there are acidic oxides not for all acids!')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 class AcidNotFound(SubstanceNotFound):
     def __init__(self,  formula: str, variables: dict):
@@ -44,8 +43,7 @@ class WrongTextFileData(CompatibilityTableException):
                             f'the parser that tried to read the file has got an error.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 # ===================================================================================== METAL ACTIVITY SERIES EXCEPTIONS
@@ -56,8 +54,7 @@ class ElementIsNotMetal(CompatibilityTableException):
                             f'always see this list by printing ptable.METALS.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class UnknownActivityMetal(CompatibilityTableException):
@@ -68,6 +65,5 @@ class UnknownActivityMetal(CompatibilityTableException):
                             f'(most probably) requires the metal to have a known activity.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 

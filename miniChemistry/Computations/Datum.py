@@ -60,11 +60,9 @@ __iter__ – Returns the __iter__ object of the following list: [name of the dat
 """
 
 
-# import pint
 from pint import Quantity, Unit
 from typing import Union
 import re
-from miniChemistry.Utilities.Checks import type_check_decorator
 from miniChemistry.Computations.ComputationExceptions.DatumException import (WrongMultiplicationFactor, WrongDivisionFactor,
                                                                              NegativesNotAllowed, IncompatibleUnits,
                                                                              WrongStringFormat, WrongZeroToleranceExponentValue)
@@ -87,7 +85,7 @@ class Datum:
     - ZERO_TOLERANCE_EXPONENT, 3 by default. The variable is used for isclose() method as a power for 10 in rel_tol argument.\n
     """
 
-    @type_check_decorator
+    
     def __init__(self, variable: str, value: float, units: Union[str, Unit] = 'dimensionless') -> None:
         self._variable = variable
         self._value = value
@@ -130,7 +128,7 @@ class Datum:
     def __str__(self):
         return f"{self.variable} = {self.magnitude} {self.str_units}"
 
-    @type_check_decorator
+    
     def __mul__(self, other: Union['Datum', float, int]) -> Quantity:
         """
         The Datum instance can be multiplied by either another Datum, or a number (float or int). In both cases (for
@@ -152,7 +150,7 @@ class Datum:
         self._negative_value_test(operation='multiplication', value=new_quantity.magnitude)
         return new_quantity.to_base_units()  # not to get something like kg*g, but kg**2 instead
 
-    @type_check_decorator
+    
     def __truediv__(self, other: Union['Datum', float, int]) -> Quantity:
         """
         The Datum instance can be divided by either another Datum, or a number (float or int). In both cases (for
@@ -235,7 +233,7 @@ class Datum:
         decimals = v.split('.')[1]
         return len(decimals)
 
-    @type_check_decorator
+    
     def _negative_value_test(self, operation: str, value: Union[int, float], raise_exception: bool = True) -> bool:
         if value < 0 and not self.ALLOW_NEGATIVES:
             if raise_exception:
@@ -245,14 +243,14 @@ class Datum:
         else:
             return True
 
-    @type_check_decorator
+    
     def from_quantity(self, name: str, q: Quantity) -> 'Datum':
         self._negative_value_test(operation='Quantity to Datum convertion', value=q.magnitude)
         m = q.magnitude
         u = q.units
         return Datum(name, m, u)
 
-    @type_check_decorator
+    
     def from_string(self, string: str) -> 'Datum':
         pattern = '^[a-z]+ = \d+(\.\d+)? [a-z]+$'
         if re.fullmatch(pattern, string):
@@ -263,7 +261,7 @@ class Datum:
         else:
             raise WrongStringFormat(string=string, variables=locals())
 
-    @type_check_decorator
+    
     def use_units(self, units: Union[str, Unit] = 'dimensionless') -> None:
         """
         Sets the default units of the Datum instance to be the ones indicated in the "units" parameter. Also
@@ -287,7 +285,7 @@ class Datum:
         q = self.quantity.to_base_units()
         self.use_units(q.units)
 
-    @type_check_decorator
+    
     def convert(self, units: Union[str, Unit] = 'dimensionless') -> 'Datum':
         """
         Converts the Datum instance into a new Datum with the new units. DOES NOT rewrite the original Datum instance,
@@ -302,7 +300,7 @@ class Datum:
         u = q.units
         return Datum(self.variable, m, u)
 
-    @type_check_decorator
+    
     def convertable(self, units: Union[str, Unit] = 'dimensionless') -> bool:
         """
         Checks if the quantity of the Datum instance can be converted to the indicated units.
@@ -312,7 +310,7 @@ class Datum:
         """
         return self.quantity.is_compatible_with(Unit(units) if isinstance(units, str) else units)
 
-    @type_check_decorator
+    
     def rewrite(self, value: Union[int, float], units: Union[str, Unit] = 'dimensionless') -> None:
         """
         Sets up a new value and units for the current Datum instance. The new units do not need to be compatible with
@@ -366,7 +364,7 @@ class Datum:
     def ALLOW_NEGATIVES(self) -> bool:
         return self._ALLOW_NEGATIVES
 
-    @type_check_decorator
+    
     @ALLOW_NEGATIVES.setter
     def ALLOW_NEGATIVES(self, value: bool) -> None:
         self._ALLOW_NEGATIVES = value

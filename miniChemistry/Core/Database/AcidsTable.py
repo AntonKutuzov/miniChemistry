@@ -39,7 +39,7 @@ from miniChemistry.Utilities.File import File
 from miniChemistry.Core.Substances import Molecule, Ion, _string_to_elementary_composition
 from miniChemistry.Core.CoreExceptions.CompatibilityTableExceptions import AcidNotFound, AcidicOxideNotFound, WrongTextFileData
 from miniChemistry.Core.CoreExceptions.ToolExceptions import InvalidFormula
-from miniChemistry.Utilities.Checks import type_check_decorator
+
 
 
 class AcidsTable:
@@ -205,7 +205,7 @@ class AcidsTable:
 
 
     # =================================================================================================== PUBLIC METHODS
-    @type_check_decorator
+    
     def acid(self, substance: (Ion, Molecule)) -> Molecule:
         """
         Takes in either acid rest or acidic oxide, and returns the corresponding acid. Selection of acid is based on
@@ -224,7 +224,7 @@ class AcidsTable:
 
         return self._acids[index]
 
-    @type_check_decorator
+    
     def acid_rest(self, substance: Molecule) -> Ion:
         """
         Takes in an acid or an acidic oxide and returns the corresponding acid rest. Selection of acid rest is based
@@ -243,7 +243,7 @@ class AcidsTable:
 
         return self._acid_rests[index]
 
-    @type_check_decorator
+    
     def acidic_oxide(self, substance: (Ion, Molecule)) -> Molecule:
         """
         Takes in either acid or acid rest, and returns corresponding acidic oxide. Selection of acidic oxide is based

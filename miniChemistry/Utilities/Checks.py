@@ -1,153 +1,8 @@
-import inspect
-from functools import wraps
-from typing import Union, Dict, Any, Callable
-
+from typing import Union, Dict, Any
 from miniChemistry.Core.CoreExceptions.SubstanceExceptions import MultipleElementCation, ChargeError
 from miniChemistry.Utilities.UtilityExceptions import *
-from typeguard import check_type as tg_check_type
-from typeguard import TypeCheckError
-from miniChemistry.Utilities.UtilityExceptions import DecoratedTypeCheckError, TypeHintNotFound
 
 
-TURN_OFF = False
-
-def _count_arguments(func: Callable) -> Dict[str, inspect.Parameter.kind]:
-    signature = inspect.signature(func)
-    parameters = dict(signature.parameters)
-
-    if 'self' in signature.parameters:
-        parameters.pop('self')
-
-    number_of_arguments = {
-        'positional only': 0,
-        'positional or keyword': 0,
-        'variable positional': 0,
-        'keyword only': 0,
-        'variable keyword': 0
-    }
-
-    for parameter in parameters.values():
-        if parameter.kind == parameter.POSITIONAL_ONLY:
-            number_of_arguments['positional only'] += 1
-        elif parameter.kind == parameter.POSITIONAL_OR_KEYWORD:
-            number_of_arguments['positional or keyword'] += 1
-        elif parameter.kind == parameter.VAR_POSITIONAL:
-            number_of_arguments['variable positional'] += 1
-        elif parameter.kind == parameter.KEYWORD_ONLY:
-            number_of_arguments['keyword only'] += 1
-        elif parameter.kind == parameter.VAR_KEYWORD:
-            number_of_arguments['variable keyword'] += 1
-        else:
-            raise Exception('How did it even happen? Did you find the sixth argument type?')
-
-    return  number_of_arguments
-
-
-def _match_typing(func, *args, **kwargs):
-    annotations = func.__annotations__.copy()
-    number_of_arguments = _count_arguments(func)
-    number_of_args = (number_of_arguments['positional only'] + number_of_arguments['positional or keyword'] +
-                      number_of_arguments['variable positional'])
-    try:
-        annotations.pop('return')
-    except KeyError:
-        raise TypeHintNotFound(func_name=func.__name__, hint_type='return', variables=locals())
-
-    arg_list = list()  # this basically replaces a dictionary for us
-    type_list = list()
-
-    arg_counter = 0
-    for arg, i, name, annotation in zip(args, range(number_of_args), annotations.keys(), annotations.values()):
-        arg_list.append(arg)
-        type_list.append(annotation)
-        arg_counter += 1
-
-    if arg_counter != len(args):
-        last_type = type_list[-1]
-        for arg in args[arg_counter:]:
-            arg_list.append(arg)
-            type_list.append(last_type)
-
-    default_kwarg_type = annotations.get('kwargs')
-    if default_kwarg_type is None and 'kwargs' in func.__annotations__:
-        raise TypeHintNotFound(func_name=func.__name__, hint_type='parameter', variables=locals())
-    else:
-        default_kwarg_type = Any
-
-    for kwarg in kwargs:
-        ann_type = annotations.get(kwarg)
-        if ann_type is not None:
-            arg_list.append(kwarg)
-            type_list.append(ann_type)
-        else:
-            arg_list.append(kwarg)
-            type_list.append(default_kwarg_type)
-
-    return arg_list, type_list
-
-
-def type_check_decorator(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        if TURN_OFF:
-            return func(*args, **kwargs)
-
-        signature = inspect.signature(func)
-
-        # getting rid of 'self' if it is present
-        new_args = list(args).copy()
-        if 'self' in signature.parameters:
-            index = list(signature.parameters.keys()).index('self')
-            new_args.pop(index)
-
-        # matching each argument to parameter's type
-        arguments, correct_types = _match_typing(func, *new_args, **kwargs)
-        # print('correct types', correct_types)
-
-        # print(func, correct_types, new_args, kwargs)
-        # checking each argument. Look for what _match_typing returns. Positional arguments are returned by their value, keyword arguments by key
-        for argument, annotation in zip(arguments, correct_types):
-            if argument in new_args:
-                try:
-                    tg_check_type(argument, annotation)
-                except TypeCheckError:
-                    raise DecoratedTypeCheckError(function_name=func.__name__,
-                                                  parameter_type='positional',
-                                                  parameter_name_or_value=f'{argument}',
-                                                  expected_type=annotation,
-                                                  received_type=type(argument),
-                                                  variables=locals())
-            elif argument in kwargs:
-                try:
-                    tg_check_type(kwargs[argument], annotation)
-                except TypeCheckError:
-                    raise DecoratedTypeCheckError(function_name=func.__name__,
-                                                  parameter_type='keyword',
-                                                  parameter_name_or_value=argument,
-                                                  expected_type=annotation,
-                                                  received_type=type(kwargs[argument]),
-                                                  variables=locals())
-            else:
-                raise Exception(f'How did you get here? {argument, annotation}')
-
-        result = func(*args, **kwargs)
-
-        try:
-            return_type = func.__annotations__['return']
-            tg_check_type(result, return_type)
-        except TypeCheckError:
-            raise DecoratedTypeCheckError(function_name=func.__name__,
-                                          parameter_type='return',
-                                          parameter_name_or_value='return',
-                                          expected_type=signature.return_annotation,
-                                          received_type=type(result),
-                                          variables=locals())
-
-        return result
-    return wrapper
-
-
-@type_check_decorator
 def type_check(parameters: list, types: list, strict_order: bool = False, raise_exception: bool = False) -> bool:
     """
     To be used in any case when the decorator cannot be used. For example, if a function accepts *args and **kwargs,
@@ -184,7 +39,7 @@ def type_check(parameters: list, types: list, strict_order: bool = False, raise_
         else:
             return True
 
-@type_check_decorator
+
 def keywords_check(keywords: Union[list, tuple], allowed_keywords: Union[list, tuple], function_name: str, variables: dict,
                    raise_exception: bool = True) -> bool:
     """
@@ -209,7 +64,7 @@ def keywords_check(keywords: Union[list, tuple], allowed_keywords: Union[list, t
     else:
         return True
 
-@type_check_decorator
+
 def single_element_cation_check(composition: Dict[Any, int], charge: int, raise_exception: bool = False) -> bool:
     """
     Checks if a cation passed to a function contains one element. The function is used in Particle class to check ALL
@@ -234,7 +89,7 @@ def single_element_cation_check(composition: Dict[Any, int], charge: int, raise_
         return True
 
 
-@type_check_decorator
+
 def charge_check(charge: Union[list, tuple], neutrality: bool, raise_exception: bool = True) -> bool:
     """
     Checks if the total charge passed to a function is (not) zero.

@@ -62,7 +62,7 @@ All the other methods are explain in the class description.
 
 from miniChemistry.Core.CoreExceptions.CompatibilityTableExceptions import ElementIsNotMetal, UnknownActivityMetal
 from miniChemistry.MiniChemistryException import NotSupposedToHappen
-from miniChemistry.Utilities.Checks import type_check_decorator
+
 from typing import Tuple, Union, List
 from miniChemistry.Core.Substances import Simple
 from miniChemistry.Utilities.File import File
@@ -108,7 +108,7 @@ class MetalActivitySeries:
         return self.elements.__iter__()
 
 
-    @type_check_decorator
+    
     def _convert_to_metals(self) -> List[Simple]:
         """
         Takes in data obtained directly from the txt file ("MetalActivitySeries") and converts them into
@@ -127,7 +127,7 @@ class MetalActivitySeries:
 
 
     @staticmethod
-    @type_check_decorator
+    
     def _is_metal(element: pt.Element, raise_exception: bool = True, include_hydrogen: bool = True) -> bool:
         """
         Is a test to check if an element is a metal. If yes, returns True, if no, either returns False or raises
@@ -149,7 +149,7 @@ class MetalActivitySeries:
             return False
 
 
-    @type_check_decorator
+    
     def _index(self, element: Union[pt.Element, Simple]) -> int:
         """
         Since metal activity series is short enough, it can easily be stored as a usual Python list. That means,
@@ -174,7 +174,7 @@ class MetalActivitySeries:
             raise nsth
 
 
-    @type_check_decorator
+    
     def _estimate_by_ren(self, element: pt.Element, among: Union[Tuple[pt.Element, ...], None] = None) -> pt.Element:
         """
         The method is used in the estimate() method to estimate metal's activity based on its relative
@@ -205,7 +205,7 @@ class MetalActivitySeries:
         return closest_element
 
 
-    @type_check_decorator
+    
     def estimate(self, element: pt.Element) -> pt.Element:
         """
         Estimates activity of an element by comparing its properties to the properties of the elements in the series.
@@ -258,7 +258,7 @@ class MetalActivitySeries:
                 raise UnknownActivityMetal(element=element.symbol, variables=locals())
 
 
-    @type_check_decorator
+    
     def compare(self, el1: pt.Element, el2: pt.Element, return_active: bool = True) -> pt.Element:
         """
 
@@ -302,7 +302,7 @@ class MetalActivitySeries:
         return self.compare(el1, el2, return_active=False)
 
 
-    @type_check_decorator
+    
     def activity(self, element: pt.Element) -> str:
         """
         Returns activity of a metal as a string. Four possible values can be returned: "active", "middle active",

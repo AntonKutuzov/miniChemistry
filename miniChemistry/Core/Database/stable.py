@@ -59,7 +59,7 @@ You can use self.cursor and self.connect to operate the database directly.
 from collections import namedtuple
 from functools import wraps
 from typing import Iterable, List
-from miniChemistry.Utilities.Checks import type_check_decorator, keywords_check, type_check
+from miniChemistry.Utilities.Checks import keywords_check, type_check
 from miniChemistry.Core.CoreExceptions.stableExceptions import *
 import os
 import sqlite3 as sq
@@ -154,7 +154,7 @@ class SolubilityTable:
             substances.append(SolubilityTable.Substance(*datum))
         return substances.__iter__()
 
-    @type_check_decorator
+    
     @_stable_initiated
     def write(self, cation: str, cation_charge: int, anion: str, anion_charge: int, solubility: str) -> None:
         """
@@ -190,7 +190,7 @@ class SolubilityTable:
             sap = SubstanceAlreadyPresent(substance_signature=[cation, cation_charge, anion, anion_charge], variables=locals())
             raise sap
 
-    @type_check_decorator
+    
     @_stable_initiated
     def erase(self, cation: str, cation_charge: int, anion: str, anion_charge: int, solubility: str) -> None:
         pass

@@ -16,7 +16,7 @@ to demonstrate what defines a reaction within the set classification.
 from miniChemistry.Core.CoreExceptions.SubstanceExceptions import ChargeError
 from miniChemistry.Core.CoreExceptions.MechanismExceptions import *
 from miniChemistry.Core.Substances import Simple, Molecule, ion, simple
-from miniChemistry.Utilities.Checks import type_check_decorator
+
 import miniChemistry.Core.Database.ptable as pt
 from miniChemistry.Core.Database.stable import SolubilityTable
 from typing import List, Tuple, Any
@@ -51,7 +51,7 @@ def _select_ions(element: pt.Element, ion_type: str = 'both') -> List[Solubility
 
 
 # ================================================================================================== REACTION MECHANISMS
-@type_check_decorator
+
 def simple_addition(sub1: Simple, sub2: Simple, large_charge_difference: bool = True) -> Tuple[Molecule]:
     """
     Simple addition reaction by its definition is Simple + Simple -> Molecule. That means
@@ -97,7 +97,7 @@ def simple_addition(sub1: Simple, sub2: Simple, large_charge_difference: bool = 
 
 
 
-@type_check_decorator
+
 def simple_decomposition(sub: Molecule, *args: Any) -> Tuple[Simple, Simple]:
     """
     Simple decomposition reaction is defined as Molecule -> Simple + Simple. Since the simple() function from Substance.py
@@ -120,7 +120,7 @@ def simple_decomposition(sub: Molecule, *args: Any) -> Tuple[Simple, Simple]:
     return sub1, sub2
 
 
-@type_check_decorator
+
 def simple_substitution(sub1: (Simple, Molecule), sub2: (Simple, Molecule)) -> Tuple[Simple, Molecule]:
     """
     Simple substitution is defined as Simple + Molecule -> Simple + Molecule. In this reaction type an instance in
@@ -145,7 +145,7 @@ def simple_substitution(sub1: (Simple, Molecule), sub2: (Simple, Molecule)) -> T
         raise CannotPredictProducts(reagents=[sub1, sub2], function_name='simple_substitution', variables=locals())
 
 
-@type_check_decorator
+
 def simple_exchange(sub1: Molecule, sub2: Molecule) -> Tuple[Molecule, Molecule]:
     """
     Simple exchange reaction is defined as Molecule + Molecule -> Molecule + Molecule. Since this is just an ion

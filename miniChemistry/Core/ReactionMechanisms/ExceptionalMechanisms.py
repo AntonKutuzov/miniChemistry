@@ -22,7 +22,7 @@ import miniChemistry.Core.Database.ptable as pt
 from typing import Tuple, Any
 
 from miniChemistry.MiniChemistryException import NotSupposedToHappen
-from miniChemistry.Utilities.Checks import type_check_decorator
+
 
 
 def _is_nitrate(m: Molecule, raise_exception: bool = False) -> bool:
@@ -44,7 +44,7 @@ def _is_nitrate(m: Molecule, raise_exception: bool = False) -> bool:
         return False
 
 
-@type_check_decorator
+
 def nitrate_decomposition(nitrate: Molecule, *args: Any) -> Tuple[Particle, ...]:
     if nitrate.simple_class not in {"acid", "salt"}:
         raise WrongSimpleClass(formula=nitrate.formula(), simple_class=nitrate.simple_class,

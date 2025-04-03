@@ -38,7 +38,7 @@ __getitem__. Returns a substance. The indices are provided in the same order as 
 
 from typing import Union, Tuple, List
 from miniChemistry.Core.Substances import Molecule, Simple
-from miniChemistry.Utilities.Checks import type_check_decorator, type_check
+from miniChemistry.Utilities.Checks import type_check
 from miniChemistry.Core.Tools.parser import parse
 from miniChemistry.Core.Tools.predict import predict
 from miniChemistry.Core.Tools.Equalizer import Equalizer
@@ -47,7 +47,7 @@ from miniChemistry.MiniChemistryException import NotSupposedToHappen
 
 
 class Reaction:
-    @type_check_decorator
+    
     def __init__(self, *args: Union[Simple, Molecule],
                  reagents: Union[List[Union[Simple, Molecule]], None] = None,
                  products: Union[List[Union[Simple, Molecule]], None] = None) -> None:

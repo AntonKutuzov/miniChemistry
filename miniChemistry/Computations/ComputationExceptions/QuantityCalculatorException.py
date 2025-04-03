@@ -14,8 +14,7 @@ class UnknownVariableException(QuantityCalculatorException):
                             f'variable.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class VariableHasValue(QuantityCalculatorException):
@@ -26,8 +25,7 @@ class VariableHasValue(QuantityCalculatorException):
                             f'first and then you can use "write_value()".')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class ValueNotFoundException(QuantityCalculatorException):
@@ -36,8 +34,7 @@ class ValueNotFoundException(QuantityCalculatorException):
         self.description = f'\n'
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class SolutionNotFound(QuantityCalculatorException):
@@ -47,5 +44,4 @@ class SolutionNotFound(QuantityCalculatorException):
         self.description = f'\n'
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    

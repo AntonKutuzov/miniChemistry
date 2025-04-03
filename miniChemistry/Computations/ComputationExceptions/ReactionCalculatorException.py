@@ -16,8 +16,7 @@ class InvalidConstructorArguments(ReactionCalculatorException):
                             f'- string with a reaction scheme (positional argument)')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 class InitializationError(ReactionCalculatorException):
     def __init__(self, init_type: str, variables: dict):
@@ -27,8 +26,7 @@ class InitializationError(ReactionCalculatorException):
                             f'passing to the constructor a Reaction instance.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class ComputationException(ReactionCalculatorException):
@@ -39,6 +37,5 @@ class ComputationException(ReactionCalculatorException):
                             f'or the target variable. Check that the substance is correct.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 

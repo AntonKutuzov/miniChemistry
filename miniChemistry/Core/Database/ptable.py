@@ -103,7 +103,7 @@ from collections import namedtuple
 from typing import Union
 
 from miniChemistry.MiniChemistryException import NotSupposedToHappen
-from miniChemistry.Utilities.Checks import type_check_decorator
+
 from miniChemistry.Core.CoreExceptions.ptableExceptions import ElementNotFound
 
 
@@ -156,7 +156,7 @@ class Element:
         '8B': (2, 3, 6),
     }
 
-    @type_check_decorator
+    
     def __init__(self, symbol: str, name: str, atomic_number: int, period: int, group: str,
                  molar_mass: Union[float, int], ren: Union[float, int], radioactive: bool = False) -> None:
         self._symbol = symbol

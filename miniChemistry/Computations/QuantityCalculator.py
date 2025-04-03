@@ -49,7 +49,7 @@ from typing import List, Dict, Tuple, Union
 from miniChemistry.Computations.ComputationExceptions.DatumException import IncompatibleUnits
 from miniChemistry.Utilities.File import File
 from miniChemistry.Computations.Datum import Datum
-from miniChemistry.Utilities.Checks import type_check_decorator
+
 from miniChemistry.Computations.ComputationExceptions.QuantityCalculatorException import (
     UnknownVariableException,
     VariableHasValue,
@@ -175,12 +175,12 @@ class QuantityCalculator:
         return self._solve_from_strings(symbol)
 
     # ================================================================================================== PRIVATE METHODS
-    @type_check_decorator
+    
     def has_value(self, name: str) -> bool:
         names = [var.variable for var in self.values]
         return name in names
 
-    @type_check_decorator
+    
     def write_value(self, d: Datum) -> None:
         """
         Before the Datum can be written to the variables of the QuantityCalculator, two checks must be made:\n
@@ -218,7 +218,7 @@ class QuantityCalculator:
         else:
             raise ValueNotFoundException(name, variables=locals())
 
-    @type_check_decorator
+    
     def erase_value(self, var: str) -> None:
         if self.has_value(var):
             names = [var.variable for var in self.values]

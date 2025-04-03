@@ -59,7 +59,7 @@ from miniChemistry.MiniChemistryException import NotSupposedToHappen
 from miniChemistry.Core.Database.AcidsTable import AcidsTable
 from miniChemistry.Core.Database.BasesTable import BasesTable
 from miniChemistry.Core.Substances import Molecule
-from miniChemistry.Utilities.Checks import type_check_decorator
+
 from typing import Tuple, Any
 
 
@@ -88,7 +88,7 @@ def _oxide_to_molecule(sub: Molecule) -> Molecule:
                                   variables=locals())
 
 
-@type_check_decorator
+
 def complex_decomposition(sub: Molecule, *args: Any) -> Tuple[Molecule, Molecule]:
     """
     Computes the products of decomposition of three-element molecule into oxides. The algorithm is based on an
@@ -125,7 +125,7 @@ def complex_decomposition(sub: Molecule, *args: Any) -> Tuple[Molecule, Molecule
                                    expected_class="'acid', 'base' or 'salt'", variables=locals())
 
 
-@type_check_decorator
+
 def complex_addition(acidic_oxide: Molecule, basic_oxide: Molecule) -> Tuple[Molecule]:
     """
     Takes in two instances of Molecule, always oxides, and returns a single molecule, the result of their reaction.
@@ -199,7 +199,7 @@ def complex_addition(acidic_oxide: Molecule, basic_oxide: Molecule) -> Tuple[Mol
             raise NotSupposedToHappen(variables=locals())
 
 
-@type_check_decorator
+
 def complex_neutralization(acidic_substance: Molecule, basic_substance: Molecule) -> Tuple[Molecule, ...]:
     """
     The method takes two molecules – one of acidic nature, one of basic nature – and returns the product of their

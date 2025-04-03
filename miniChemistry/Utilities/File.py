@@ -17,14 +17,14 @@ from pathlib import Path
 from typing import List, Any
 
 from miniChemistry.MiniChemistryException import NotSupposedToHappen
-from miniChemistry.Utilities.Checks import type_check_decorator
+
 from miniChemistry.Utilities.UtilityExceptions import UnknownFileTest, FileNotBound, TextNotPresentInFile, \
     IndexOutOfRange, SplitterInText
 
 
 class File:
     # ==================================================================================================== MAGIC METHODS
-    @type_check_decorator
+    
     def __init__(self, caller: str = __file__, splitter: str = '\n') -> None:
         """
         Introduces several important variables for the File class as well as derives the path of the new text file.
@@ -96,7 +96,7 @@ class File:
             results.append(res)
         return all(results)
 
-    @type_check_decorator
+    
     def _file_bound_test(self, *, raise_exception: bool = True, **kwargs: Any) -> bool:
         """
         The kwargs argument is needed here, because all the tests are called by a single function _test_for(), and
@@ -113,7 +113,7 @@ class File:
                 return False
         return True
 
-    @type_check_decorator
+    
     def _in_file_present_test(self, *, text, raise_exception: bool = True, **kwargs: Any) -> bool:
         """
         Test that checks whether a given string is present in the bound file.
@@ -137,7 +137,7 @@ class File:
             return False
 
 
-    @type_check_decorator
+    
     def _no_splitter_test(self, text: str, raise_exception: bool = True, **kwargs: Any) -> bool:
         if not self._splitter_check:
             return True
@@ -172,7 +172,7 @@ class File:
 
 
     # =================================================================================================== PUBLIC METHODS
-    @type_check_decorator
+    
     def bind(self, file_name: str) -> None:
         """
         Assigns a variable self._file a value of type Path. The path for the file is composed from the caller's path,
@@ -193,7 +193,7 @@ class File:
         else:  # technically should never be called
             raise NotSupposedToHappen(variables=locals())
 
-    @type_check_decorator
+    
     def read_index(self, index: int) -> str:
         """
         Returns a string located in the file at a certain position (index)
@@ -216,7 +216,7 @@ class File:
         self._test_for(['file bound'])
         return self._get_items()
 
-    @type_check_decorator
+    
     def write(self, text: str, add_splitter: bool = True) -> None:
         """
         Writes (overwrites!) a given string (parameter "text") to the existing (bound) file. The
@@ -233,7 +233,7 @@ class File:
         to_write = text + (self.splitter if add_splitter else '')
         self._file.write_text(to_write)
 
-    @type_check_decorator
+    
     def append(self, text: str, add_splitter: bool = True) -> None:
         """
         Appends a given string (parameter "text") to the existing (bound) file.
@@ -248,7 +248,7 @@ class File:
             to_append = text + (self.splitter if add_splitter else '')
             file.write(to_append)
 
-    @type_check_decorator
+    
     def find(self, text: str) -> bool:
         """
         Checks if a given string is present in the file. Works also for sequences, connected by self.splitter.
@@ -260,7 +260,7 @@ class File:
         self._test_for(['file bound', 'in file present', 'splitter test'], text=text)
         return text in self._file.read_text()
 
-    @type_check_decorator
+    
     def index(self, text: str) -> int:
         """
         Searches for the position of the string given in the "text" parameter. Returns the smallest index (first
@@ -276,7 +276,7 @@ class File:
         index = items.index(text)
         return index
 
-    @type_check_decorator
+    
     def positions(self, text: str) -> List[int]:
         """
         Searches for ALL occurrences of the string passed as the "text" parameter. Returns a list of the indices (ints).
@@ -298,7 +298,7 @@ class File:
 
         return indices
 
-    @type_check_decorator
+    
     def erase_text(self, text: str) -> None:
         """
         Removes a string passed as a "text" parameter from the file. Does not support string sequences, connected by
@@ -320,7 +320,7 @@ class File:
                 self.append(item)
         # self.write(new_string)  # write_text rewrites the file completely
 
-    @type_check_decorator
+    
     def erase_index(self, index: int) -> str:
         """
         Erases a string located at a certain position.
@@ -363,7 +363,7 @@ class File:
         return self._splitter_check
 
     @splitter_check.setter
-    @type_check_decorator
+    
     def splitter_check(self, value: bool) -> None:
         self._splitter_check = value
 

@@ -39,7 +39,7 @@ For similar information on acids, look at AcidsTable.py.
 """
 
 
-from miniChemistry.Utilities.Checks import type_check_decorator
+
 from miniChemistry.Core.Database.stable import SolubilityTable
 import miniChemistry.Core.Database.ptable as pt
 from miniChemistry.Core.Substances import Molecule, Ion
@@ -92,7 +92,7 @@ class BasesTable:
 
         return tuple(ions), tuple(bases), tuple(oxides)
 
-    @type_check_decorator
+    
     def base(self, substance: (Ion, Molecule)) -> Molecule:
         """
         Takes in cation or basic oxide and returns a corresponding base. To select the base the index of the parameter's
@@ -111,7 +111,7 @@ class BasesTable:
 
         return self._bases[index]
 
-    @type_check_decorator
+    
     def basic_oxide(self, substance: (Ion, Molecule)) -> Molecule:
         """
         Takes in a base or a cation, and returns a basic oxide. To select the oxide the index of the parameter's
@@ -131,7 +131,7 @@ class BasesTable:
 
         return self._basic_oxides[index]
 
-    @type_check_decorator
+    
     def cation(self, substance: Molecule) -> Ion:
         """
         Takes in a base or a basic oxide and returns a respective cation. To select the cation the index of the parameter's

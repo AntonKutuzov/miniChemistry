@@ -12,5 +12,4 @@ class ElementNotFound(PeriodicTableException):
                              f'capital, which means "cu" will raise an exception, but "Cu" (stands for copper) will not.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    

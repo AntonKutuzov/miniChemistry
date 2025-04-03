@@ -6,8 +6,20 @@ class MiniChemistryException(Exception):
     we can immediately see without debugging what values the variables had.
     """
     def __init__(self, variables: dict):
+        if not hasattr(self, '_message') or not hasattr(self, 'description'):
+            raise AttributeError('Each subclass of the MiniChemistryException must have both "_message" and "description" variables.')
+
+        # this if–statement will never be called, but if you delete it, Python will complain, because it won't
+        # see any "_message" and "description" variables
+        if not hasattr(self, '_message') or not hasattr(self, 'description'):
+            self._message = 'this is a message of the miniChemistry base exception.'
+            self.description = 'this is a description of the miniChemistry base exception.'
+                
         self._relevant_variables = f'\n\n {''.join([str(item) + "\n" for item in variables.items()])}'
         super().__init__()
+    
+    def __str__(self):
+        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
 
 
 class NotSupposedToHappen(MiniChemistryException):
@@ -20,9 +32,6 @@ class NotSupposedToHappen(MiniChemistryException):
         self._relevant_variables = f'\n\n {''.join([str(item) + "\n" for item in variables.items()])}'
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
-
 
 class NoArgumentForFunction(MiniChemistryException):
     def __init__(self, function_name: str, variables: dict):
@@ -30,7 +39,3 @@ class NoArgumentForFunction(MiniChemistryException):
         self.description = ''
         self._relevant_variables = f'\n\n {''.join([str(item) + "\n" for item in variables.items()])}'
         super().__init__(variables)
-
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
-

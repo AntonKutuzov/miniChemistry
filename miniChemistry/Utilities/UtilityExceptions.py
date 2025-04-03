@@ -20,36 +20,6 @@ class KeywordNotAllowed(UtilityException):
                             f'the allowed keywords in the documentation of the miniChemistry module.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
-
-
-class DecoratedTypeCheckError(UtilityException):
-    def __init__(self, function_name: str, parameter_type: str, parameter_name_or_value: str, expected_type: str, received_type: type, variables: dict):
-        """
-        Raised by type_check_decorator to indicate what function and what parameter resulted in an error.
-
-        :param function_name: name of the function that called an exception (str)
-        :param parameter_type: type of the parameter that called an exception: "positional", "keyword" or "return" (as string!)
-        :param parameter_name_or_value: name of the keyword argument that called an exception or value or the positional argument (str)
-        :param variables: locals()
-        """
-
-        decision_dict = {
-            'positional': lambda v: f'argument with value {v}',
-            'keyword': lambda n: f'argument called "{n}"',
-            'return': lambda x: f'value'
-        }
-
-        self._message = (f'\nThe type of the {parameter_type} {decision_dict[parameter_type](parameter_name_or_value)} '
-                         f'in a function "{function_name}" is not as expected.'
-                         f'\nExpected {expected_type}, but got {received_type}.')
-        self.description = ''
-        super().__init__(variables)
-
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
-
 
 class TypeHintNotFound(UtilityException):
     def __init__(self, func_name: str, hint_type: str, variables: dict):
@@ -60,9 +30,6 @@ class TypeHintNotFound(UtilityException):
         self.description = ''
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
-
 
 class UnknownFileTest(FileException):
     def __init__(self, test_name: str, variables: dict):
@@ -71,8 +38,7 @@ class UnknownFileTest(FileException):
                             f'so that the class sees it.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class FileNotBound(FileException):
@@ -81,8 +47,7 @@ class FileNotBound(FileException):
         self.description = f'\nCheck that you called .bind() method with the expected file name.'
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class TextNotPresentInFile(FileException):
@@ -91,8 +56,7 @@ class TextNotPresentInFile(FileException):
         self.description = ''
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class FileAlreadyBound(FileException):
@@ -103,8 +67,7 @@ class FileAlreadyBound(FileException):
                             f'create another instance of File.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class IndexOutOfRange(FileException):
@@ -113,8 +76,7 @@ class IndexOutOfRange(FileException):
         self.description = ''
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class SplitterInText(FileException):
@@ -127,5 +89,4 @@ class SplitterInText(FileException):
                             f'then set the File.slitter_check attribute to False.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    

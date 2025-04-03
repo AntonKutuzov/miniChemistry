@@ -36,13 +36,13 @@ from miniChemistry.Core.Database.MetalActivitySeries import MetalActivitySeries
 from miniChemistry.Core.Substances import Molecule, Simple, is_gas, simple
 from miniChemistry.Core.Database.stable import SolubilityTable
 from miniChemistry.MiniChemistryException import NotSupposedToHappen
-from miniChemistry.Utilities.Checks import type_check_decorator
+
 from miniChemistry.Core.CoreExceptions.MechanismExceptions import WeakElectrolyteNotFound, LessActiveMetalReagent, WrongSimpleClass, \
     WrongMetalActivity
 from typing import Union
 
 
-@type_check_decorator
+
 def _molecule_to_stable_substance(m: Molecule) -> SolubilityTable.Substance:
     """
     Converts the instance of Molecule into an instance of SolubilityTable.Substance.
@@ -74,7 +74,7 @@ def _molecule_to_stable_substance(m: Molecule) -> SolubilityTable.Substance:
 
 
 
-@type_check_decorator
+
 def weak_electrolyte_restriction(*products: Union[Simple, Molecule], raise_exception: bool = False) -> bool:
     """
     Checks the product for presence of a weak electrolyte (water, gas or precipitate)
@@ -104,7 +104,7 @@ def weak_electrolyte_restriction(*products: Union[Simple, Molecule], raise_excep
 
 
 
-@type_check_decorator
+
 def metal_activity_restriction(sub: Union[Simple, Molecule], metal: Union[Simple, Molecule], raise_exception: bool = False) -> bool:
     """
     Checks that the activity of a Simple metal is larger than the activity of a metal from Molecule instance.
@@ -138,7 +138,7 @@ def metal_activity_restriction(sub: Union[Simple, Molecule], metal: Union[Simple
         raise nsth
 
 
-@type_check_decorator
+
 def metal_and_water_restriction(*products: Union[Molecule, Simple], raise_exception: bool = False) -> bool:
     """
     Checks that metal that reacted with water is active. Since product of a reaction of metal with water is a base,

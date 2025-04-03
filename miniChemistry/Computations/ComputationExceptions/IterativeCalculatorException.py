@@ -13,8 +13,7 @@ class IncorrectFileFormatting(IterativeCalculatorException):
                             f'check the formatting.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class AssumptionFailed(IterativeCalculatorException):
@@ -25,8 +24,7 @@ class AssumptionFailed(IterativeCalculatorException):
                             f'any of the variables to be calculated were not possible to find, this equation is raised.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class SolutionNotFound(IterativeCalculatorException):
@@ -36,8 +34,7 @@ class SolutionNotFound(IterativeCalculatorException):
                             f'the class (you can always check it by "IterativeCalculator.calculator.values" property.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class NegativesNotAllowed(IterativeCalculatorException):
@@ -47,5 +44,4 @@ class NegativesNotAllowed(IterativeCalculatorException):
                             f'attribute to True.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    

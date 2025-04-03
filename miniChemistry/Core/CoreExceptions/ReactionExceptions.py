@@ -13,8 +13,7 @@ class WrongNumberOfReagents(ReactionException):
                             f'passed to the function are: {", ".join(reagents)}')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class WrongReactionConstructorParameters(ReactionException):
@@ -24,5 +23,4 @@ class WrongReactionConstructorParameters(ReactionException):
                             f'as a separate parameter, OR two lists – first reagents, second products.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    

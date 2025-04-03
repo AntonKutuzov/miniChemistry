@@ -47,7 +47,7 @@ from miniChemistry.Core.ReactionMechanisms.ComplexMechanisms import *
 from miniChemistry.Core.ReactionMechanisms.Restrictions import *
 
 from miniChemistry.Core.Substances import Molecule, Simple
-from miniChemistry.Utilities.Checks import type_check_decorator
+
 from miniChemistry.Core.CoreExceptions.MechanismExceptions import *
 
 from pathlib import Path
@@ -97,7 +97,7 @@ file.close()
 # =================================================================================== reading the data from the csv file
 
 
-@type_check_decorator
+
 def _effective_class(sub: Union[Molecule, Simple, None]) -> str:
     salt_acid_prefix = lambda s: 'ternary' if s.size == 3 else 'binary'
 
@@ -119,7 +119,7 @@ def _effective_class(sub: Union[Molecule, Simple, None]) -> str:
             return sub.simple_class
 
 
-@type_check_decorator
+
 def predict(reagent1: Union[Simple, Molecule], reagent2: Union[Simple, Molecule, None] = None) -> Tuple[Union[Simple, Molecule], ...]:
     """
     Accepts as parameters two substances (or a substance and the None) and returns its products by calling respective

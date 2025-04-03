@@ -23,8 +23,7 @@ class CannotPredictProducts(MechanismException):
         self.description = ''
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class WrongSimpleClass(MechanismException):
@@ -35,8 +34,7 @@ class WrongSimpleClass(MechanismException):
         self.description = ''
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class WrongSimpleSubclass(MechanismException):
@@ -47,8 +45,7 @@ class WrongSimpleSubclass(MechanismException):
         self.description = ''
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class WrongIon(MechanismException):
@@ -58,8 +55,7 @@ class WrongIon(MechanismException):
         self.description = ''
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 # =================================================================================================== RESTRICTION ERRORS
 class WeakElectrolyteNotFound(MechanismException):
@@ -69,8 +65,7 @@ class WeakElectrolyteNotFound(MechanismException):
         self.description = ''
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class LessActiveMetalReagent(MechanismException):
@@ -81,8 +76,7 @@ class LessActiveMetalReagent(MechanismException):
         self.description = ''
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class WrongMetalActivity(MechanismException):
@@ -92,5 +86,4 @@ class WrongMetalActivity(MechanismException):
         self.description = ''
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    

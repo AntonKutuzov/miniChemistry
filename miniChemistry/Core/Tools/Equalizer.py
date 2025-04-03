@@ -24,7 +24,7 @@ from typing import List, Set, Union, Dict
 
 import miniChemistry.Core.Database.ptable as pt
 from miniChemistry.Core.Substances import Simple, Molecule
-from miniChemistry.Utilities.Checks import type_check_decorator
+
 from miniChemistry.Core.CoreExceptions.ToolExceptions import CannotEquateReaction
 
 
@@ -72,7 +72,7 @@ class Equalizer:
     Converting this into a dict, we get the result.
     """
 
-    @type_check_decorator
+
     def __init__(self, *, reagents: list, products: list) -> None:
         self._reagents = reagents
         self._products = products
@@ -82,7 +82,7 @@ class Equalizer:
         self._substance_order = self._substances
         self._coefficients = self._get_coefficients()
 
-    @type_check_decorator
+
     def _elements(self, *substances: Union[Simple, Molecule]) -> Set[pt.Element]:
         """Extracts all the elements present on the given substances"""
         elements = set()
@@ -118,7 +118,7 @@ class Equalizer:
 
         return Matrix(matrix)
 
-    @type_check_decorator
+
     def _make_integers(self, m: Matrix) -> Matrix:
         """
         First converts all numbers in a matrix into sympy.Rational, then searches for the least common diviser or the

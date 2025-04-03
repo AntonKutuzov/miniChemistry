@@ -5,11 +5,11 @@ from miniChemistry.Core.CoreExceptions.ToolExceptions import InvalidFormula
 from miniChemistry.Core.Database.stable import SolubilityTable
 from miniChemistry.Core.CoreExceptions.stableExceptions import OutOfOptions
 from miniChemistry.Core.Substances import Simple, Molecule
-from miniChemistry.Utilities.Checks import type_check_decorator
+
 from miniChemistry.MiniChemistryException import NoArgumentForFunction
 
 
-@type_check_decorator
+
 def parse_ion(ion_formula: str) -> Tuple[str, int]:
     """
     A form of writing ions accepted in this module is <ion formula>(<ion charge>). For example, an ion consisting of
@@ -37,7 +37,7 @@ def parse_ion(ion_formula: str) -> Tuple[str, int]:
 
     return formula, charge
 
-@type_check_decorator
+
 def split_to_elements(formula: str) -> List[str]:
     """
     The function disassembles the formula given into elementary strings (if we can say so) needed for this module. Namely,
@@ -97,7 +97,7 @@ def split_to_elements(formula: str) -> List[str]:
     return element_list
 
 
-@type_check_decorator
+
 def index_ratios(formula: str = '', round_to: int = 2, composition: Dict[str, Union[int, float]] = None) -> Dict[str, float]:
     """
     The function returns the relative number of elements in a given substance (formula). It takes the largest index
@@ -134,7 +134,7 @@ def index_ratios(formula: str = '', round_to: int = 2, composition: Dict[str, Un
     return ratios
 
 
-@type_check_decorator
+
 def _remove_first_element(formula: str, return_string: bool = False, return_composition: bool = False,
                           return_first_element: bool = False) -> Dict[str, Union[str, Dict[str, float]]]:
     element_list = split_to_elements(formula)
@@ -162,7 +162,7 @@ def _remove_first_element(formula: str, return_string: bool = False, return_comp
 
 
 
-@type_check_decorator
+
 def get_anion(formula: str) -> SolubilityTable.Ion:
     """
     Extracts an anion from a substance's formula. Returns anion's formula and charge separately if the corresponding
@@ -200,7 +200,7 @@ def get_anion(formula: str) -> SolubilityTable.Ion:
         raise OutOfOptions(formula=formula, function_name='get_anion', variables=locals())
 
 
-@type_check_decorator
+
 def get_cations(formula: str) -> List[SolubilityTable.Ion]:
     """
     Since there are elements that form multiple cations, such as Al(1) and Al(3), it is very hard to deduce what
@@ -226,7 +226,7 @@ def get_cations(formula: str) -> List[SolubilityTable.Ion]:
         raise OutOfOptions(formula, function_name='get_cations', variables=locals())
 
 
-@type_check_decorator
+
 def parse_simple_molecule(simple_formula: str) -> Simple:
     """
     Converts a formula of a simple substance into an instance of Simple class. Since the formula of a simple substance
@@ -257,7 +257,7 @@ def parse_simple_molecule(simple_formula: str) -> Simple:
     return Simple(real_element, index)
 
 
-@type_check_decorator
+
 def parse_complex_molecule(formula: str) -> Molecule:
     def create_molecule(cation: SolubilityTable.Ion, anion: SolubilityTable.Ion) -> Molecule:
         m = Molecule.from_string(cation.composition, cation.charge, anion.composition, anion.charge)
@@ -285,7 +285,7 @@ def parse_complex_molecule(formula: str) -> Molecule:
         raise InvalidFormula(formula, variables=locals())
 
 
-@type_check_decorator
+
 def parse(formula: str) -> Union[Simple, Molecule]:
     string_composition = parse_formula(formula)
 

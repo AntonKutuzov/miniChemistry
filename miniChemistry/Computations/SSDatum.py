@@ -1,6 +1,6 @@
 from miniChemistry.Computations.Datum import Datum
 from miniChemistry.Core.Substances import Molecule, Simple
-from miniChemistry.Utilities.Checks import type_check_decorator
+
 from typing import Union
 from pint import Unit
 
@@ -11,7 +11,7 @@ class SSDatum(Datum):
     data point. The constructor then takes in an additional parameter ("substance", which will always go the first one).
     """
 
-    @type_check_decorator
+    
     def __init__(self,
                  substance: Union[Molecule, Simple],
                  variable: str,

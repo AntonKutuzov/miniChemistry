@@ -11,8 +11,7 @@ class SolubilityTableNotInitiated(SolubilityTableException):
         self.description = ''
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class SubstanceAlreadyPresent(SolubilityTableException):
@@ -25,8 +24,7 @@ class SubstanceAlreadyPresent(SolubilityTableException):
                             "that the indicated charges are correct.")
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class SubstanceNotFound(SolubilityTableException):
@@ -36,8 +34,7 @@ class SubstanceNotFound(SolubilityTableException):
         self.description = ''
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class IonNotFound(SolubilityTableException):
@@ -48,8 +45,7 @@ class IonNotFound(SolubilityTableException):
         self.description = ''
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    
 
 
 class OutOfOptions(SolubilityTableException):
@@ -62,5 +58,4 @@ class OutOfOptions(SolubilityTableException):
                             f'function, but it did not succeed.')
         super().__init__(variables)
 
-    def __str__(self):
-        return self._message + '\n\n' + self.description + '\n\n' + self._relevant_variables
+    

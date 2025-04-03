@@ -96,7 +96,7 @@ from miniChemistry.Core.CoreExceptions.stableExceptions import IonNotFound
 from miniChemistry.Core.CoreExceptions.ptableExceptions import ElementNotFound as pt_ElementNotFound
 from miniChemistry.MiniChemistryException import NotSupposedToHappen
 
-from miniChemistry.Utilities.Checks import type_check_decorator, type_check, single_element_cation_check, charge_check
+from miniChemistry.Utilities.Checks import type_check, single_element_cation_check, charge_check
 
 # ============================================================================================== SPECIAL ATTRIBUTE CLASS
 
@@ -165,7 +165,7 @@ class Particle(ABC):
     cause problems later.
     """
 
-    @type_check_decorator
+    
     def __init__(self, composition: Dict[pt.Element, int], charge: int) -> None:
         single_element_cation_check(composition, charge, raise_exception=True)
 
@@ -200,7 +200,7 @@ class Particle(ABC):
 
     @staticmethod
     @abstractmethod
-    # @type_check_decorator not used because of string-form forward reference. Used just a type_check function instead
+    #  not used because of string-form forward reference. Used just a type_check function instead
     def from_string(*args, **kwargs):
         """
         This method is used to convert a string with molecular formula of a substance into an instance of the class
@@ -273,7 +273,7 @@ class Simple(Particle):
 
     empty = _SpecialSubstance(None, name='empty')
 
-    @type_check_decorator
+    
     def __init__(self, element: pt.Element, index: int) -> None:
         composition = {element : index}
 
@@ -367,7 +367,7 @@ class Ion(Particle):
     hydroxide = _SpecialSubstance(None, name='hydroxide')
     oxygen = _SpecialSubstance(None, name='oxygen')
 
-    @type_check_decorator
+    
     def __init__(self, composition: Dict[pt.Element, int], charge: int) -> None:
         charge_check([charge], neutrality=False, raise_exception=True)
         super().__init__(composition, charge)
@@ -405,7 +405,7 @@ class Ion(Particle):
 
         return i
 
-    @type_check_decorator
+    
     def formula(self, remove_charge: bool = False) -> str:
         formula = ''
 
@@ -445,7 +445,7 @@ class Molecule(Particle):
 
     water = _SpecialSubstance(None, name='water')
 
-    @type_check_decorator
+    
     def __init__(self, cation: Ion, anion: Ion) -> None:
         self._cation = cation
         self._anion = anion
@@ -464,7 +464,7 @@ class Molecule(Particle):
         """NOTE: if you try to call this method before you called Ion.create_special_ions() you will get an error."""
         cls.water = Molecule(Ion.proton, Ion.hydroxide)
 
-    @type_check_decorator
+    
     def _indices(self, cation: Ion, anion: Ion) -> Tuple[int, int]:
         """
         Determines the indices of each ion in a molecule. The key principle here is the rule that any molecule must be
@@ -530,7 +530,7 @@ class Molecule(Particle):
         :return:
         """
 
-        @type_check_decorator
+        
         def modification(i: Ion, index: int) -> str:
             """
             The logic here is quite simple. If an ion consists of only one element, we just append this number (index)
@@ -651,7 +651,7 @@ class Molecule(Particle):
         return self._anion
 
 # ==================================================================================================== HELPING FUNCTIONS
-@type_check_decorator
+
 def _string_to_elementary_composition(composition: Dict[str, Union[int, float]]) -> Dict[pt.Element, int]:
     """
     This function converts the result of chemparse.parse_formula() function which is Dict[str, int] into a dictionary
@@ -677,7 +677,7 @@ def _string_to_elementary_composition(composition: Dict[str, Union[int, float]])
     return elementary_composition
 
 
-@type_check_decorator
+
 def _select_suitable_charge(element: pt.Element, choose_largest_charge: bool = True) -> int:
     """
     The function is intended to select an appropriate charge for an element that will be then converted into an ion.
@@ -702,7 +702,7 @@ def _select_suitable_charge(element: pt.Element, choose_largest_charge: bool = T
     return possible_charges[0]
 
 
-@type_check_decorator
+
 def _exists(i: Ion) -> bool:
     st = SolubilityTable()
     st.begin()
@@ -718,7 +718,7 @@ def _exists(i: Ion) -> bool:
         return False
 
 # ================================================================================================= CONVERTION FUNCTIONS
-@type_check_decorator
+
 def simple(substance: Union[Ion, pt.Element]) -> Simple:
     """Converts Particle, Ion or pt.Element into Simple. Extracts the element from them and adds an index."""
     if isinstance(substance, Ion):
@@ -738,7 +738,7 @@ def simple(substance: Union[Ion, pt.Element]) -> Simple:
     return Simple(element, index)
 
 
-@type_check_decorator
+
 def ion(substance: Union[Simple, pt.Element, SolubilityTable.Ion],
         charge: int = None,
         choose_largest_charge: bool = True) -> Ion:
@@ -783,7 +783,7 @@ def ion(substance: Union[Simple, pt.Element, SolubilityTable.Ion],
     return Ion(composition, (charge if charge is not None else chosen_charge))
 
 
-@type_check_decorator
+
 def molecule(substance: SolubilityTable.Substance) -> Molecule:
     """
     Since in this code Molecule always consists of two ions, the only data type that can be directly converted into
@@ -804,7 +804,7 @@ def molecule(substance: SolubilityTable.Substance) -> Molecule:
 
 # ====================================================================================================== is_gas FUNCTION
 
-@type_check_decorator
+
 def is_gas(substance: Union[Molecule, Simple]) -> bool:
     """
     Thus function is based on empirical observations and is valid for many (but not all) substances within school
