@@ -28,6 +28,7 @@ import miniChemistry.Core.Database.ptable as pt
 from miniChemistry.Core.Substances import Ion
 from chemparse import parse_formula
 import pandas as pd
+import pathlib
 from miniChemistry.Core.Tools.parser import parse_ion
 
 
@@ -205,7 +206,8 @@ substances into the solubility table database.
 # The actual solubility table data are read from the Excel file and written into the database
 # here we need pandas (and only here)
 print('Reading the solubility table excel file...')
-file_name = 'SolubilityTable.xlsx'
+current_location = pathlib.Path(__file__).parent
+file_name = current_location / 'SolubilityTable.xlsx'
 df = pd.read_excel(file_name, sheet_name='Solubility In Water')
 
 print('And writing the actual solubilities of the most frequently met substances...')
