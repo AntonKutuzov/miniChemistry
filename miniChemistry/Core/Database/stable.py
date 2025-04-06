@@ -154,7 +154,6 @@ class SolubilityTable:
             substances.append(SolubilityTable.Substance(*datum))
         return substances.__iter__()
 
-    
     @_stable_initiated
     def write(self, cation: str, cation_charge: int, anion: str, anion_charge: int, solubility: str) -> None:
         """
@@ -388,8 +387,11 @@ class SolubilityTable:
         return approved_substances
 
     @_stable_initiated
-    def _erase_all(self) -> bool:
-        confirmation = input('! Are you sure you want to delete the whole solubility table (type "confirm" to proceed)? – ')
+    def _erase_all(self, no_confirm: bool = False) -> bool:
+        if not no_confirm:
+            confirmation = input('! Are you sure you want to delete the whole solubility table (type "confirm" to proceed)? – ')
+        else:
+            confirmation = 'confirm'
 
         if confirmation == 'confirm':
             self._cursor.execute('DELETE FROM solubility_table')
