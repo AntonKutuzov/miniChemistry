@@ -6,10 +6,10 @@ setup(
     author="Antons Kutuzovs",
     author_email="akutuzovsssss@gmail.com",
     description="A package to model simple stoichiometric calculations over chemical reactions",
-    long_description=open("README.md").read(),  # Include the content of README.md
-    long_description_content_type="text/markdown",  # Format of README.md (Markdown)
-    url="https://github.com/AntonKutuzov/miniChemistry",  # Replace with your GitHub repo URL
-    packages=find_packages(),  # Automatically find all packages in your project
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
+    url="https://github.com/AntonKutuzov/miniChemistry",
+    packages=find_packages(),
     install_requires=['chemparse', 'sympy', 'pandas', 'Pint', 'typeguard'],
     include_package_data=True,
     license="Apache-2.0",
