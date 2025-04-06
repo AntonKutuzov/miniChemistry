@@ -10,7 +10,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/AntonKutuzov/miniChemistry",
     packages=find_packages(),
-    install_requires=['chemparse', 'sympy', 'pandas', 'Pint', 'typeguard'],
+    install_requires=['chemparse', 'sympy', 'pandas', 'Pint', 'typeguard', 'openpyxl'],
     include_package_data=True,
     license="Apache-2.0",
     classifiers=[
