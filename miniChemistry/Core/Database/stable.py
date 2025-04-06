@@ -410,7 +410,6 @@ class SolubilityTable:
         return self._connect
 
 
-from miniChemistry.Core.Database.ModifySolubilityTable import modify
 
 st = SolubilityTable()
 st.begin()
@@ -418,6 +417,9 @@ length = len(st.select_substance())
 st.end()
 
 if length == 0:
-    modify(confirmation=False)
-else:
-    pass
+    print('WARNING: solubility table is empty. Run the following code:\n'
+          '>>> from miniChemistry.Core.Database.ModifySolubilityTable import modify\n'
+          '>>> modify(confirmation=False)\n'
+          'The code will require confirmation to overwrite the solubility table file.\n'
+          'After code execution the solubility table database should contain most common substances\n'
+          'met in school chemistry.')
