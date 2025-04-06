@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>miniChemistry.Computations package &#8212; miniChemistry 0.09 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=4f30f41c"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="miniChemistry.Computations.ComputationExceptions package" href="miniChemistry.Computations.ComputationExceptions.html" />
+    <link rel="prev" title="miniChemistry package" href="miniChemistry.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="minichemistry-computations-package">
+<h1>miniChemistry.Computations package<a class="headerlink" href="#minichemistry-computations-package" title="Link to this heading">¶</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html">miniChemistry.Computations.ComputationExceptions package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#module-miniChemistry.Computations.ComputationExceptions.DatumException">miniChemistry.Computations.ComputationExceptions.DatumException module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.DatumException.DatumException"><code class="docutils literal notranslate"><span class="pre">DatumException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.DatumException.IncompatibleUnits"><code class="docutils literal notranslate"><span class="pre">IncompatibleUnits</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.DatumException.NegativesNotAllowed"><code class="docutils literal notranslate"><span class="pre">NegativesNotAllowed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.DatumException.WrongDivisionFactor"><code class="docutils literal notranslate"><span class="pre">WrongDivisionFactor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.DatumException.WrongMultiplicationFactor"><code class="docutils literal notranslate"><span class="pre">WrongMultiplicationFactor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.DatumException.WrongStringFormat"><code class="docutils literal notranslate"><span class="pre">WrongStringFormat</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.DatumException.WrongZeroToleranceExponentValue"><code class="docutils literal notranslate"><span class="pre">WrongZeroToleranceExponentValue</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#module-miniChemistry.Computations.ComputationExceptions.IterativeCalculatorException">miniChemistry.Computations.ComputationExceptions.IterativeCalculatorException module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.IterativeCalculatorException.AssumptionFailed"><code class="docutils literal notranslate"><span class="pre">AssumptionFailed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.IterativeCalculatorException.IncorrectFileFormatting"><code class="docutils literal notranslate"><span class="pre">IncorrectFileFormatting</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.IterativeCalculatorException.IterativeCalculatorException"><code class="docutils literal notranslate"><span class="pre">IterativeCalculatorException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.IterativeCalculatorException.NegativesNotAllowed"><code class="docutils literal notranslate"><span class="pre">NegativesNotAllowed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.IterativeCalculatorException.SolutionNotFound"><code class="docutils literal notranslate"><span class="pre">SolutionNotFound</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#module-miniChemistry.Computations.ComputationExceptions.QuantityCalculatorException">miniChemistry.Computations.ComputationExceptions.QuantityCalculatorException module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.QuantityCalculatorException.QuantityCalculatorException"><code class="docutils literal notranslate"><span class="pre">QuantityCalculatorException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.QuantityCalculatorException.SolutionNotFound"><code class="docutils literal notranslate"><span class="pre">SolutionNotFound</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.QuantityCalculatorException.UnknownVariableException"><code class="docutils literal notranslate"><span class="pre">UnknownVariableException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.QuantityCalculatorException.ValueNotFoundException"><code class="docutils literal notranslate"><span class="pre">ValueNotFoundException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.QuantityCalculatorException.VariableHasValue"><code class="docutils literal notranslate"><span class="pre">VariableHasValue</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#module-miniChemistry.Computations.ComputationExceptions.ReactionCalculatorException">miniChemistry.Computations.ComputationExceptions.ReactionCalculatorException module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.ReactionCalculatorException.ComputationException"><code class="docutils literal notranslate"><span class="pre">ComputationException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.ReactionCalculatorException.InitializationError"><code class="docutils literal notranslate"><span class="pre">InitializationError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.ReactionCalculatorException.InvalidConstructorArguments"><code class="docutils literal notranslate"><span class="pre">InvalidConstructorArguments</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#miniChemistry.Computations.ComputationExceptions.ReactionCalculatorException.ReactionCalculatorException"><code class="docutils literal notranslate"><span class="pre">ReactionCalculatorException</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="miniChemistry.Computations.ComputationExceptions.html#module-miniChemistry.Computations.ComputationExceptions">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-miniChemistry.Computations.Datum">
+<span id="minichemistry-computations-datum-module"></span><h2>miniChemistry.Computations.Datum module<a class="headerlink" href="#module-miniChemistry.Computations.Datum" title="Link to this heading">¶</a></h2>
+<p>“Datum” is a singular from “data”, which more often is replaced by “a piece of data”. Datum class is needed to represent
+physical quantities in a convenient way for the QuantityCalculator class and, after this, for IterativeCalculator and
+ReactionCalculator classes. Datum behaves like a normal physical quantity, although it allows for restrictions
+and modifications. It also serves as a parent class for SSDatum which stands for “Substance-Specific Datum”. So, the
+Datum class is some king of wrapping for pint.Quantity class, as it preserves all main functionality. It is also
+possible to get the quantity (pint.Quantity) from the Datum instance by using “.quantity” property.</p>
+<p>(stc. – static method, ppt. – property, stt. – setter)</p>
+<p>Besides typical arithmetical operations and some other magical methods, the class supports several “Constructors”
+(quotation marks are here because in fact two of them are just methods)</p>
+<ul class="simple">
+<li><p>__init__(variable: str, value: float, units: str|pint.Unit = ‘dimensionless’) -&gt; None</p></li>
+<li><p>from_quantity(name: str, q: Quantity) -&gt; Datum</p></li>
+<li><p>from_string(string: str) -&gt; Datum</p></li>
+</ul>
+<p>Each method creates a Datum instance according to its name – from_quantity method accepts pint.Quantity, and
+from_string method accepts a string (in strict form of &lt;variable name&gt; = &lt;float|int&gt; &lt;units as strings&gt;. Spaces
+matter!</p>
+<p>The class also supports the following methods for work with units</p>
+<ul class="simple">
+<li><p>use_units(units: str|pint.Unit = ‘dimensionless’) -&gt; None</p></li>
+<li><p>to_base_units() -&gt; None</p></li>
+<li><p>convert(units: str|pint.Unit = ‘dimensionless’) -&gt; Datum</p></li>
+<li><p>convertable(units: str|pint.Unit = ‘dimensionless’) -&gt; bool</p></li>
+<li><p>ppt. units() -&gt; pint.Unit</p></li>
+<li><p>ppt. str_units() -&gt; str</p></li>
+</ul>
+<p>The following methods are used to work with physical quantities (pint.Quantity)</p>
+<ul class="simple">
+<li><p>rewrite(value: int|float, units: str|pint.Unit = ‘dimensionless’) -&gt; None</p></li>
+<li><p>ppt. magnitude() -&gt; float</p></li>
+<li><p>ppt. quantity() -&gt; pint.Quantity</p></li>
+</ul>
+<p>And the rest of the methods have the following functionality</p>
+<ul class="simple">
+<li><p>ppt. variable() -&gt; str | returns the name of the Datum instance, e.g. “mps”, “Vpg”, etc.</p></li>
+<li><p>ppt. ALLOW_NEGATIVES() -&gt; bool | getter of the “allow negatives” property</p></li>
+<li><p>stt. ALLOW_NEGATIVES(value: bool) -&gt; None | setter of the “allow negatives” property</p></li>
+<li><p>ppt. num_decimals() -&gt; int | returns the number of digits after the comma of the magnitude of the quantity</p></li>
+</ul>
+<p>MAGIC METHODS</p>
+<p>__add__ – allows for addition of two Datum instances with interconvertable units (for example, you can add to each other
+Data with units of m/s and km/h, but you cannot add m/s to m**3.</p>
+<p>__mul__ – allows multiplication of Datum by either Datum or float|int. In both cases the pint.Quantity datum is returned,
+not the Datum instance. This is done, because, in fact any units can be multiplied by each other, and there are no symbols
+and names for all possible units. (If you “subtract” variable’s name from Datum, you get pint.Quantity, and this is indeed
+what the function returns.</p>
+<p>__truediv__ – Same as for multiplication, but with division by Datum or float|int</p>
+<p>__sub__ – Same as for addition, but with negative sign</p>
+<p>__eq__ – The method compares the two Datum instances, and returns True if their variable names, values and units coincide.
+For variable names a simple equality check is used, for the value the math.isclose() method is used with a
+zero_tolerance_exponent variable. For the units the method checks if they are compatible.</p>
+<p>__str__ – Describes the Datum instance according to the following structure: &lt;name&gt; = &lt;value&gt; &lt;units&gt;</p>
+<p>__getitem__ – Returns a value from the following list: [name of the datum, magnitude, units as pint.unit, units as str]</p>
+<p>__iter__ – Returns the __iter__ object of the following list: [name of the datum, magnitude, units as pint.Unit]</p>
+<p>PRIVATE METHODS</p>
+<ul class="simple">
+<li><p>_ZTE_test() -&gt; bool</p></li>
+<li><p>stc. _get_decimals(value: float) -&gt; int</p></li>
+<li><p>_negative_value_test(operation: str, value: int|float, raise_exception: bool = True) -&gt; bool</p></li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Computations.Datum.</span></span><span class="sig-name descname"><span class="pre">Datum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Unit</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'dimensionless'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The Datum class works and operates with three main variables:</p>
+<p>1) “variable” of type string, which shows the name of the Datum. The meaning and all possible names are given in the
+“units_and_names.txt” file or in documentation.</p>
+<ol class="arabic simple" start="2">
+<li><p>“value” of type float which is the magnitude of the physical quantity stored in the Datum class.</p></li>
+</ol>
+<p>3) “units” of type pint.Unit (constructor accepts both pint.Unit and string) which stores units of the physical
+quantity used in Datum.</p>
+<p>The class also has two supporting variables, which act like settings variables for the class</p>
+<ul class="simple">
+<li><p>ALLOW NEGATIVES, False by default, indicates whether a physical quantity can have a negative value</p></li>
+<li><p>ZERO_TOLERANCE_EXPONENT, 3 by default. The variable is used for isclose() method as a power for 10 in rel_tol argument.</p></li>
+</ul>
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum.ALLOW_NEGATIVES">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ALLOW_NEGATIVES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum.ALLOW_NEGATIVES" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum.convert">
+<span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Unit</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'dimensionless'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></span><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum.convert" title="Link to this definition">¶</a></dt>
+<dd><p>Converts the Datum instance into a new Datum with the new units. DOES NOT rewrite the original Datum instance,
+but just returns the new one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>units</strong> – string or pint.Unit</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an instance of Datum</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum.convertable">
+<span class="sig-name descname"><span class="pre">convertable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Unit</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'dimensionless'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum.convertable" title="Link to this definition">¶</a></dt>
+<dd><p>Checks if the quantity of the Datum instance can be converted to the indicated units.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>units</strong> – string or pint.Unit to be compared with</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>boolean, True if the units are convertable, otherwise False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum.from_quantity">
+<span class="sig-name descname"><span class="pre">from_quantity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Quantity</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></span><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum.from_quantity" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum.from_string">
+<span class="sig-name descname"><span class="pre">from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></span><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum.from_string" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum.magnitude">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">magnitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum.magnitude" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum.num_decimals">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_decimals</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum.num_decimals" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum.quantity">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">quantity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Quantity</span></em><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum.quantity" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum.rewrite">
+<span class="sig-name descname"><span class="pre">rewrite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Unit</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'dimensionless'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum.rewrite" title="Link to this definition">¶</a></dt>
+<dd><p>Sets up a new value and units for the current Datum instance. The new units do not need to be compatible with
+the old ones, thus this function completely overwrites the previous data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – new magnitude of the Datum instance, int or float</p></li>
+<li><p><strong>units</strong> – new units of the Datum instance, str or pint.Unit</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum.scale" title="Link to this definition">¶</a></dt>
+<dd><p>Changes the magnitude of the Datum by a factor of “factor” parameter, preserving the units.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>factor</strong> – int or float. The magnitude of the Datum will be multiplied by this number</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum.str_units">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">str_units</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum.str_units" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum.to_base_units">
+<span class="sig-name descname"><span class="pre">to_base_units</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum.to_base_units" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the base units of the Datum instance as its default units</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum.units">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">units</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Unit</span></em><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum.units" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum.use_units">
+<span class="sig-name descname"><span class="pre">use_units</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Unit</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'dimensionless'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum.use_units" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the default units of the Datum instance to be the ones indicated in the “units” parameter. Also
+converts the magnitude since change in units often induce change in the numerical value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>units</strong> – string or pint.Unit to be set as default one. ‘Dimensionless’ by default.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.Datum.Datum.variable">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">variable</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#miniChemistry.Computations.Datum.Datum.variable" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-miniChemistry.Computations.IterativeCalculator">
+<span id="minichemistry-computations-iterativecalculator-module"></span><h2>miniChemistry.Computations.IterativeCalculator module<a class="headerlink" href="#module-miniChemistry.Computations.IterativeCalculator" title="Link to this heading">¶</a></h2>
+<p>IterativeCalculator is an extension of the QuantityCalculator class. The main functionality in this class is to
+solve each of the QuantityCalculator equations for each of its variables until (and this is important) no new
+variables can be found. The algorithm is the following:</p>
+<p>(With the variables set initially in QuantityCalculator)</p>
+<ul class="simple">
+<li><p>Solve all equations for all unknown variables</p></li>
+<li><p>Check each answer and select the ones that are numerical values (not expressions)</p></li>
+<li><p>Write them down to the QuantityCalculator</p></li>
+<li><p>If at least one new variable was found, go to step 1, else stop the algorithm</p></li>
+</ul>
+<p>The algorithm is implemented in the solve() function (same name, but different functionality as in QuantityCalculator).</p>
+<p>The IterativeCalculator allows for more flexible settings of the physical conditions. Namely, it allows to read from a
+text file (and immediately apply them) assumptions (described below). Mostly, apart from the main functionality, the
+IterativeCalculator copies methods from QuantityCalculator to avoid using the calculator() property too often. Thus,
+the class methods for writing, erasing, scaling, and increasing and decreasing the variables. Basically, all the
+methods in this class can be categorized with one of the three purposes</p>
+<ul class="simple">
+<li><p>Solving iteratively all the equations (main functionality)</p></li>
+<li><p>Managing physical quantities (Datum instances)</p></li>
+<li><p>Properties</p></li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.Assumption">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Computations.IterativeCalculator.</span></span><span class="sig-name descname"><span class="pre">Assumption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.Assumption" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An assumption in chemistry (and physics) is a statement that is accepted to be True (with some reasoning and
+limitations). The following theory is then built having this assumption in mind. Often assumptions allow to use
+some equations, and in our case an assumption would be a list of pre-set variables that are loaded at the very
+beginning and are used in calculations without necessity to explicitly set them up.</p>
+<p>For example, very common assumption, especially in school chemistry, is a “standard temperature and pressure
+conditions” assumption, often shortened as “STP”. In our language it can be written as</p>
+<p>T = 273+25 K</p>
+<p>p = 101325 Pa</p>
+<p>Apart from constants (default values for the quantities), the assumptions can be “disables” and “enables”, which means
+you decide which assumption to use. Comparing to the value of R which you will anyway use because it’s always the
+(and hence it’s a waste of time to set it up explicitly each time) same.</p>
+<p>This class described the three important parts of any assumption (from the coder’s perspective):</p>
+<ul class="simple">
+<li><p>The assumption itself, i.e. the pre-set values for some quantities</p></li>
+<li><p>The values that can be calculated from these pre-set values and constants based on the given equations</p></li>
+<li><p>The variables that we assume only for calculating the previous ones, and then erase</p></li>
+</ul>
+<p>================ EXAMPLE ================</p>
+<p>For example,</p>
+<p>let’s assume STP. The assumption itself looks like this</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ic</span> <span class="o">=</span> <span class="n">IterativeCalculator</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ic</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">Datum</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="mi">273</span><span class="o">+</span><span class="mi">25</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ic</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">Datum</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mi">101325</span><span class="p">,</span> <span class="s1">&#39;Pa&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This code writes the variables that are known UNDER THIS assumption. They are not universal constants as, for example,
+the universal (wow…) gas constant, R, which is always 8.31 J/(mol*K).</p>
+<p>However, after we set the new variables, the new formulas are “unlocked” and ready to use. And we can compute a
+condition-dependent constants, such as V0 (which is a constant at a given temperature and pressure).
+Knowing what is molar volume of a gas (refer to school chemistry), we see that to find it we need actually to assume
+that the number of moles is equal to 1, i.e.
+&gt;&gt;&gt; ic.write(Datum(‘n’, 1, ‘mole’))  # only for the assumption</p>
+<p>Now, having all the needed variables for pV=nRT, we can express the volume, V = (nRT/p), and compute the V0 since
+at n = 1, V = V0 by definiton.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ic</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">Datum</span><span class="p">(</span><span class="s1">&#39;V0&#39;</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;L/mol&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">ic</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="go">V0 = 24.44 liter / mole</span>
+</pre></div>
+</div>
+<p>After we computed the variable, it is already automatically written in, and what is left is erasing the variable
+we assumed: n = 1, i.e.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ic</span><span class="o">.</span><span class="n">clear</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>============== EXAMPLE (END) ==============</p>
+<p>The Assumption class provides three different lists for the three different variable types:</p>
+<ul class="simple">
+<li><p>_to_compute list with variables that will be computes, like V0</p></li>
+<li><p>_variables list with variables that will be the main assumption, like T and P</p></li>
+<li><p>_to_assume list with variables that will be set temporarily for calculations, like n=1</p></li>
+</ul>
+<p>The respective setter methods are to_compute(), to_set() and to_assume(). The class also provides the save() method
+which writes the assumption to a text file in a correct manner. The class also has some properties.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.Assumption.assume">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">assume</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.Assumption.assume" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.Assumption.compute">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">compute</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.Assumption.compute" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.Assumption.name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.Assumption.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.Assumption.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.Assumption.save" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.Assumption.symbol">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">symbol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.Assumption.symbol" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.Assumption.to_assume">
+<span class="sig-name descname"><span class="pre">to_assume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.Assumption.to_assume" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.Assumption.to_compute">
+<span class="sig-name descname"><span class="pre">to_compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">vars</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.Assumption.to_compute" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.Assumption.to_set">
+<span class="sig-name descname"><span class="pre">to_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.Assumption.to_set" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.Assumption.variables">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">variables</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.Assumption.variables" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Computations.IterativeCalculator.</span></span><span class="sig-name descname"><span class="pre">IterativeCalculator</span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The structure of IterativeCalculator is similar to the one of QuantityCalculator. It also allows to write in all the
+data and then call the solve() method to obtain the result. The difference, however, is in the solving algorithm.
+This class iterates over the equations until the results it gets do not change. Most of other methods just copy
+the functionality of QuantityCalculator to avoid always using the calculator() property.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_negatives</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.add" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.assume">
+<span class="sig-name descname"><span class="pre">assume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.assume" title="Link to this definition">¶</a></dt>
+<dd><p>First the method reads all the assumptions by using _read_assumptions() method, and then selects only the
+names of the assumptions. Then it checks if the name passed as a parameter is in the names of the assumptions
+read, and if yes,a applies the assumption.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>names</strong></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.calculator">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">calculator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#miniChemistry.Computations.QuantityCalculator.QuantityCalculator" title="miniChemistry.Computations.QuantityCalculator.QuantityCalculator"><span class="pre">QuantityCalculator</span></a></em><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.calculator" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.clear" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.clear_all">
+<span class="sig-name descname"><span class="pre">clear_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">but</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.clear_all" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.div">
+<span class="sig-name descname"><span class="pre">div</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.div" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.equations">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">equations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Expr</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.equations" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.has_value">
+<span class="sig-name descname"><span class="pre">has_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.has_value" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Unit</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.read" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.scale" title="Link to this definition">¶</a></dt>
+<dd><p>Used to multiply the Datum instance by a certain number</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.solve">
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_at_target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alter_target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.solve" title="Link to this definition">¶</a></dt>
+<dd><p>This trick with for–in: pass is done to preserve variables in the iterate() function. Basically, we need
+some static variables there, and since Python does not support then in the same way as Java or C, the
+generators are used.</p>
+<p>The method iterates over all newly obtained variables and checks if the target variable is among them. If yes
+AND if “stop_at_target” is set to True, the iterations stop. The result (target variable) is then read and
+rounded, and returned.</p>
+<p>If “alter_target” is set to True, the self.target property is changed to contain the obtained Datum instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stop_at_target</strong> – True if the process can be stopped after the target variable is obtained</p></li>
+<li><p><strong>alter_target</strong> – True if the target property has to be changed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an instance of Datum of the target variable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.sub">
+<span class="sig-name descname"><span class="pre">sub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_negatives</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.sub" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.target">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">target</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></em><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.target" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.units">
+<span class="sig-name descname"><span class="pre">units</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Unit</span></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.units" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.units_str">
+<span class="sig-name descname"><span class="pre">units_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.units_str" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.variables">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">variables</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.variables" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.IterativeCalculator.IterativeCalculator.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator.write" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-miniChemistry.Computations.QuantityCalculator">
+<span id="minichemistry-computations-quantitycalculator-module"></span><h2>miniChemistry.Computations.QuantityCalculator module<a class="headerlink" href="#module-miniChemistry.Computations.QuantityCalculator" title="Link to this heading">¶</a></h2>
+<p>The QuantityCalculator is a class that allows to perform calculations on variables (Datum instances) keeping both
+the magnitudes and the units. The whole functionality of the class works for a method called “solve()”. The idea is to
+write down the data, run the solve() method and get the result at the end. So, the class reads the equations from a
+text file, allows to write the data in any form of SI units, and calculate the target variable. For example, since the
+formulas are given for chemistry, let’s find the number of moles of a substance with molar mass = 18 g/mole and a
+certain mass.</p>
+<p>The formulas used here is n=m/M (simple school chemistry), which is present in the “formulas.txt” file. The example
+then looks like</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantityCalculator</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qc</span><span class="o">.</span><span class="n">write_value</span><span class="p">(</span><span class="n">Datum</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;g/mole&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qc</span><span class="o">.</span><span class="n">write_value</span><span class="p">(</span><span class="n">Datum</span><span class="p">(</span><span class="s1">&#39;mps&#39;</span><span class="p">,</span> <span class="mf">0.713</span><span class="p">,</span> <span class="n">qc</span><span class="o">.</span><span class="n">ureg</span><span class="o">.</span><span class="n">gram</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solve_for</span><span class="o">=</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="n">round_to</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">answer_units</span><span class="o">=</span><span class="n">qc</span><span class="o">.</span><span class="n">ureg</span><span class="o">.</span><span class="n">millimole</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
+<span class="go">n = 39.611 millimole</span>
+</pre></div>
+</div>
+<p>Here we defined a variable (not to call it quantity, which can be confused with pint.Quantity. Variable also has a
+special symbol, like “mps” for “mass pure solid”) with a value of 0.713 grams. We also defined another variable with
+molar mass (“M”) equal to 18 grams/mole. In the solve() method we specify what kind of answer we want: the variable with
+a symbol “n” (moles), rounded to 3 digits after the comma, and in the units of millimoles. In all cases the units
+can be specified as both strings and pint.Unit.</p>
+<p>The class uses sympy to solve equations, which means it substitutes the written values by the numbers and solves
+for the target variable’s symbol. To clear the equations (get them back to purely symbolical form), use the clear()
+method. To erase value (magnitude and units) of one or more variables use the erase_value() method. If the clear()
+method is used, only the variables with a default value will be kept. The default values are given in the text files.</p>
+<p>TEXT FILES</p>
+<p>“formulas.txt”</p>
+<p>The formulas are stored in a separate text file, split by a new line sign. The formulas are written in a form that they
+can be directly converted in sympy.Expr object, i.e. without an equal sign, but with a negative sign. For example, a
+formulas n=V/V0 will look like n-V/V0. In the first case the sympy.parse_expr() constructor will raise an exception.</p>
+<p>“units_and_names.txt”</p>
+<p>Each variable from the formulas.txt file must be written into the “units_and_names.txt” file in the following form:</p>
+<p>&lt;variable symbol&gt;:&lt;variable name&gt;:&lt;variable units&gt;</p>
+<p>The name can include spaces. For the units, they must be within the SI system, but do not necessarily need to be in
+the base SI units. For example, they can be “grams”, “mole/L” or something similar.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="miniChemistry.Computations.QuantityCalculator.QuantityCalculator">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Computations.QuantityCalculator.</span></span><span class="sig-name descname"><span class="pre">QuantityCalculator</span></span><a class="headerlink" href="#miniChemistry.Computations.QuantityCalculator.QuantityCalculator" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The QuantityCalculator has the following methods:</p>
+<p>VARIABLE CONTROL</p>
+<ul class="simple">
+<li><p>write_value(d: Datum) -&gt; None</p></li>
+<li><p>read_value(d: Datum|str, units: pint.Unit|str = ‘default’) -&gt; Datum</p></li>
+<li><p>erase_value(var: str) -&gt; None</p></li>
+<li><p>clear() -&gt; None</p></li>
+<li><p>solve(solve_for: str|Datum, answer_units: str|pint.Unit, round_to: int|None = 2) -&gt; List[Datum]</p></li>
+</ul>
+<p>TESTS</p>
+<ul class="simple">
+<li><p>has_value(name: str) -&gt; bool</p></li>
+</ul>
+<p>(PRIVATE) READING DATA</p>
+<ul class="simple">
+<li><p>_read_formula() -&gt; List[sympy.Expr]</p></li>
+<li><p>_read_units_and_symbols() -&gt; Tuple[Dict[str, pint.Unit], Dict[str, str]]</p></li>
+<li><p>_read_default_values() -&gt; List[Datum]</p></li>
+</ul>
+<p>(PRIVATE) MANAGING EQUATIONS</p>
+<ul class="simple">
+<li><p>_push() -&gt; None # substitutes all the variables into the equations</p></li>
+<li><p>_solve_from_strings(solve_for: str) -&gt; List[Datum]</p></li>
+<li><p>_solve_from_datum(d: Datum) -&gt; List[Datum]</p></li>
+</ul>
+<p>PROPERTIES</p>
+<ul class="simple">
+<li><p>equations() -&gt; List[sympy.Expr]</p></li>
+<li><p>default_units() -&gt; Dict[str, pint.Unit]</p></li>
+<li><p>var_symbols() -&gt; Tuple[str, …]</p></li>
+<li><p>values() -&gt; List[Datum]</p></li>
+<li><p>constants() -&gt; List[Datum]</p></li>
+<li><p>ureg() -&gt; pint.UnitRegistry</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.QuantityCalculator.QuantityCalculator.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.QuantityCalculator.QuantityCalculator.clear" title="Link to this definition">¶</a></dt>
+<dd><p>Copies the formulas from the self._formula_list into the self._tfl list, which stands for “temporary
+formula list”, and which is used to solve equations for the target variable. The original formula list is
+never changed.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.QuantityCalculator.QuantityCalculator.constants">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">constants</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#miniChemistry.Computations.QuantityCalculator.QuantityCalculator.constants" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.QuantityCalculator.QuantityCalculator.default_units">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">default_units</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Unit</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#miniChemistry.Computations.QuantityCalculator.QuantityCalculator.default_units" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.QuantityCalculator.QuantityCalculator.equations">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">equations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Expr</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#miniChemistry.Computations.QuantityCalculator.QuantityCalculator.equations" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.QuantityCalculator.QuantityCalculator.erase_value">
+<span class="sig-name descname"><span class="pre">erase_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.QuantityCalculator.QuantityCalculator.erase_value" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.QuantityCalculator.QuantityCalculator.has_value">
+<span class="sig-name descname"><span class="pre">has_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#miniChemistry.Computations.QuantityCalculator.QuantityCalculator.has_value" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.QuantityCalculator.QuantityCalculator.read_value">
+<span class="sig-name descname"><span class="pre">read_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Unit</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></span><a class="headerlink" href="#miniChemistry.Computations.QuantityCalculator.QuantityCalculator.read_value" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>d</strong></p></li>
+<li><p><strong>units</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.QuantityCalculator.QuantityCalculator.solve">
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">solve_for</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">answer_units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Unit</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#miniChemistry.Computations.QuantityCalculator.QuantityCalculator.solve" title="Link to this definition">¶</a></dt>
+<dd><p>The method uses _solve_from_datum or _solve_from_strings private methods to get the solution of the current
+set of equations (current = with all the given variables), and then sets up the answer. First it checks that
+there is at least one solution (that the “solutions” list is not empty), then converts it to the required
+units and round up to a given number of digits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>solve_for</strong> – the target variable given in as a Datum or as a string</p></li>
+<li><p><strong>answer_units</strong> – THe string or pint.Unit instance indicating the units for the answer</p></li>
+<li><p><strong>round_to</strong> – the number of digits after the comma that the answer must have</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of Datum instances obtained from self._solve_from_string() method</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.QuantityCalculator.QuantityCalculator.ureg">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ureg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">UnitRegistry</span></em><a class="headerlink" href="#miniChemistry.Computations.QuantityCalculator.QuantityCalculator.ureg" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.QuantityCalculator.QuantityCalculator.values">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">values</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#miniChemistry.Computations.QuantityCalculator.QuantityCalculator.values" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.QuantityCalculator.QuantityCalculator.var_symbols">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">var_symbols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#miniChemistry.Computations.QuantityCalculator.QuantityCalculator.var_symbols" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.QuantityCalculator.QuantityCalculator.write_value">
+<span class="sig-name descname"><span class="pre">write_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.QuantityCalculator.QuantityCalculator.write_value" title="Link to this definition">¶</a></dt>
+<dd><p>Before the Datum can be written to the variables of the QuantityCalculator, two checks must be made:</p>
+<ul class="simple">
+<li><p>If the variable with this symbol is present in the formulas (more precisely – in the “units_and_names.txt” file</p></li>
+<li><p>If there’s no Datum with the same variable (has_value() method)</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>d</strong> – Datum to be written in as a value for a given variable</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-miniChemistry.Computations.ReactionCalculator">
+<span id="minichemistry-computations-reactioncalculator-module"></span><h2>miniChemistry.Computations.ReactionCalculator module<a class="headerlink" href="#module-miniChemistry.Computations.ReactionCalculator" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Computations.ReactionCalculator.</span></span><span class="sig-name descname"><span class="pre">ReactionCalculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The ReactionCalculator class has the following methods:</p>
+<p>CONSTRUCTORS</p>
+<ul class="simple">
+<li><p>__init__ from Reaction</p></li>
+<li><p>__init__ from reagents (without products)</p></li>
+<li><p>__init__ from reagents AND products passed as lists</p></li>
+<li><p>__init__ from string</p></li>
+</ul>
+<p>for each constructor there’s a separate classmethod:</p>
+<ul class="simple">
+<li><p>_init_from_reaction(r: Reaction) -&gt; ReactionCalculator</p></li>
+<li><p>_init_from_reagents(rs: List[Particle]) -&gt; ReactionCalculator</p></li>
+<li><p>_init_from_substances(rs: List[Particle], ps: List[Particles]) -&gt; ReactionCalculator</p></li>
+<li><p>_init_from_string(string: str) -&gt; ReactionCalculator</p></li>
+</ul>
+<p>PRIVATE METHODS</p>
+<ul class="simple">
+<li><p>_create_calculators() -&gt; dict</p></li>
+<li><p>_write_molar_masses() -&gt; None</p></li>
+<li><p>_substance_to_particle(sub: str|Particle) -&gt; Molecule|Simple</p></li>
+</ul>
+<p>PUBLIC METHODS</p>
+<ol class="arabic simple">
+<li><p>Variable management</p></li>
+</ol>
+<ul class="simple">
+<li><p>substance(sub: str|Particle) -&gt; IterativeCalculator</p></li>
+<li><p>assume(<a href="#id1"><span class="problematic" id="id2">*</span></a>assumptions: str) -&gt; None</p></li>
+<li><p>write(<a href="#id3"><span class="problematic" id="id4">*</span></a>data: SSDatum) -&gt; None</p></li>
+<li><p>erase(substance: str|Particle, variable: str) -&gt; None</p></li>
+<li><p>assume_excess(<a href="#id5"><span class="problematic" id="id6">*</span></a>substances: str|Particle) -&gt; None</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Calculations over the chemical reaction</p></li>
+</ol>
+<p>2.1) Number of moles</p>
+<ul class="simple">
+<li><p>compute_moles_of(<a href="#id7"><span class="problematic" id="id8">*</span></a>substances: str|Particle, exception_if: str = ‘any’, except_substances: List[Particle|str] = None) -&gt; List[SSDatum]</p></li>
+<li><p>derive_moles_of(use: str|Particle, <a href="#id9"><span class="problematic" id="id10">*</span></a>find: str|Particle) -&gt; List[SSDatum]</p></li>
+<li><p>limiting_reagent(<a href="#id11"><span class="problematic" id="id12">*</span></a>substances: str|Particle = None) -&gt; List[SSDatum]</p></li>
+<li><p>excess(<a href="#id13"><span class="problematic" id="id14">*</span></a>substances: str|Particle = None) -&gt; List[SSDatum]</p></li>
+</ul>
+<p>2.2) Coefficients</p>
+<ul class="simple">
+<li><p>ratio(<a href="#id15"><span class="problematic" id="id16">*</span></a>substances: str|Particle, wrt: str|Particle) -&gt; Dict[Particle, float]</p></li>
+<li><p>normalized_moles(<a href="#id17"><span class="problematic" id="id18">*</span></a>substances: str|Particle = None) -&gt; Dict[Particle, float]</p></li>
+</ul>
+<p>2.3) Calculation</p>
+<ul class="simple">
+<li><p>compute(<a href="#id19"><span class="problematic" id="id20">*</span></a>vars: SSDatum) -&gt; List[SSDatum]</p></li>
+</ul>
+<p>PROPERTIES</p>
+<ul class="simple">
+<li><p>ppt. substances -&gt; Tuple[Particle]</p></li>
+<li><p>ppt. reaction -&gt; Reaction</p></li>
+<li><p>ppt. coefficients -&gt; Dict[Particle, float]</p></li>
+</ul>
+<p>SETTINGS VARIABLES</p>
+<p>cls.WRITE_NEW_VALUES: bool (True if computed values should not be erased afterwards)
+cls.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.EXCESS_COEFFICIENT">
+<span class="sig-name descname"><span class="pre">EXCESS_COEFFICIENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100</span></em><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.EXCESS_COEFFICIENT" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.assume">
+<span class="sig-name descname"><span class="pre">assume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">assumptions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.assume" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.assume_excess">
+<span class="sig-name descname"><span class="pre">assume_excess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">substances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.assume_excess" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.calculators">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">calculators</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator" title="miniChemistry.Computations.IterativeCalculator.IterativeCalculator"><span class="pre">IterativeCalculator</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.calculators" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.coefficients">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">coefficients</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.coefficients" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.coefs">
+<span class="sig-name descname"><span class="pre">coefs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">substances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.coefs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.compute">
+<span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#miniChemistry.Computations.SSDatum.SSDatum" title="miniChemistry.Computations.SSDatum.SSDatum"><span class="pre">SSDatum</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#miniChemistry.Computations.SSDatum.SSDatum" title="miniChemistry.Computations.SSDatum.SSDatum"><span class="pre">SSDatum</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.compute" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.compute_moles_of">
+<span class="sig-name descname"><span class="pre">compute_moles_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">substances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception_if</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'any'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">except_substances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#miniChemistry.Computations.SSDatum.SSDatum" title="miniChemistry.Computations.SSDatum.SSDatum"><span class="pre">SSDatum</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.compute_moles_of" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.derive_moles_of">
+<span class="sig-name descname"><span class="pre">derive_moles_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">find</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#miniChemistry.Computations.SSDatum.SSDatum" title="miniChemistry.Computations.SSDatum.SSDatum"><span class="pre">SSDatum</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.derive_moles_of" title="Link to this definition">¶</a></dt>
+<dd><p>Find normalized moles of “use” and “find”s
+Find coefficients of “find”s
+Multiply normalized moles to the respective coefficient</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>find</strong></p></li>
+<li><p><strong>use</strong></p></li>
+<li><p><strong>round_to</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.erase">
+<span class="sig-name descname"><span class="pre">erase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">substance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.erase" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.exception_handler">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exception_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception_if</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'any'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">except_substances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instant_return</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.exception_handler" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.excess">
+<span class="sig-name descname"><span class="pre">excess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">substances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#miniChemistry.Computations.SSDatum.SSDatum" title="miniChemistry.Computations.SSDatum.SSDatum"><span class="pre">SSDatum</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.excess" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.limiting_reagent">
+<span class="sig-name descname"><span class="pre">limiting_reagent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">substances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#miniChemistry.Computations.SSDatum.SSDatum" title="miniChemistry.Computations.SSDatum.SSDatum"><span class="pre">SSDatum</span></a></span></span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.limiting_reagent" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.moles">
+<span class="sig-name descname"><span class="pre">moles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">substances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception_if</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'any'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">except_substances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#miniChemistry.Computations.SSDatum.SSDatum" title="miniChemistry.Computations.SSDatum.SSDatum"><span class="pre">SSDatum</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.moles" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.normalized_moles">
+<span class="sig-name descname"><span class="pre">normalized_moles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">substances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#miniChemistry.Computations.SSDatum.SSDatum" title="miniChemistry.Computations.SSDatum.SSDatum"><span class="pre">SSDatum</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.normalized_moles" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.ratio">
+<span class="sig-name descname"><span class="pre">ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">substances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wrt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.ratio" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.reaction">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reaction</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Reaction.Reaction" title="miniChemistry.Core.Reaction.Reaction"><span class="pre">Reaction</span></a></em><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.reaction" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.substance">
+<span class="sig-name descname"><span class="pre">substance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">substance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#miniChemistry.Computations.IterativeCalculator.IterativeCalculator" title="miniChemistry.Computations.IterativeCalculator.IterativeCalculator"><span class="pre">IterativeCalculator</span></a></span></span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.substance" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.substances">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">substances</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.substances" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Computations.ReactionCalculator.ReactionCalculator.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#miniChemistry.Computations.SSDatum.SSDatum" title="miniChemistry.Computations.SSDatum.SSDatum"><span class="pre">SSDatum</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Computations.ReactionCalculator.ReactionCalculator.write" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-miniChemistry.Computations.SSDatum">
+<span id="minichemistry-computations-ssdatum-module"></span><h2>miniChemistry.Computations.SSDatum module<a class="headerlink" href="#module-miniChemistry.Computations.SSDatum" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="miniChemistry.Computations.SSDatum.SSDatum">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Computations.SSDatum.</span></span><span class="sig-name descname"><span class="pre">SSDatum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">substance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Unit</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'dimensionless'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miniChemistry.Computations.SSDatum.SSDatum" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Datum</span></code></a></p>
+<p>SSDatum stands for “Substance–Specific Datum”. This class extends the Datum class by adding a substance as another
+data point. The constructor then takes in an additional parameter (“substance”, which will always go the first one).</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.SSDatum.SSDatum.datum">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">datum</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#miniChemistry.Computations.Datum.Datum" title="miniChemistry.Computations.Datum.Datum"><span class="pre">Datum</span></a></em><a class="headerlink" href="#miniChemistry.Computations.SSDatum.SSDatum.datum" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Computations.SSDatum.SSDatum.substance">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">substance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Molecule" title="miniChemistry.Core.Substances.Molecule"><span class="pre">Molecule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="miniChemistry.Core.html#miniChemistry.Core.Substances.Simple" title="miniChemistry.Core.Substances.Simple"><span class="pre">Simple</span></a></em><a class="headerlink" href="#miniChemistry.Computations.SSDatum.SSDatum.substance" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-miniChemistry.Computations">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-miniChemistry.Computations" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">miniChemistry</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="miniChemistry.html">miniChemistry package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="miniChemistry.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miniChemistry.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miniChemistry.html#module-miniChemistry.MiniChemistryException">miniChemistry.MiniChemistryException module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miniChemistry.html#minichemistry-setup-module">miniChemistry.setup module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miniChemistry.html#module-miniChemistry">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="miniChemistry.html">miniChemistry package</a><ul>
+      <li>Previous: <a href="miniChemistry.html" title="previous chapter">miniChemistry package</a></li>
+      <li>Next: <a href="miniChemistry.Computations.ComputationExceptions.html" title="next chapter">miniChemistry.Computations.ComputationExceptions package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Antons Kutuzovs.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.3.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/miniChemistry.Computations.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

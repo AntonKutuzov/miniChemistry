@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>miniChemistry.Utilities package &#8212; miniChemistry 0.09 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=4f30f41c"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="miniChemistry.Core.Tools package" href="miniChemistry.Core.Tools.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="minichemistry-utilities-package">
+<h1>miniChemistry.Utilities package<a class="headerlink" href="#minichemistry-utilities-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-miniChemistry.Utilities.Checks">
+<span id="minichemistry-utilities-checks-module"></span><h2>miniChemistry.Utilities.Checks module<a class="headerlink" href="#module-miniChemistry.Utilities.Checks" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.Checks.charge_check">
+<span class="sig-prename descclassname"><span class="pre">miniChemistry.Utilities.Checks.</span></span><span class="sig-name descname"><span class="pre">charge_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">charge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neutrality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_exception</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#miniChemistry.Utilities.Checks.charge_check" title="Link to this definition">¶</a></dt>
+<dd><p>Checks if the total charge passed to a function is (not) zero.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>charge</strong> – a list or tuple of integers that indicate charges.</p></li>
+<li><p><strong>neutrality</strong> – True if charge must be equal to zero and False if not.</p></li>
+<li><p><strong>raise_exception</strong> – True if exception is to be raised if the test is failed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Boolean of exception describing if the charge is according to expectations (“neutrality” parameter).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.Checks.keywords_check">
+<span class="sig-prename descclassname"><span class="pre">miniChemistry.Utilities.Checks.</span></span><span class="sig-name descname"><span class="pre">keywords_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keywords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_keywords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_exception</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#miniChemistry.Utilities.Checks.keywords_check" title="Link to this definition">¶</a></dt>
+<dd><p>Checks if the keywords passed to a function are within the allowed keywords.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keywords</strong> – keywords to check. Usually <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs.</p></li>
+<li><p><strong>allowed_keywords</strong> – A list or tuple of allowed keywords.</p></li>
+<li><p><strong>function_name</strong> – Name of a function that called the keywords_check(). Used in exception calls.</p></li>
+<li><p><strong>variables</strong> – locals() from the function that called the keywords_check().</p></li>
+<li><p><strong>raise_exception</strong> – True if exception is to be raised if the test failed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.Checks.single_element_cation_check">
+<span class="sig-prename descclassname"><span class="pre">miniChemistry.Utilities.Checks.</span></span><span class="sig-name descname"><span class="pre">single_element_cation_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">composition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">charge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_exception</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#miniChemistry.Utilities.Checks.single_element_cation_check" title="Link to this definition">¶</a></dt>
+<dd><p>Checks if a cation passed to a function contains one element. The function is used in Particle class to check ALL
+substances. Hence, we have if charge &gt; 0: else: return True. This line ensures that if a particle checked is NOT
+a cation at all, the test is passed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>composition</strong> – composition of a cation. Can be obtained from ion.composition.</p></li>
+<li><p><strong>charge</strong> – charge of a cation.</p></li>
+<li><p><strong>raise_exception</strong> – True if exception is to be raised if test failed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>boolean or exception on whether a particle passed is a single-element cation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.Checks.type_check">
+<span class="sig-prename descclassname"><span class="pre">miniChemistry.Utilities.Checks.</span></span><span class="sig-name descname"><span class="pre">type_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_exception</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#miniChemistry.Utilities.Checks.type_check" title="Link to this definition">¶</a></dt>
+<dd><p>To be used in any case when the decorator cannot be used. For example, if a function accepts <a href="#id3"><span class="problematic" id="id4">*</span></a>args and <a href="#id5"><span class="problematic" id="id6">**</span></a>kwargs,
+you cannot set the types, so you have to check them manually.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameters</strong> – list of parameters of a function.</p></li>
+<li><p><strong>types</strong> – list of types that each parameter can be.</p></li>
+<li><p><strong>strict_order</strong> – if True, then each parameter in “parameters” is matched to a type in “types” according to their</p></li>
+</ul>
+</dd>
+</dl>
+<p>position in a list (i.e. type_check([a, b, c, d], [str, int, str, int], strict_order=True) means that we check for
+type(a) == str, type(b) == int, type(c) == str, and type(d) == int. If strict_order=False, we check for
+isinstance(a, (str, int)), same for all other parameters.
+:param raise_exception: True if exception is to be raised if the test failed.
+:return: Boolean or exception indicating if the type check is passed.</p>
+</dd></dl>
+
+</section>
+<section id="module-miniChemistry.Utilities.File">
+<span id="minichemistry-utilities-file-module"></span><h2>miniChemistry.Utilities.File module<a class="headerlink" href="#module-miniChemistry.Utilities.File" title="Link to this heading">¶</a></h2>
+<p>This class is defined to handle simple operations on small text files.
+NOTE: the files should not be large, because the program loads all the content of a file at once and then treats it as
+a list.
+Primary purpose of this class then is to keep lists that the code will use separately, and away from the real code. This
+makes it easier to edit the lists as they might need to be updated.
+The class has a couple of tests (private methods that returns True/False or raise exception) that are used in many other
+methods, and one private method that is called to run these tests (see the class).
+The class implements simple operations on files as well as lists (because the content of the file is treated just as
+a list of strings).</p>
+<p>NOTE: before working with the file, it is necessary to call .bind() method to either create a file or to connect to it.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Utilities.File.</span></span><span class="sig-name descname"><span class="pre">File</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">caller</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/Users/antonkutuzov/PycharmProjects/miniChemistryProject/miniChemistry/Utilities/File.py'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">splitter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'\n'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miniChemistry.Utilities.File.File" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.append">
+<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_splitter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Utilities.File.File.append" title="Link to this definition">¶</a></dt>
+<dd><p>Appends a given string (parameter “text”) to the existing (bound) file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> – string to be appended to the file</p></li>
+<li><p><strong>add_splitter</strong> – True is the splitter has to be added after the text. True by default</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.bind">
+<span class="sig-name descname"><span class="pre">bind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Utilities.File.File.bind" title="Link to this definition">¶</a></dt>
+<dd><p>Assigns a variable self._file a value of type Path. The path for the file is composed from the caller’s path,
+plus the name of the file. In the case the file does not exist, it will be created, in the case the file exists,
+it will be assigned to the self._file variable.
+NOTE: include the file extension in the file name. Not testfile, but testfile.txt!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_name</strong> – name of the file, including extension (.txt)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.caller">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">caller</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#miniChemistry.Utilities.File.File.caller" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.caller_directory">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">caller_directory</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#miniChemistry.Utilities.File.File.caller_directory" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.caller_name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">caller_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#miniChemistry.Utilities.File.File.caller_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Utilities.File.File.delete" title="Link to this definition">¶</a></dt>
+<dd><p>Deletes the file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.erase_all">
+<span class="sig-name descname"><span class="pre">erase_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Utilities.File.File.erase_all" title="Link to this definition">¶</a></dt>
+<dd><p>Just erases all the text from the file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.erase_index">
+<span class="sig-name descname"><span class="pre">erase_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#miniChemistry.Utilities.File.File.erase_index" title="Link to this definition">¶</a></dt>
+<dd><p>Erases a string located at a certain position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> – position where the string must be erased</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>erased string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.erase_text">
+<span class="sig-name descname"><span class="pre">erase_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Utilities.File.File.erase_text" title="Link to this definition">¶</a></dt>
+<dd><p>Removes a string passed as a “text” parameter from the file. Does not support string sequences, connected by
+self.splitter. This method removes ALL occurrences of the string from the file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> – string that has to be removed from the file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#miniChemistry.Utilities.File.File.find" title="Link to this definition">¶</a></dt>
+<dd><p>Checks if a given string is present in the file. Works also for sequences, connected by self.splitter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> – string for which the file is checked</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.index">
+<span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#miniChemistry.Utilities.File.File.index" title="Link to this definition">¶</a></dt>
+<dd><p>Searches for the position of the string given in the “text” parameter. Returns the smallest index (first
+occurrence). For all occurrences, use self.positions().
+NOTE: unlike .find(), this method does not support search for sequences of strings connected with self.splitter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> – string which position must be found</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>position of the first occurrence of the string in the file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.is_empty">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_empty</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#miniChemistry.Utilities.File.File.is_empty" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#miniChemistry.Utilities.File.File.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.path">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#miniChemistry.Utilities.File.File.path" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.positions">
+<span class="sig-name descname"><span class="pre">positions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#miniChemistry.Utilities.File.File.positions" title="Link to this definition">¶</a></dt>
+<dd><p>Searches for ALL occurrences of the string passed as the “text” parameter. Returns a list of the indices (ints).
+NOTE: unlike .find(), this method does not support search for sequences of strings connected with self.splitter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> – string which positions (all) must be found</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of positions where the string was found</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.read_all">
+<span class="sig-name descname"><span class="pre">read_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#miniChemistry.Utilities.File.File.read_all" title="Link to this definition">¶</a></dt>
+<dd><p>Just a public implementation of self._get_items(). Includes a test for whether a file is bound.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.read_index">
+<span class="sig-name descname"><span class="pre">read_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#miniChemistry.Utilities.File.File.read_index" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a string located in the file at a certain position (index)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> – position of the string to be returned</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the string at the position equal to index</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.splitter">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">splitter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#miniChemistry.Utilities.File.File.splitter" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.splitter_check">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">splitter_check</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#miniChemistry.Utilities.File.File.splitter_check" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.File.File.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_splitter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#miniChemistry.Utilities.File.File.write" title="Link to this definition">¶</a></dt>
+<dd><p>Writes (overwrites!) a given string (parameter “text”) to the existing (bound) file. The
+add_splitter argument has to be set False in several cases (for example, in the erase_index method,
+but usually this should be True.
+NOTE: if add_splitter is set to False and then append() method is called, the two texts will be considered
+as one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> – string to be written into the file</p></li>
+<li><p><strong>add_splitter</strong> – True is the splitter has to be added after the text. True by default</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-miniChemistry.Utilities.UtilityExceptions">
+<span id="minichemistry-utilities-utilityexceptions-module"></span><h2>miniChemistry.Utilities.UtilityExceptions module<a class="headerlink" href="#module-miniChemistry.Utilities.UtilityExceptions" title="Link to this heading">¶</a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.UtilityExceptions.FileAlreadyBound">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Utilities.UtilityExceptions.</span></span><span class="sig-name descname"><span class="pre">FileAlreadyBound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miniChemistry.Utilities.UtilityExceptions.FileAlreadyBound" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#miniChemistry.Utilities.UtilityExceptions.FileException" title="miniChemistry.Utilities.UtilityExceptions.FileException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.UtilityExceptions.FileException">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Utilities.UtilityExceptions.</span></span><span class="sig-name descname"><span class="pre">FileException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miniChemistry.Utilities.UtilityExceptions.FileException" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#miniChemistry.Utilities.UtilityExceptions.UtilityException" title="miniChemistry.Utilities.UtilityExceptions.UtilityException"><code class="xref py py-class docutils literal notranslate"><span class="pre">UtilityException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.UtilityExceptions.FileNotBound">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Utilities.UtilityExceptions.</span></span><span class="sig-name descname"><span class="pre">FileNotBound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miniChemistry.Utilities.UtilityExceptions.FileNotBound" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#miniChemistry.Utilities.UtilityExceptions.FileException" title="miniChemistry.Utilities.UtilityExceptions.FileException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.UtilityExceptions.IndexOutOfRange">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Utilities.UtilityExceptions.</span></span><span class="sig-name descname"><span class="pre">IndexOutOfRange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miniChemistry.Utilities.UtilityExceptions.IndexOutOfRange" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#miniChemistry.Utilities.UtilityExceptions.FileException" title="miniChemistry.Utilities.UtilityExceptions.FileException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.UtilityExceptions.KeywordNotAllowed">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Utilities.UtilityExceptions.</span></span><span class="sig-name descname"><span class="pre">KeywordNotAllowed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">keywords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miniChemistry.Utilities.UtilityExceptions.KeywordNotAllowed" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#miniChemistry.Utilities.UtilityExceptions.UtilityException" title="miniChemistry.Utilities.UtilityExceptions.UtilityException"><code class="xref py py-class docutils literal notranslate"><span class="pre">UtilityException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.UtilityExceptions.SplitterInText">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Utilities.UtilityExceptions.</span></span><span class="sig-name descname"><span class="pre">SplitterInText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">splitter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miniChemistry.Utilities.UtilityExceptions.SplitterInText" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#miniChemistry.Utilities.UtilityExceptions.FileException" title="miniChemistry.Utilities.UtilityExceptions.FileException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.UtilityExceptions.TextNotPresentInFile">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Utilities.UtilityExceptions.</span></span><span class="sig-name descname"><span class="pre">TextNotPresentInFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miniChemistry.Utilities.UtilityExceptions.TextNotPresentInFile" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#miniChemistry.Utilities.UtilityExceptions.FileException" title="miniChemistry.Utilities.UtilityExceptions.FileException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.UtilityExceptions.TypeHintNotFound">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Utilities.UtilityExceptions.</span></span><span class="sig-name descname"><span class="pre">TypeHintNotFound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hint_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miniChemistry.Utilities.UtilityExceptions.TypeHintNotFound" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#miniChemistry.Utilities.UtilityExceptions.UtilityException" title="miniChemistry.Utilities.UtilityExceptions.UtilityException"><code class="xref py py-class docutils literal notranslate"><span class="pre">UtilityException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.UtilityExceptions.UnknownFileTest">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Utilities.UtilityExceptions.</span></span><span class="sig-name descname"><span class="pre">UnknownFileTest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miniChemistry.Utilities.UtilityExceptions.UnknownFileTest" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#miniChemistry.Utilities.UtilityExceptions.FileException" title="miniChemistry.Utilities.UtilityExceptions.FileException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="miniChemistry.Utilities.UtilityExceptions.UtilityException">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">miniChemistry.Utilities.UtilityExceptions.</span></span><span class="sig-name descname"><span class="pre">UtilityException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#miniChemistry.Utilities.UtilityExceptions.UtilityException" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="miniChemistry.html#miniChemistry.MiniChemistryException.MiniChemistryException" title="miniChemistry.MiniChemistryException.MiniChemistryException"><code class="xref py py-class docutils literal notranslate"><span class="pre">MiniChemistryException</span></code></a></p>
+</dd></dl>
+
+</section>
+<section id="module-miniChemistry.Utilities">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-miniChemistry.Utilities" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">miniChemistry</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="miniChemistry.html">miniChemistry package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="miniChemistry.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miniChemistry.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miniChemistry.html#module-miniChemistry.MiniChemistryException">miniChemistry.MiniChemistryException module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miniChemistry.html#minichemistry-setup-module">miniChemistry.setup module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miniChemistry.html#module-miniChemistry">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="miniChemistry.html">miniChemistry package</a><ul>
+      <li>Previous: <a href="miniChemistry.Core.Tools.html" title="previous chapter">miniChemistry.Core.Tools package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Antons Kutuzovs.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.3.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/miniChemistry.Utilities.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
