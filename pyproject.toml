@@ -15,5 +15,13 @@ readme = "README.md"
 license = "GPL-3.0-or-later"
 keywords = ["chemistry", "stoichiometry"]
 
+dependencies = [
+    "chemparse",
+    "sympy"
+]
+
 [project.urls]
 Homepage = "https://github.com/AntonKutuzov/miniChemistry"
+
+[project.scripts]
+reaction = "miniChemistry:cli.cli"
