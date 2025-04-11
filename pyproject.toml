@@ -1,0 +1,19 @@
+# https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "minichemistry"
+version = "0.0.9"
+requires-python = ">= 3.2"
+authors = [
+    { name = "Antons Kutuzovs", email = "akutuzovsssss@gmail.com" }
+]
+description = "A package to model simple stoichiometric calculations over chemical reactions"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+keywords = ["chemistry", "stoichiometry"]
+
+[project.urls]
+Homepage = "https://github.com/AntonKutuzov/miniChemistry"
