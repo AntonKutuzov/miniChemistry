@@ -66,8 +66,6 @@ class Reaction:
         :param products: list of Simple and/or Molecule
         """
 
-        self.NO_RESTRICTIONS = False
-
         self._reagents = list()
         self._products = list()
 
