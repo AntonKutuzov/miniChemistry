@@ -120,13 +120,19 @@ def _effective_class(sub: Union[Molecule, Simple, None]) -> str:
 
 
 
-def predict(reagent1: Union[Simple, Molecule], reagent2: Union[Simple, Molecule, None] = None) -> Tuple[Union[Simple, Molecule], ...]:
+def predict(
+        reagent1: Union[Simple, Molecule],
+        reagent2: Union[Simple, Molecule, None] = None,
+        ignore_restrictions: bool = False,
+            ) -> Tuple[Union[Simple, Molecule], ...]:
+
     """
     Accepts as parameters two substances (or a substance and the None) and returns its products by calling respective
     mechanism and restriction to predict outcome of the reaction.
 
     :param reagent1: the first reagent, instance of Molecule or Simple
     :param reagent2: the second reagents, instance of Molecule, Simple or also None
+    :param ignore_restrictions: set to True if you want to get reaction products regardless of restrictions
     :return: a tuple of Molecules and Simples. Can contain from 1 to 3 substances
     """
 
@@ -138,12 +144,14 @@ def predict(reagent1: Union[Simple, Molecule], reagent2: Union[Simple, Molecule,
         mechanism = decision_dict[signature]['mechanism']
         restriction = decision_dict[signature]['restriction']
     except KeyError:
-        raise CannotPredictProducts(reagents=[reagent1.formula(), reagent2.formula() if reagent2 is not None else "None"],
-                                    function_name="predict",
-                                    variables=locals())
+        raise CannotPredictProducts(
+            reagents=[reagent1.formula(), reagent2.formula() if reagent2 is not None else "None"],
+            function_name="predict",
+            variables=locals()
+        )
 
     products = mechanism(reagent1, reagent2)
-    no_proceed = restriction(*products, raise_exception=True)
+    no_proceed = restriction(*products, raise_exception = not ignore_restrictions)
 
     return products
 

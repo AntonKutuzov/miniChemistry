@@ -1,4 +1,3 @@
-# https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
 [build-system]
 requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
