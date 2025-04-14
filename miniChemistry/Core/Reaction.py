@@ -66,13 +66,15 @@ class Reaction:
         :param products: list of Simple and/or Molecule
         """
 
+        self.NO_RESTRICTIONS = False
+
         self._reagents = list()
         self._products = list()
 
         if reagents is products is None and args:
             if 1 <= len(args) <= 2:
                 self._reagents = list(args)
-                self._products = list(predict(*args))
+                self._products = list(predict(*args, ignore_restrictions=self.NO_RESTRICTIONS))
             else:
                 raise WrongNumberOfReagents(reagents=[arg.formula() for arg in args], variables=locals())
         elif reagents and products and not args:
