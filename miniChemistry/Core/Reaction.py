@@ -72,7 +72,7 @@ class Reaction:
         if reagents is products is None and args:
             if 1 <= len(args) <= 2:
                 self._reagents = list(args)
-                self._products = list(predict(*args, ignore_restrictions=self.NO_RESTRICTIONS))
+                self._products = list(predict(*args))
             else:
                 raise WrongNumberOfReagents(reagents=[arg.formula() for arg in args], variables=locals())
         elif reagents and products and not args:
