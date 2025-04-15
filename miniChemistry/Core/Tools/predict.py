@@ -123,6 +123,8 @@ def _effective_class(sub: Union[Molecule, Simple, None]) -> str:
 def predict(
         reagent1: Union[Simple, Molecule],
         reagent2: Union[Simple, Molecule, None] = None,
+        *,
+        ignore_restrictions: bool = False,
         ) -> Tuple[Union[Simple, Molecule], ...]:
 
     """
@@ -150,7 +152,7 @@ def predict(
         )
 
     products = mechanism(reagent1, reagent2)
-    no_proceed = restriction(*products, raise_exception=True)
+    no_proceed = restriction(*products, raise_exception = not ignore_restrictions)
 
     return products
 
