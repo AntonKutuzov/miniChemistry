@@ -47,7 +47,8 @@ from miniChemistry.MiniChemistryException import NotSupposedToHappen
 
 
 class Reaction:
-    
+    IGNORE_RESTRICTIONS: bool = False
+
     def __init__(self, *args: Union[Simple, Molecule],
                  reagents: Union[List[Union[Simple, Molecule]], None] = None,
                  products: Union[List[Union[Simple, Molecule]], None] = None) -> None:
@@ -72,7 +73,7 @@ class Reaction:
         if reagents is products is None and args:
             if 1 <= len(args) <= 2:
                 self._reagents = list(args)
-                self._products = list(predict(*args))
+                self._products = list(predict(*args, ignore_restrictions=Reaction.IGNORE_RESTRICTIONS))
             else:
                 raise WrongNumberOfReagents(reagents=[arg.formula() for arg in args], variables=locals())
         elif reagents and products and not args:
