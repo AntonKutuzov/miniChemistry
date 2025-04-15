@@ -254,6 +254,3 @@ class Reaction:
     @property
     def reaction_type(self) -> str:
         return self._get_type()
-
-
-print('Trying new branch...')
