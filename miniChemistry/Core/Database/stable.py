@@ -114,7 +114,7 @@ class SolubilityTable:
     def __init__(self):
         # needed not to manually change the location of the file here.
         self._path = os.path.dirname(os.path.abspath(__file__))
-        self._name = os.path.join(self._path, 'solubility_table.db')
+        self._name = os.path.join(self._path, 'SolubilityTable.db')
         self._connect = None
         self._cursor = None
 
