@@ -4,3 +4,4 @@ minichemistry.egg-info/
 docs/_build/
 *.ipynb_checkpoints/
 dist/
+.idea/
