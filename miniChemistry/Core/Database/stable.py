@@ -298,9 +298,13 @@ class SolubilityTable:
             anion = {substance.anion, substance.anion_charge}
 
             if isMatch(cation):
-                ions.add(SolubilityTable.Ion(substance.cation, substance.cation_charge))
+                ions.add(
+                    SolubilityTable.Ion(substance.cation, substance.cation_charge)
+                )
             if isMatch(anion):
-                ions.add(SolubilityTable.Ion(substance.anion, substance.anion_charge))
+                ions.add(
+                    SolubilityTable.Ion(substance.anion, substance.anion_charge)
+                )
 
         if 'cation' in kwargs:
             return filter(lambda ion:ion.charge>0, ions)
