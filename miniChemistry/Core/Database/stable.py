@@ -303,11 +303,6 @@ class SolubilityTable:
                 ions.add(SolubilityTable.Ion(substance.anion, substance.anion_charge))
 
         if 'cation' in kwargs:
-            return [i for i in ions if i.charge > 0]
-        elif 'anion' in kwargs:
-            return [i for i in ions if i.charge < 0]
-
-        if 'cation' in kwargs:
             return filter(lambda ion:ion.charge>0, ions)
         elif 'anion' in kwargs:
             return filter(lambda ion:ion.charge<0, ions)
