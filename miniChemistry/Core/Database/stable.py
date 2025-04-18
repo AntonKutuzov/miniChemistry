@@ -405,21 +405,16 @@ class SolubilityTable:
                        function_name="SolubilityTable.select_substance", raise_exception=True)
         type_check([*args, *kwargs.values()], [str, int], raise_exception=True)
 
-        approved_substances = list()
+        def isMatch(substance):
+            # only match the substances mentioned in args
+            condition1 = set(args).issubset(substance)
+            # count properties which do not match
+            discrepancies = sum([   eval(f"{substance}.{constraint}") != kwargs[constraint]
+                                    for constraint in kwargs ])
+            condition2 = not discrepancies # no discrepancies = match
+            return condition1 and condition2
 
-        conditions = [
-            lambda s: True if 'cation' not in kwargs or s.cation == kwargs['cation'] else False,
-            lambda s: True if 'anion' not in kwargs or s.anion == kwargs['anion'] else False,
-            lambda s: True if 'cation_charge' not in kwargs or s.cation_charge == kwargs['cation_charge'] else False,
-            lambda s: True if 'anion_charge' not in kwargs or s.anion_charge == kwargs['anion_charge'] else False,
-            lambda s: True if 'solubility' not in kwargs or s.solubility == kwargs['solubility'] else False,
-        ]
-
-        for substance in self:  # check the __iter__ method to get what happens here
-            if all([arg in substance for arg in args] + [c(substance) for c in conditions]):
-                approved_substances.append(substance)
-
-        return approved_substances
+        return list(filter(isMatch,self))
 
     @_stable_initiated
     def _erase_all(self, no_confirm: bool = False) -> bool:
