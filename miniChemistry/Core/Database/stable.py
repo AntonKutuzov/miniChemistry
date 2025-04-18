@@ -120,17 +120,25 @@ class SolubilityTable:
     )
 
     def __init__(self):
-        # needed not to manually change the location of the file here.
-        self._path = os.path.dirname(os.path.abspath(__file__))
-        self._name = os.path.join(self._path, 'SolubilityTable.db')
+
+        # Filesystem path of the database.
+        # Does not need to be on the class level scope,
+        # however its more human-visible when put here,
+        # if it ever needs to be changed.
+        # Only used in `begin():self._connect`.
+        _cwd = os.path.dirname(os.path.abspath(__file__))
+        self._dbpath = os.path.join(_cwd, 'SolubilityTable.db')
+
+        # variables for database connection.
+        # these need to be in class scope.
         self._connect = None
         self._cursor = None
 
-        self._solubility_options = ('SL', 'SS', 'NS', 'RW', 'ND')
-
     def begin(self):
-        self._connect = sq.connect(self._name)
+        """Open the database connection."""
+        self._connect = sq.connect(self._dbpath)
         self._cursor = self._connect.cursor()
+        # If db is empty, create the one table.
         self._cursor.execute("""
             CREATE TABLE IF NOT EXISTS solubility_table (
                 cation TEXT,
@@ -140,26 +148,35 @@ class SolubilityTable:
                 solubility TEXT
             )
         """)
+        # This table will then be filled from the excel file.
 
     @_stable_initiated
     def end(self):
+        """Close the database connection."""
         self._connect.close()
 
     @_stable_initiated
     def __iter__(self) -> Iterable:
         """
-        Basically, it just reads the whole table, converts it into a list and returns the __iter__ of the list.
+        Reads the table `solubility_table` from the sqlite3 database `SolubilityTable.db`;
+        Returns an iterable, every element of which is a line from this table.
         :return:
         """
 
-        command = 'SELECT * FROM solubility_table'
-
-        self._cursor.execute(command)
+        self._cursor.execute(
+            'SELECT * FROM solubility_table'
+        )
         data = self._cursor.fetchall()
 
         substances = list()
-        for datum in data:
-            substances.append(SolubilityTable.Substance(*datum))
+        for row in data: # Each row is one substance.
+            # Each row is in the form
+            # `['Li', 1, 'NO3', -1, 'SL']`
+            substances.append(
+                SolubilityTable.Substance(*row)
+            )
+            # Which becomes
+            # `Substance(cation='Li', cation_charge=1, anion='NO3', anion_charge=-1, solubility='SL')`.
         return substances.__iter__()
 
     @_stable_initiated
@@ -175,6 +192,8 @@ class SolubilityTable:
         :return: None
         """
 
+        # The five allowed solubility states.
+        self._solubility_options = ('SL', 'SS', 'NS', 'RW', 'ND')
         # check that the solubility mentioned is actually one of the five allowed
         keywords_check([solubility], self._solubility_options, 'SolubilityTable.write', variables=locals())
 
@@ -204,8 +223,10 @@ class SolubilityTable:
     @_stable_initiated
     def select_ion(self, *args, **kwargs) -> List['SolubilityTable.Ion']:
         """
-        The function allows to select any ion from the solubility table by specifying its properties, such as formula
-        and/or charge. The function accepts both positional and keyword arguments.
+        Filter the SolubilityTable by constraints and return the matching `Ion` instances.
+        Each parameter is a constraint.
+        Conditions can be properties such as formula and/or charge.
+        This function accepts both positional and keyword arguments.
 
         POSITIONAL ARGUMENTS
         The function accepts positional arguments of types string and integer. String in this case means ion's formula
@@ -261,23 +282,35 @@ class SolubilityTable:
         keywords_check([*kwargs.keys()], ['cation', 'anion', 'charge'],
                        function_name='SolubilityTable.select_ion', variables=locals(), raise_exception=True)
 
-        conditions = set(args).union(set(kwargs.values()))
-        ions = set()  # sets do not have duplicates, so if different substances add the same ion, it appears once
+        # Join all of the arguments, each of which is a `constraint`
+        constraints = set(args).union( set(kwargs.values()) )
 
-        for substance in self:
-            if conditions.issubset(set(substance)):
-                cation = {substance.cation, substance.cation_charge}
-                anion = {substance.anion, substance.anion_charge}
+        # `ions` is the return value.
+        # it is a set as to avoid duplicates.
+        ions = set()
 
-                if conditions.issubset(cation):
-                    ions.add(SolubilityTable.Ion(substance.cation, substance.cation_charge))
-                if conditions.issubset(anion):
-                    ions.add(SolubilityTable.Ion(substance.anion, substance.anion_charge))
+        # The substance is a match if its properties contain all of our constraints.
+        isMatch = lambda substance : constraints.issubset(set(substance))
+        matchingSubstances = filter(isMatch, self)
+
+        for substance in matchingSubstances:
+            cation = {substance.cation, substance.cation_charge}
+            anion = {substance.anion, substance.anion_charge}
+
+            if isMatch(cation):
+                ions.add(SolubilityTable.Ion(substance.cation, substance.cation_charge))
+            if isMatch(anion):
+                ions.add(SolubilityTable.Ion(substance.anion, substance.anion_charge))
 
         if 'cation' in kwargs:
             return [i for i in ions if i.charge > 0]
         elif 'anion' in kwargs:
             return [i for i in ions if i.charge < 0]
+
+        if 'cation' in kwargs:
+            return filter(lambda ion:ion.charge>0, ions)
+        elif 'anion' in kwargs:
+            return filter(lambda ion:ion.charge<0, ions)
 
         return list(ions)
 
