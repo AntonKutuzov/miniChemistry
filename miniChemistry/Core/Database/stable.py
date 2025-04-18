@@ -76,7 +76,9 @@ def _stable_initiated(func):
     def wrapper(*args, **kwargs):
         if args and isinstance(args[0], SolubilityTable):
             instance = args[0]
-            if instance._connect is not None and instance._cursor is not None:
+            if (    (instance._connect is not None) \
+                    and (instance._cursor is not None)
+            ):
                 result = func(*args, **kwargs)
                 return result
             else:
@@ -108,8 +110,14 @@ class SolubilityTable:
     'Na'
     """
 
-    Substance = namedtuple('Substance', 'cation, cation_charge, anion, anion_charge, solubility')
-    Ion = namedtuple('Ion', 'composition, charge')
+    Substance = namedtuple(
+        'Substance', # type name
+        'cation, cation_charge, anion, anion_charge, solubility' # fields
+    )
+    Ion = namedtuple(
+        'Ion',
+        'composition, charge'
+    )
 
     def __init__(self):
         # needed not to manually change the location of the file here.
@@ -123,15 +131,15 @@ class SolubilityTable:
     def begin(self):
         self._connect = sq.connect(self._name)
         self._cursor = self._connect.cursor()
-        self._cursor.execute('''
-                        CREATE TABLE IF NOT EXISTS solubility_table (
-                        cation TEXT,
-                        cation_charge INTEGER,
-                        anion TEXT,
-                        anion_charge INTEGER,
-                        solubility TEXT
-                        )
-                        ''')
+        self._cursor.execute("""
+            CREATE TABLE IF NOT EXISTS solubility_table (
+                cation TEXT,
+                cation_charge INTEGER,
+                anion TEXT,
+                anion_charge INTEGER,
+                solubility TEXT
+            )
+        """)
 
     @_stable_initiated
     def end(self):
@@ -189,7 +197,6 @@ class SolubilityTable:
             sap = SubstanceAlreadyPresent(substance_signature=[cation, cation_charge, anion, anion_charge], variables=locals())
             raise sap
 
-    
     @_stable_initiated
     def erase(self, cation: str, cation_charge: int, anion: str, anion_charge: int, solubility: str) -> None:
         pass
