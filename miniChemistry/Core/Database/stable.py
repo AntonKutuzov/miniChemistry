@@ -65,25 +65,6 @@ import os
 import pandas as pd
 from miniChemistry.Core.Database.ptable import * # needed for sorting by atom number when saving the file with self.end
 
-
-def _stable_initiated(func):
-    """
-    A decorator applied to every method of the SolubilityTable class to check if the table is initiated and raise
-    an readable exception message.
-    :param func: SolubilityTable's method only
-    :return: a decorated function
-    """
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        if args and isinstance(args[0], SolubilityTable):
-            instance = args[0]
-            result = func(*args, **kwargs)
-            return result
-        else:
-            raise TypeError('The "_stable_initiated" decorator can only be applied to the SolubilityTable methods.')
-    return wrapper
-
-
 class SolubilityTable:
     """
     The SolubilityTable class should store information about solubility of a substance and and the same time the
@@ -120,15 +101,9 @@ class SolubilityTable:
         # Only used in `begin():self._connect`.
         _cwd = os.path.dirname(os.path.abspath(__file__))
         self._dbpath = os.path.join(_cwd, 'SolubilityTable.csv')
-        self._connect = None
-        self._cursor = None
-
-    def begin(self):
-        """Read the SolubilityTable csv database"""
         self.data = pd.read_csv(self._dbpath,index_col=False)
 
-    @_stable_initiated
-    def end(self):
+    def commit(self):
         """Commit changes to the SolubilityTable csv database"""
         self.data.sort_values(
             by="cation",
@@ -137,7 +112,6 @@ class SolubilityTable:
         )
         self.data.to_csv(self._dbpath,index=False)
 
-    @_stable_initiated
     def __iter__(self) -> Iterable:
         """
         Returns the solubility table as an iterable.
@@ -166,18 +140,15 @@ class SolubilityTable:
 
         if rowToAdd in self.data.loc:
             # if got something, then raise an exception
-            self.end()
             sap = SubstanceAlreadyPresent(substance_signature=[cation, cation_charge, anion, anion_charge], variables=locals())
             raise sap
         else:
             self.data.loc[len(self.data)] = rowToAdd
             self.data.drop_duplicates()
 
-    @_stable_initiated
     def erase(self, cation: str, cation_charge: int, anion: str, anion_charge: int, solubility: str) -> None:
         pass
 
-    @_stable_initiated
     def select_ion(self, *args, **kwargs) -> List['SolubilityTable.Ion']:
         """
         Filter the SolubilityTable by constraints and return the matching `Ion` instances.
@@ -270,7 +241,6 @@ class SolubilityTable:
 
         return list(ions)
 
-    @_stable_initiated
     def select_substance(self, *args, **kwargs) -> List['SolubilityTable.Substance']:
         """
         The select_substance() method is used to select the substances from the solubility table that fulfill the set
@@ -377,7 +347,6 @@ class SolubilityTable:
 
         return list(filter(isMatch,self))
 
-    @_stable_initiated
     def _erase_all(self, no_confirm: bool = False) -> bool:
         if not no_confirm:
             confirmation = input('! Are you sure you want to delete the whole solubility table (type "confirm" to proceed)? – ')
@@ -403,14 +372,12 @@ class SolubilityTable:
 
 
 st = SolubilityTable()
-st.begin()
-# length = len(st.select_substance())
-st.end()
+length = len(st.select_substance())
 
-# if length == 0:
-#     print('WARNING: solubility table is empty. Run the following code:\n'
-#           '>>> from miniChemistry.Core.Database.ModifySolubilityTable import modify\n'
-#           '>>> modify(confirmation=False)\n'
-#           'The code will require confirmation to overwrite the solubility table file.\n'
-#           'After code execution the solubility table database should contain most common substances\n'
-#           'met in school chemistry.')
+if length == 0:
+    print('WARNING: solubility table is empty. Run the following code:\n'
+          '>>> from miniChemistry.Core.Database.ModifySolubilityTable import modify\n'
+          '>>> modify(confirmation=False)\n'
+          'The code will require confirmation to overwrite the solubility table file.\n'
+          'After code execution the solubility table database should contain most common substances\n'
+          'met in school chemistry.')

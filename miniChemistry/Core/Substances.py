@@ -705,9 +705,7 @@ def _select_suitable_charge(element: pt.Element, choose_largest_charge: bool = T
 
 def _exists(i: Ion) -> bool:
     st = SolubilityTable()
-    st.begin()
     ions = st.select_ion(i.formula(remove_charge=True), i.charge)
-    st.end()
 
     if ions:
         return True

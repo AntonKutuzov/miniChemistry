@@ -35,7 +35,6 @@ def _select_ions(element: pt.Element, ion_type: str = 'both') -> List[Solubility
     """
 
     st = SolubilityTable()
-    st.begin()
 
     if ion_type == 'cation':
         ions = st.select_ion(cation=element.symbol)
@@ -46,7 +45,6 @@ def _select_ions(element: pt.Element, ion_type: str = 'both') -> List[Solubility
     else:
         raise KeywordNotAllowed(func_name='_select_ions', variables=locals())
 
-    st.end()
     return ions
 
 
