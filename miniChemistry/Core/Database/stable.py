@@ -63,7 +63,7 @@ from miniChemistry.Utilities.Checks import keywords_check, type_check
 from miniChemistry.Core.CoreExceptions.stableExceptions import *
 import os
 import pandas as pd
-import sqlite3 as sq
+from miniChemistry.Core.Database.ptable import * # needed for sorting by atom number when saving the file with self.end
 
 
 def _stable_initiated(func):
@@ -134,6 +134,11 @@ class SolubilityTable:
     @_stable_initiated
     def end(self):
         """Commit changes to the SolubilityTable csv database"""
+        self.data.sort_values(
+            by="cation",
+            key=lambda series:pd.Series(map(lambda element:eval(element)._atomic_number,series)),
+            inplace=True
+        )
         self.data.to_csv(self._dbpath,index=False)
 
     @_stable_initiated
