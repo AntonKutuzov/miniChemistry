@@ -106,10 +106,6 @@ class SolubilityTable:
     'Na'
     """
 
-    Substance = namedtuple(
-        'Substance', # type name
-        'cation, cation_charge, anion, anion_charge, solubility' # fields
-    )
     Ion = namedtuple(
         'Ion',
         'composition, charge'
@@ -144,23 +140,11 @@ class SolubilityTable:
     @_stable_initiated
     def __iter__(self) -> Iterable:
         """
-        Reads the table `solubility_table` from the sqlite3 database `SolubilityTable.db`;
-        Returns an iterable, every element of which is a line from this table.
+        Returns the solubility table as an iterable.
         :return:
         """
+        return self.data.itertuples(name="Substance",index=False)
 
-        substances = list()
-        for row in self.data.iloc: # Each row is one substance.
-            # Each row is in the form
-            # `['Li', 1, 'NO3', -1, 'SL']`
-            substances.append(
-                SolubilityTable.Substance(*row)
-            )
-            # Which becomes
-            # `Substance(cation='Li', cation_charge=1, anion='NO3', anion_charge=-1, solubility='SL')`.
-        return substances.__iter__()
-
-    @_stable_initiated
     def write(self, cation: str, cation_charge: int, anion: str, anion_charge: int, solubility: str) -> None:
         """
         Writes the following data into the database (into the Solubility Table)
