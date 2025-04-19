@@ -62,6 +62,7 @@ from typing import Iterable, List
 from miniChemistry.Utilities.Checks import keywords_check, type_check
 from miniChemistry.Core.CoreExceptions.stableExceptions import *
 import os
+import pandas as pd
 import sqlite3 as sq
 
 
@@ -76,13 +77,8 @@ def _stable_initiated(func):
     def wrapper(*args, **kwargs):
         if args and isinstance(args[0], SolubilityTable):
             instance = args[0]
-            if (    (instance._connect is not None) \
-                    and (instance._cursor is not None)
-            ):
-                result = func(*args, **kwargs)
-                return result
-            else:
-                raise SolubilityTableNotInitiated(variables=locals())
+            result = func(*args, **kwargs)
+            return result
         else:
             raise TypeError('The "_stable_initiated" decorator can only be applied to the SolubilityTable methods.')
     return wrapper
@@ -127,33 +123,17 @@ class SolubilityTable:
         # if it ever needs to be changed.
         # Only used in `begin():self._connect`.
         _cwd = os.path.dirname(os.path.abspath(__file__))
-        self._dbpath = os.path.join(_cwd, 'SolubilityTable.db')
-
-        # variables for database connection.
-        # these need to be in class scope.
+        self._dbpath = os.path.join(_cwd, 'SolubilityTable.csv')
         self._connect = None
         self._cursor = None
 
     def begin(self):
-        """Open the database connection."""
-        self._connect = sq.connect(self._dbpath)
-        self._cursor = self._connect.cursor()
-        # If db is empty, create the one table.
-        self._cursor.execute("""
-            CREATE TABLE IF NOT EXISTS solubility_table (
-                cation TEXT,
-                cation_charge INTEGER,
-                anion TEXT,
-                anion_charge INTEGER,
-                solubility TEXT
-            )
-        """)
-        # This table will then be filled from the excel file.
+        """DEPRECATED, used to open sqlite3 database connection"""
+        self.data = pd.read_csv(self._dbpath,index_col=False).iloc
 
     @_stable_initiated
     def end(self):
-        """Close the database connection."""
-        self._connect.close()
+        """DEPRECATED, used to close sqlite3 database connection"""
 
     @_stable_initiated
     def __iter__(self) -> Iterable:
@@ -163,13 +143,9 @@ class SolubilityTable:
         :return:
         """
 
-        self._cursor.execute(
-            'SELECT * FROM solubility_table'
-        )
-        data = self._cursor.fetchall()
-
         substances = list()
-        for row in data: # Each row is one substance.
+        for row in self.data: # Each row is one substance.
+            print(row)
             # Each row is in the form
             # `['Li', 1, 'NO3', -1, 'SL']`
             substances.append(
@@ -177,6 +153,7 @@ class SolubilityTable:
             )
             # Which becomes
             # `Substance(cation='Li', cation_charge=1, anion='NO3', anion_charge=-1, solubility='SL')`.
+            break
         return substances.__iter__()
 
     @_stable_initiated
@@ -447,13 +424,13 @@ class SolubilityTable:
 
 st = SolubilityTable()
 st.begin()
-length = len(st.select_substance())
+# length = len(st.select_substance())
 st.end()
 
-if length == 0:
-    print('WARNING: solubility table is empty. Run the following code:\n'
-          '>>> from miniChemistry.Core.Database.ModifySolubilityTable import modify\n'
-          '>>> modify(confirmation=False)\n'
-          'The code will require confirmation to overwrite the solubility table file.\n'
-          'After code execution the solubility table database should contain most common substances\n'
-          'met in school chemistry.')
+# if length == 0:
+#     print('WARNING: solubility table is empty. Run the following code:\n'
+#           '>>> from miniChemistry.Core.Database.ModifySolubilityTable import modify\n'
+#           '>>> modify(confirmation=False)\n'
+#           'The code will require confirmation to overwrite the solubility table file.\n'
+#           'After code execution the solubility table database should contain most common substances\n'
+#           'met in school chemistry.')
