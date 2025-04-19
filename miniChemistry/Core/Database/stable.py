@@ -128,12 +128,13 @@ class SolubilityTable:
         self._cursor = None
 
     def begin(self):
-        """DEPRECATED, used to open sqlite3 database connection"""
-        self.data = pd.read_csv(self._dbpath,index_col=False).iloc
+        """Read the SolubilityTable csv database"""
+        self.data = pd.read_csv(self._dbpath,index_col=False)
 
     @_stable_initiated
     def end(self):
-        """DEPRECATED, used to close sqlite3 database connection"""
+        """Commit changes to the SolubilityTable csv database"""
+        self.data.to_csv(self._dbpath,index=False)
 
     @_stable_initiated
     def __iter__(self) -> Iterable:
@@ -144,7 +145,7 @@ class SolubilityTable:
         """
 
         substances = list()
-        for row in self.data: # Each row is one substance.
+        for row in self.data.iloc: # Each row is one substance.
             # Each row is in the form
             # `['Li', 1, 'NO3', -1, 'SL']`
             substances.append(
@@ -172,24 +173,16 @@ class SolubilityTable:
         # check that the solubility mentioned is actually one of the five allowed
         keywords_check([solubility], self._solubility_options, 'SolubilityTable.write', variables=locals())
 
-        # try to get the mentioned substance from the solubility table
-        self._cursor.execute(
-            "SELECT * FROM solubility_table WHERE cation=? AND cation_charge=? AND anion=? AND anion_charge=?",
-            (cation, cation_charge, anion, anion_charge))
-        existing_data = self._cursor.fetchone()
+        rowToAdd = (cation, cation_charge, anion, anion_charge, solubility)
 
-        # if failed to get one, then write it in
-        if existing_data is None:
-            self._cursor.execute(
-                "INSERT INTO solubility_table (cation, cation_charge, anion, anion_charge, solubility) "
-                "VALUES (?, ?, ?, ?, ?)",
-                (cation, cation_charge, anion, anion_charge, solubility))
-            self._connect.commit()
-        else:
+        if rowToAdd in self.data.loc:
             # if got something, then raise an exception
             self.end()
             sap = SubstanceAlreadyPresent(substance_signature=[cation, cation_charge, anion, anion_charge], variables=locals())
             raise sap
+        else:
+            self.data.loc[len(self.data)] = rowToAdd
+            self.data.drop_duplicates()
 
     @_stable_initiated
     def erase(self, cation: str, cation_charge: int, anion: str, anion_charge: int, solubility: str) -> None:
