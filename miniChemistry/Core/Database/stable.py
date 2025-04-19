@@ -145,7 +145,6 @@ class SolubilityTable:
 
         substances = list()
         for row in self.data: # Each row is one substance.
-            print(row)
             # Each row is in the form
             # `['Li', 1, 'NO3', -1, 'SL']`
             substances.append(
@@ -153,7 +152,6 @@ class SolubilityTable:
             )
             # Which becomes
             # `Substance(cation='Li', cation_charge=1, anion='NO3', anion_charge=-1, solubility='SL')`.
-            break
         return substances.__iter__()
 
     @_stable_initiated
