@@ -364,6 +364,8 @@ class SolubilityTable:
         else:
             print("The solubility table was NOT erased.")
             return False
+
+
 """
     @property
     def cursor(self):
