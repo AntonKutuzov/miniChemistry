@@ -55,15 +55,13 @@ Note 2: The table is not filled manually, however, so it can be easily restored.
 You can use self.cursor and self.connect to operate the database directly.
 """
 
-
-from collections import namedtuple
-from functools import wraps
 from typing import Iterable, List
 from miniChemistry.Utilities.Checks import keywords_check, type_check
 from miniChemistry.Core.CoreExceptions.stableExceptions import *
 import os
 import pandas as pd
 from miniChemistry.Core.Database.ptable import * # needed for sorting by atom number when saving the file with self.end
+
 
 class SolubilityTable:
     """
@@ -91,6 +89,12 @@ class SolubilityTable:
         'Ion',
         'composition, charge'
     )
+
+    Substance = namedtuple(
+        'Substance',
+        'cation, cation_charge, anion, anion_charge'
+    )
+
 
     def __init__(self):
 
@@ -210,7 +214,7 @@ class SolubilityTable:
         keywords_check([*kwargs.keys()], ['cation', 'anion', 'charge'],
                        function_name='SolubilityTable.select_ion', variables=locals(), raise_exception=True)
 
-        # Join all of the arguments, each of which is a `constraint`
+        # Join all the arguments, each of which is a `constraint`
         constraints = set(args).union( set(kwargs.values()) )
 
         # `ions` is the return value.
@@ -235,9 +239,9 @@ class SolubilityTable:
                 )
 
         if 'cation' in kwargs:
-            return filter(lambda ion:ion.charge>0, ions)
+            return list(filter(lambda ion:ion.charge>0, ions))
         elif 'anion' in kwargs:
-            return filter(lambda ion:ion.charge<0, ions)
+            return list(filter(lambda ion:ion.charge<0, ions))
 
         return list(ions)
 
@@ -345,7 +349,7 @@ class SolubilityTable:
             condition2 = not discrepancies # no discrepancies = match
             return condition1 and condition2
 
-        return list(filter(isMatch,self))
+        return list(filter(isMatch, self))
 
     def _erase_all(self, no_confirm: bool = False) -> bool:
         if not no_confirm:
@@ -360,7 +364,7 @@ class SolubilityTable:
         else:
             print("The solubility table was NOT erased.")
             return False
-
+"""
     @property
     def cursor(self):
         return self._cursor
@@ -368,7 +372,7 @@ class SolubilityTable:
     @property
     def connect(self):
         return self._connect
-
+"""
 
 
 st = SolubilityTable()
