@@ -72,7 +72,6 @@ class BasesTable:
         """
 
         st = SolubilityTable()
-        st.begin()
 
         metals = [m.symbol for m in pt.METALS]
         used_cations = list()
@@ -88,7 +87,6 @@ class BasesTable:
                 bases.append(b)
                 oxides.append(o)
                 used_cations.append(substance.cation)
-        st.end()
 
         return tuple(ions), tuple(bases), tuple(oxides)
 

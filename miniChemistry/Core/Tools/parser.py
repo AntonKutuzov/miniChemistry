@@ -186,17 +186,14 @@ def get_anion(formula: str) -> SolubilityTable.Ion:
 
     # checking anion in the solubility table
     st = SolubilityTable()
-    st.begin()
 
     for compound in st:
         anion = compound.anion
         anion_ratio = index_ratios(formula=anion)
 
         if substance_ratios == anion_ratio:
-            st.end()
             return SolubilityTable.Ion(composition=compound.anion, charge=compound.anion_charge)
     else:
-        st.end()
         raise OutOfOptions(formula=formula, function_name='get_anion', variables=locals())
 
 
@@ -216,9 +213,7 @@ def get_cations(formula: str) -> List[SolubilityTable.Ion]:
     first_element = _remove_first_element(formula, return_first_element=True)['first element']
 
     st = SolubilityTable()
-    st.begin()
     possible_cations = st.select_ion(cation=first_element)
-    st.end()
 
     if possible_cations:
         return possible_cations
