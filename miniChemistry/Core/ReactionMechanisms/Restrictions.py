@@ -42,7 +42,6 @@ from miniChemistry.Core.CoreExceptions.MechanismExceptions import WeakElectrolyt
 from typing import Union
 
 
-
 def _molecule_to_stable_substance(m: Molecule) -> SolubilityTable.Substance:
     """
     Converts the instance of Molecule into an instance of SolubilityTable.Substance.
@@ -72,9 +71,6 @@ def _molecule_to_stable_substance(m: Molecule) -> SolubilityTable.Substance:
         molecule = molecules[0]
         return molecule
 
-
-
-
 def weak_electrolyte_restriction(*products: Union[Simple, Molecule], raise_exception: bool = False) -> bool:
     """
     Checks the product for presence of a weak electrolyte (water, gas or precipitate)
@@ -101,8 +97,6 @@ def weak_electrolyte_restriction(*products: Union[Simple, Molecule], raise_excep
             raise WeakElectrolyteNotFound(products=[p.formula() for p in products], variables=locals())
         else:
             return False
-
-
 
 
 def metal_activity_restriction(sub: Union[Simple, Molecule], metal: Union[Simple, Molecule], raise_exception: bool = False) -> bool:

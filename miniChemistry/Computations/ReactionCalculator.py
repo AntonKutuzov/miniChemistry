@@ -1,6 +1,3 @@
-"""
-
-"""
 from miniChemistry.Computations.ComputationExceptions.IterativeCalculatorException import SolutionNotFound
 from miniChemistry.Computations.ComputationExceptions.QuantityCalculatorException import ValueNotFoundException
 from miniChemistry.Computations.Datum import Datum
@@ -97,7 +94,7 @@ class ReactionCalculator:
 
     def _init_from_substances(self, rs: List[Molecule|Simple], ps: List[Molecule|Simple]) -> None:
         try:
-            self._reaction = Reaction(reagents=list(rs), product=list(ps))
+            self._reaction = Reaction(reagents=list(rs), products=list(ps))
         except WrongReactionConstructorParameters:
             raise InitializationError(init_type='reagents and products', variables=locals())
 
@@ -383,7 +380,7 @@ class ReactionCalculator:
     def coefficients(self) -> Dict[Molecule|Simple, float|int]:
         return self.reaction.coefficients
 
-
+"""
 NaOH = Molecule.from_string('Na', 1, 'OH', -1)
 H2SO4 = Molecule.from_string('H', 1, 'SO4', -2)
 H2O = Molecule.water
@@ -402,4 +399,4 @@ print(lr)
 print(*rc.moles(H2SO4, H2O))
 print(*rc.derive_moles_of(Na2SO4, use=lr.substance, round_to=2))
 print(*rc.excess(*rc.reaction.reagents, round_to=2))
-
+"""
