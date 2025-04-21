@@ -97,7 +97,6 @@ def modify(confirmation: bool = True):
     # initiating solubility table instance to write the data to the database
     print('Initiating the database...')
     st = SolubilityTable()
-    st.begin()
     if not st._erase_all(no_confirm = not confirmation):  # the function requires console approval
         print('Program interrupted.')
         exit()
@@ -227,5 +226,4 @@ def modify(confirmation: bool = True):
                     continue
                 st.write(cation_formula, cation_charge, anion_formula, anion_charge, solubility)
 
-    st.end()
     print('Done!')

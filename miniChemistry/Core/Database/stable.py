@@ -62,29 +62,8 @@ from typing import Iterable, List
 from miniChemistry.Utilities.Checks import keywords_check, type_check
 from miniChemistry.Core.CoreExceptions.stableExceptions import *
 import os
-import sqlite3 as sq
-
-
-def _stable_initiated(func):
-    """
-    A decorator applied to every method of the SolubilityTable class to check if the table is initiated and raise
-    an readable exception message.
-    :param func: SolubilityTable's method only
-    :return: a decorated function
-    """
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        if args and isinstance(args[0], SolubilityTable):
-            instance = args[0]
-            if instance._connect is not None and instance._cursor is not None:
-                result = func(*args, **kwargs)
-                return result
-            else:
-                raise SolubilityTableNotInitiated(variables=locals())
-        else:
-            raise TypeError('The "_stable_initiated" decorator can only be applied to the SolubilityTable methods.')
-    return wrapper
-
+import pandas as pd
+from miniChemistry.Core.Database.ptable import * # needed for sorting by atom number when saving the file with self.end
 
 class SolubilityTable:
     """
@@ -108,53 +87,38 @@ class SolubilityTable:
     'Na'
     """
 
-    Substance = namedtuple('Substance', 'cation, cation_charge, anion, anion_charge, solubility')
-    Ion = namedtuple('Ion', 'composition, charge')
+    Ion = namedtuple(
+        'Ion',
+        'composition, charge'
+    )
 
     def __init__(self):
-        # needed not to manually change the location of the file here.
-        self._path = os.path.dirname(os.path.abspath(__file__))
-        self._name = os.path.join(self._path, 'SolubilityTable.db')
-        self._connect = None
-        self._cursor = None
 
-        self._solubility_options = ('SL', 'SS', 'NS', 'RW', 'ND')
+        # Filesystem path of the database.
+        # Does not need to be on the class level scope,
+        # however its more human-visible when put here,
+        # if it ever needs to be changed.
+        # Only used in `begin():self._connect`.
+        _cwd = os.path.dirname(os.path.abspath(__file__))
+        self._dbpath = os.path.join(_cwd, 'SolubilityTable.csv')
+        self.data = pd.read_csv(self._dbpath,index_col=False)
 
-    def begin(self):
-        self._connect = sq.connect(self._name)
-        self._cursor = self._connect.cursor()
-        self._cursor.execute('''
-                        CREATE TABLE IF NOT EXISTS solubility_table (
-                        cation TEXT,
-                        cation_charge INTEGER,
-                        anion TEXT,
-                        anion_charge INTEGER,
-                        solubility TEXT
-                        )
-                        ''')
+    def commit(self):
+        """Commit changes to the SolubilityTable csv database"""
+        self.data.sort_values(
+            by="cation",
+            key=lambda series:pd.Series(map(lambda element:eval(element)._atomic_number,series)),
+            inplace=True
+        )
+        self.data.to_csv(self._dbpath,index=False)
 
-    @_stable_initiated
-    def end(self):
-        self._connect.close()
-
-    @_stable_initiated
     def __iter__(self) -> Iterable:
         """
-        Basically, it just reads the whole table, converts it into a list and returns the __iter__ of the list.
+        Returns the solubility table as an iterable.
         :return:
         """
+        return self.data.itertuples(name="Substance",index=False)
 
-        command = 'SELECT * FROM solubility_table'
-
-        self._cursor.execute(command)
-        data = self._cursor.fetchall()
-
-        substances = list()
-        for datum in data:
-            substances.append(SolubilityTable.Substance(*datum))
-        return substances.__iter__()
-
-    @_stable_initiated
     def write(self, cation: str, cation_charge: int, anion: str, anion_charge: int, solubility: str) -> None:
         """
         Writes the following data into the database (into the Solubility Table)
@@ -167,38 +131,30 @@ class SolubilityTable:
         :return: None
         """
 
+        # The five allowed solubility states.
+        self._solubility_options = ('SL', 'SS', 'NS', 'RW', 'ND')
         # check that the solubility mentioned is actually one of the five allowed
         keywords_check([solubility], self._solubility_options, 'SolubilityTable.write', variables=locals())
 
-        # try to get the mentioned substance from the solubility table
-        self._cursor.execute(
-            "SELECT * FROM solubility_table WHERE cation=? AND cation_charge=? AND anion=? AND anion_charge=?",
-            (cation, cation_charge, anion, anion_charge))
-        existing_data = self._cursor.fetchone()
+        rowToAdd = (cation, cation_charge, anion, anion_charge, solubility)
 
-        # if failed to get one, then write it in
-        if existing_data is None:
-            self._cursor.execute(
-                "INSERT INTO solubility_table (cation, cation_charge, anion, anion_charge, solubility) "
-                "VALUES (?, ?, ?, ?, ?)",
-                (cation, cation_charge, anion, anion_charge, solubility))
-            self._connect.commit()
-        else:
+        if rowToAdd in self.data.loc:
             # if got something, then raise an exception
-            self.end()
             sap = SubstanceAlreadyPresent(substance_signature=[cation, cation_charge, anion, anion_charge], variables=locals())
             raise sap
+        else:
+            self.data.loc[len(self.data)] = rowToAdd
+            self.data.drop_duplicates()
 
-    
-    @_stable_initiated
     def erase(self, cation: str, cation_charge: int, anion: str, anion_charge: int, solubility: str) -> None:
         pass
 
-    @_stable_initiated
     def select_ion(self, *args, **kwargs) -> List['SolubilityTable.Ion']:
         """
-        The function allows to select any ion from the solubility table by specifying its properties, such as formula
-        and/or charge. The function accepts both positional and keyword arguments.
+        Filter the SolubilityTable by constraints and return the matching `Ion` instances.
+        Each parameter is a constraint.
+        Conditions can be properties such as formula and/or charge.
+        This function accepts both positional and keyword arguments.
 
         POSITIONAL ARGUMENTS
         The function accepts positional arguments of types string and integer. String in this case means ion's formula
@@ -254,27 +210,37 @@ class SolubilityTable:
         keywords_check([*kwargs.keys()], ['cation', 'anion', 'charge'],
                        function_name='SolubilityTable.select_ion', variables=locals(), raise_exception=True)
 
-        conditions = set(args).union(set(kwargs.values()))
-        ions = set()  # sets do not have duplicates, so if different substances add the same ion, it appears once
+        # Join all of the arguments, each of which is a `constraint`
+        constraints = set(args).union( set(kwargs.values()) )
 
-        for substance in self:
-            if conditions.issubset(set(substance)):
-                cation = {substance.cation, substance.cation_charge}
-                anion = {substance.anion, substance.anion_charge}
+        # `ions` is the return value.
+        # it is a set as to avoid duplicates.
+        ions = set()
 
-                if conditions.issubset(cation):
-                    ions.add(SolubilityTable.Ion(substance.cation, substance.cation_charge))
-                if conditions.issubset(anion):
-                    ions.add(SolubilityTable.Ion(substance.anion, substance.anion_charge))
+        # The substance is a match if its properties contain all of our constraints.
+        isMatch = lambda substance : constraints.issubset(set(substance))
+        matchingSubstances = filter(isMatch, self)
+
+        for substance in matchingSubstances:
+            cation = {substance.cation, substance.cation_charge}
+            anion = {substance.anion, substance.anion_charge}
+
+            if isMatch(cation):
+                ions.add(
+                    SolubilityTable.Ion(substance.cation, substance.cation_charge)
+                )
+            if isMatch(anion):
+                ions.add(
+                    SolubilityTable.Ion(substance.anion, substance.anion_charge)
+                )
 
         if 'cation' in kwargs:
-            return [i for i in ions if i.charge > 0]
+            return filter(lambda ion:ion.charge>0, ions)
         elif 'anion' in kwargs:
-            return [i for i in ions if i.charge < 0]
+            return filter(lambda ion:ion.charge<0, ions)
 
         return list(ions)
 
-    @_stable_initiated
     def select_substance(self, *args, **kwargs) -> List['SolubilityTable.Substance']:
         """
         The select_substance() method is used to select the substances from the solubility table that fulfill the set
@@ -370,23 +336,17 @@ class SolubilityTable:
                        function_name="SolubilityTable.select_substance", raise_exception=True)
         type_check([*args, *kwargs.values()], [str, int], raise_exception=True)
 
-        approved_substances = list()
+        def isMatch(substance):
+            # only match the substances mentioned in args
+            condition1 = set(args).issubset(substance)
+            # count properties which do not match
+            discrepancies = sum([   eval(f"{substance}.{constraint}") != kwargs[constraint]
+                                    for constraint in kwargs ])
+            condition2 = not discrepancies # no discrepancies = match
+            return condition1 and condition2
 
-        conditions = [
-            lambda s: True if 'cation' not in kwargs or s.cation == kwargs['cation'] else False,
-            lambda s: True if 'anion' not in kwargs or s.anion == kwargs['anion'] else False,
-            lambda s: True if 'cation_charge' not in kwargs or s.cation_charge == kwargs['cation_charge'] else False,
-            lambda s: True if 'anion_charge' not in kwargs or s.anion_charge == kwargs['anion_charge'] else False,
-            lambda s: True if 'solubility' not in kwargs or s.solubility == kwargs['solubility'] else False,
-        ]
+        return list(filter(isMatch,self))
 
-        for substance in self:  # check the __iter__ method to get what happens here
-            if all([arg in substance for arg in args] + [c(substance) for c in conditions]):
-                approved_substances.append(substance)
-
-        return approved_substances
-
-    @_stable_initiated
     def _erase_all(self, no_confirm: bool = False) -> bool:
         if not no_confirm:
             confirmation = input('! Are you sure you want to delete the whole solubility table (type "confirm" to proceed)? – ')
@@ -412,9 +372,7 @@ class SolubilityTable:
 
 
 st = SolubilityTable()
-st.begin()
 length = len(st.select_substance())
-st.end()
 
 if length == 0:
     print('WARNING: solubility table is empty. Run the following code:\n'

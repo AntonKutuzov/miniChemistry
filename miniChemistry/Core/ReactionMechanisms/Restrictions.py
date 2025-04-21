@@ -56,9 +56,7 @@ def _molecule_to_stable_substance(m: Molecule) -> SolubilityTable.Substance:
     anion_charge = m.anion.charge
 
     st = SolubilityTable()
-    st.begin()
     molecules = st.select_substance(cation, cation_charge, anion, anion_charge)
-    st.end()
 
     if len(molecules) > 1:
         nsth = NotSupposedToHappen(variables=locals())
