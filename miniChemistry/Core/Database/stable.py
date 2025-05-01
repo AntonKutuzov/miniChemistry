@@ -55,6 +55,7 @@ Note 2: The table is not filled manually, however, so it can be easily restored.
 You can use self.cursor and self.connect to operate the database directly.
 """
 
+
 from typing import Iterable, List
 from miniChemistry.Utilities.Checks import keywords_check, type_check
 from miniChemistry.Core.CoreExceptions.stableExceptions import *
