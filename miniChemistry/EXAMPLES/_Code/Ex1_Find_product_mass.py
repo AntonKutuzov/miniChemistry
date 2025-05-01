@@ -1,6 +1,6 @@
 """Equate the reaction and determine the masses of water needed to obtain 25 g of each product: Na + H2O"""
 
-from EXAMPLES import comment
+from miniChemistry.EXAMPLES import comment
 
 
 comment('Importing necessary modules...')

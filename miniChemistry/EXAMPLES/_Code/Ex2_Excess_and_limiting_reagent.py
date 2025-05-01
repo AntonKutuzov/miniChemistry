@@ -1,6 +1,6 @@
 """Find the mass of water formed during reaction of 20 g of NaOH and 24.5 g of H2SO4."""
 
-from EXAMPLES import comment
+from miniChemistry.EXAMPLES import comment
 
 comment('Importing necessary modules...')
 from miniChemistry.Core.Reaction import Reaction
