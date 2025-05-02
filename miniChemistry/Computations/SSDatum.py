@@ -1,4 +1,3 @@
-# from miniChemistry.Computations.Datum import Datum
 from miniChemistry.Core.Substances import Molecule, Simple
 from QuantityCalculator import Datum
 
