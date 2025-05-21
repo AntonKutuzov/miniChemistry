@@ -7,12 +7,14 @@ from time import sleep
 @dataclass
 class SETTINGS:
     SHOW_EXECUTION_TIME: bool = True
-    READ_TIME: float = 1 # seconds
+    READ_TIME: float = 0 # seconds
 
 
 class EXAMPLE_LIST:
-    EXAMPLE_1: str = 'Ex1_Find_product_mass'
-    EXAMPLE_2: str = 'Ex2_Excess_and_limiting_reagent'
+    SIMPLE_EXERCISE: str = 'Ex1_Find_product_mass'
+    COMPLICATED_EXERCISE: str = 'Ex2_Excess_and_limiting_reagent'
+    EQUATING_REACTIONS: str = 'Ex3_Equate_Reactions'
+    # CREATING_EXERCISE: str = ''
 
 
 initial_message = """
@@ -28,7 +30,7 @@ To disable or change the time, run the following code in the console:
 Or any other number. 0 to disable sleeping.
 
 To run any example, use
->>> from EXAMPLES import run_example, EXAMPLE_LIST
+>>> from miniChemistry.EXAMPLES import run_example, EXAMPLE_LIST
 >>> run_example(EXAMPLE_LIST.EXAMPLE_X)
 With 'X' being the number of the example you want to run.
 """
