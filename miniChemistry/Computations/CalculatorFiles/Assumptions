@@ -4,7 +4,7 @@
 # name given after a colon. These names are stripped for spaces, so can contain them on either side.
 #
 # next the variables and their values for the assumption come. The keyword "variable" indicates that this string will
-# be split and written as a Datum into the IterativeCalculator class' instance. The "compute" keyword mean that the
+# be split and written as a Datum into the LinearIterator class' instance. The "compute" keyword mean that the
 # variable will be calculated right after the assumption is applied (useful for constants that depend on other constants,
 # like V0 (molar volume of gases).
 # "assume" means that while computing all the "compute" variables, the following variables will be set, but then deleted.

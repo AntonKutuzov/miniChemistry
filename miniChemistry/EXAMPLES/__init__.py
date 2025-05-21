@@ -7,15 +7,17 @@ from time import sleep
 @dataclass
 class SETTINGS:
     SHOW_EXECUTION_TIME: bool = True
-    READ_TIME: float = 1 # seconds
+    READ_TIME: float = 0 # seconds
 
 
 class EXAMPLE_LIST:
-    EXAMPLE_1: str = 'Ex1_Find_product_mass'
-    EXAMPLE_2: str = 'Ex2_Excess_and_limiting_reagent'
+    SIMPLE_EXERCISE: str = 'Ex1_Find_product_mass'
+    COMPLICATED_EXERCISE: str = 'Ex2_Excess_and_limiting_reagent'
+    EQUATING_REACTIONS: str = 'Ex3_Equate_Reactions'
+    # CREATING_EXERCISE: str = ''
 
 
-initial_message = """
+"""
 The code in the examples is run slowly on purpose. The code is commented
 well with explanations on what is done and by which function. To make it
 possible to read by the user, the code execution is delayed. The variable
@@ -26,11 +28,21 @@ To disable or change the time, run the following code in the console:
 >>> from EXAMPLES import SETTINGS
 >>> SETTINGS.READ_TIME = 1
 Or any other number. 0 to disable sleeping.
+"""
 
+
+initial_message = """
 To run any example, use
->>> from EXAMPLES import run_example, EXAMPLE_LIST
->>> run_example(EXAMPLE_LIST.EXAMPLE_X)
-With 'X' being the number of the example you want to run.
+>>> from miniChemistry.EXAMPLES import run_example, EXAMPLE_LIST
+>>> run_example(EXAMPLE_LIST.EXAMPLE_NAME)
+
+The following examples are available:
+> SIMPLE_EXERCISE. Quick presentation of how the code can be used to solve exercises in chemistry.
+> COMPLICATED_EXERCISE. Detailed explanation of how the code can be used to solve exercises in chemistry.
+For this example it is recommended to have prior knowledge of chemistry and structure of the package.
+> EQUATING_REACTIONS. Simple demonstration of how the code can equate the reactions starting from a string.
+Note that not all reactions can be equated, this limitation is due to classification of reactions used in
+the package.
 """
 
 

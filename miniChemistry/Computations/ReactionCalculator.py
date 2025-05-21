@@ -1,14 +1,16 @@
-from miniChemistry.Computations.ComputationExceptions.IterativeCalculatorException import SolutionNotFound
+from miniChemistry.Computations.ComputationExceptions.IterativeCalculatorException import (
+    SolutionNotFound,
+    IncorrectFileFormatting)
 from miniChemistry.Computations.ComputationExceptions.QuantityCalculatorException import ValueNotFoundException
-from miniChemistry.Computations.Datum import Datum
-from miniChemistry.Computations.IterativeCalculator import IterativeCalculator
+from QCalculator import Datum, LinearIterator, Assumption
 from miniChemistry.Computations.SSDatum import SSDatum
 from miniChemistry.Core.CoreExceptions.ReactionExceptions import WrongReactionConstructorParameters
 from miniChemistry.Computations.ComputationExceptions.ReactionCalculatorException import *
 from miniChemistry.Core.Reaction import Reaction
-from typing import List, Tuple, Dict, Any
+from typing import List, Tuple, Dict, Any, Generator
 from miniChemistry.Core.Substances import Molecule, Simple, Particle
 from miniChemistry.Core.Tools.parser import parse
+from miniChemistry.Utilities.File import File
 
 
 class ReactionCalculator:
@@ -33,7 +35,7 @@ class ReactionCalculator:
 
     PUBLIC METHODS\n
     1) Variable management\n
-    - substance(sub: str|Particle) -> IterativeCalculator\n
+    - substance(sub: str|Particle) -> LinearIterator\n
     - assume(*assumptions: str) -> None\n
     - write(*data: SSDatum) -> None\n
     - erase(substance: str|Particle, variable: str) -> None\n
@@ -105,11 +107,11 @@ class ReactionCalculator:
             raise InitializationError(init_type='reaction scheme as a string', variables=locals())
 
     # ================================================================================================== PRIVATE METHODS
-    def _create_calculators(self) -> Dict[Molecule|Simple, IterativeCalculator]:
+    def _create_calculators(self) -> Dict[Molecule|Simple, LinearIterator]:
         data = dict()
 
         for sub in self.substances:
-            ic = IterativeCalculator()
+            ic = LinearIterator()
             data.update({sub : ic})
             self.__setattr__(sub.formula(), ic)
 
@@ -132,6 +134,47 @@ class ReactionCalculator:
             pass
 
         raise TypeError(f'Wrong substance data type: expected "str", "Molecule" or "Simple", got "{type(substance)}"')
+
+    @staticmethod
+    def _read_assumptions() -> Generator[Assumption, None, Assumption]:
+        file = File(__file__)
+        file.bind('CalculatorFiles/Assumptions')
+
+        assumption = None
+
+        for line in file.read_all():
+            if line.startswith('#'):
+                continue
+            elif line == '!':
+                if assumption is not None:
+                    yield assumption
+                else:
+                    raise IncorrectFileFormatting(file_name=file.name, variables=locals())
+                assumption = None
+            elif line.startswith('!'):
+                symbol, name = line.split(':')
+                symbol = symbol.strip('!').strip(' ')
+                name = name.strip(' ')
+                assumption = Assumption(symbol, name)
+            elif line.startswith('variable'):
+                a, b = line.split(' ')
+                symbol, value, unit = b.split(':')
+                d = Datum(symbol, float(value), unit)
+                assumption.to_set(d)
+            elif line.startswith('compute'):
+                a, b = line.split(' ')
+                var, units = b.split('::')
+                assumption.to_compute(Datum(var, 0, units))
+            elif line.startswith('assume'):
+                a, b = line.split(' ')
+                var, value, units = b.split(':')
+                assumption.to_assume(Datum(var, float(value), units))
+            elif line.isalnum():
+                raise IncorrectFileFormatting(file_name=file.name, variables=locals())
+
+        if assumption is not None:
+            return assumption
+
 
     @staticmethod
     def exception_handler(func,
@@ -172,28 +215,39 @@ class ReactionCalculator:
 
     # =================================================================================================== PUBLIC METHODS
     #                                                                                                variable management
-    def substance(self, substance: str|Molecule|Simple) -> IterativeCalculator:
+    def substance(self, substance: str|Molecule|Simple) -> LinearIterator:
         sub = self._substance_to_particle(substance)
         return self._substance_data[sub]
 
     def assume(self, *assumptions: str) -> None:
-        for cal in self.calculators:
-            cal.assume(*assumptions)
+        read_assumptions = [a for a in self._read_assumptions()]
+
+        for a in read_assumptions:
+            if a.symbol in assumptions:
+                for li in self.calculators:
+                    a.apply_to(li)
 
     def write(self, *data: SSDatum) -> None:
         for datum in data:
             sub = datum.substance
             d = datum.datum
-            self.substance(sub).write(d)
+
+            try:
+                self.substance(sub).write(d)
+            except:
+                print(f'Cannot rewrite the variable "{d.symbol}" for substance {sub.formula()}')
+                print('The current value is', self.substance(sub).read(d.symbol))
+                print(f'Tried to rewrite to {d.value} {d.unit}')
+                exit()
 
     def erase(self, substance: str|Molecule|Simple, variable: str) -> None:
         sub = self._substance_to_particle(substance)
-        self.substance(sub).clear(variable)
+        self.substance(sub).erase(variable)
 
     def assume_excess(self, *substances: str|Molecule|Simple) -> None:
         moles = self.moles(exception_if='all')
         mm = max(moles, key=lambda ssd: ssd.magnitude)
-        excess = ReactionCalculator.EXCESS_COEFFICIENT*mm.magnitude
+        excess = ReactionCalculator.EXCESS_COEFFICIENT * mm.value
 
         for substance in substances:
             sub = self._substance_to_particle(substance)
@@ -211,7 +265,7 @@ class ReactionCalculator:
         def func(it: Molecule|Simple):
             sub = self._substance_to_particle(it)
             mole = self.substance(sub).read('n', 'mole')
-            return SSDatum(sub, mole.variable, round(mole.magnitude, round_to), mole.units)
+            return SSDatum(sub, mole.symbol, round(mole.value, round_to), mole.unit)
 
         return ReactionCalculator.exception_handler(
             func,
@@ -263,10 +317,10 @@ class ReactionCalculator:
         moles = list()
 
         for f, c in zip(find, coef_find):
-            new_magn = nn_use.magnitude*c
-            new_ssd = SSDatum(f, 'n', new_magn, nn_use.units)
+            new_magn = nn_use.value*c
+            new_ssd = SSDatum(f, 'n', round(new_magn, round_to), nn_use.unit)
             self.write(new_ssd)
-            new_ssd.rewrite(round(new_ssd.magnitude, round_to), new_ssd.units)
+            # new_ssd.rewrite(round(new_ssd.value, round_to), new_ssd.unit)
             moles.append(new_ssd)
 
         return moles
@@ -279,7 +333,7 @@ class ReactionCalculator:
             substances = self.reaction.reagents
 
         moles = self.normalized_moles(*substances, round_to=round_to)
-        lr = min(moles, key=lambda mole: mole.magnitude)
+        lr = min(moles, key=lambda mole: mole.value)
         return lr
 
     def excess(self,
@@ -295,11 +349,11 @@ class ReactionCalculator:
             sub = self._substance_to_particle(substance)
             nn[i].to_base_units()
             lr.to_base_units()
-            magn = round(cs[i]*(nn[i].magnitude - lr.magnitude), round_to)
+            magn = round(cs[i]*(nn[i].value - lr.value), round_to)
             ssd = SSDatum(sub, 'n', magn, 'mole')
             exs.append(ssd)
 
-        exs = [ssd for ssd in exs if ssd.magnitude != 0]
+        exs = [ssd for ssd in exs if ssd.value != 0]
 
         return exs
 
@@ -332,7 +386,7 @@ class ReactionCalculator:
         normalized_list = list()
 
         for sub, mole, coef in zip(substances, moles, coefs):
-            normalized_list.append(SSDatum(sub, mole.variable, round(mole.magnitude/coef, round_to), mole.units))
+            normalized_list.append(SSDatum(sub, mole.symbol, round(mole.value/coef, round_to), mole.unit))
 
         return normalized_list
 
@@ -347,7 +401,10 @@ class ReactionCalculator:
         return cs
 
     #                                                                                                       calculations
-    def compute(self, *variables: SSDatum) -> List[SSDatum]:
+    def compute(self,
+                    *variables: SSDatum,
+                    rounding: bool = False
+                ) -> List[SSDatum]:
         ret_list = list()
 
         for var in variables:
@@ -355,11 +412,17 @@ class ReactionCalculator:
             self.substance(sub).target = var.datum
             try:
                 self.substance(sub).solve(stop_at_target=True, alter_target=True)
-                result = self.substance(sub).target
-                ret_list.append(SSDatum(sub, *result))
+                result = self.substance(sub).target.to(var.unit)
+
+                if rounding:
+                    magnitude = round(result.value, var.num_decimals)
+                else:
+                    magnitude = result.value
+
+                ret_list.append(SSDatum(sub, result.symbol, magnitude, result.unit))
 
             except SolutionNotFound:
-                raise ComputationException(self.substance(sub).target.variable, substance=sub.formula(), variables=locals())
+                raise ComputationException(self.substance(sub).target.symbol, substance=sub.formula(), variables=locals())
 
         return ret_list
 
@@ -373,7 +436,7 @@ class ReactionCalculator:
         return self.reaction.substances
 
     @property
-    def calculators(self) -> List[IterativeCalculator]:
+    def calculators(self) -> List[LinearIterator]:
         return list(self._substance_data.values())
 
     @property

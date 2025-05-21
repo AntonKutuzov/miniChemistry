@@ -32,7 +32,7 @@ class InitializationError(ReactionCalculatorException):
 class ComputationException(ReactionCalculatorException):
     def __init__(self, target: str, substance: str, variables: dict):
         self._message = f'\nFailed to compute the target "{target}" for "{substance}".'
-        self.description = (f'\nThis exception means that IterativeCalculator used for {substance} did not manage\n'
+        self.description = (f'\nThis exception means that LinearIterator used for {substance} did not manage\n'
                             f'to compute the target variables with the given conditions. Change the conditions\n'
                             f'or the target variable. Check that the substance is correct.')
         super().__init__(variables)

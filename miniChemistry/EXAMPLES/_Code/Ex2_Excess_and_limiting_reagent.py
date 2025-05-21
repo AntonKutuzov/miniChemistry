@@ -1,6 +1,9 @@
-"""Find the mass of water formed during reaction of 20 g of NaOH and 24.5 g of H2SO4."""
+"""Find the mass of water formed during reaction of 20 g of NaOH and 24.5g of H2SO4."""
 
 from miniChemistry.EXAMPLES import comment
+from QCalculator import SETTINGS
+
+SETTINGS['COMMENTS ON'] = False
 
 comment('Importing necessary modules...')
 from miniChemistry.Core.Reaction import Reaction
@@ -33,8 +36,15 @@ rc.write(
         )
 
 
-comment("Computing moles of each reagent and finding the limiting one by using `rc.compute_moles_of()`")
+comment("Computing moles of each reagent and by using `rc.compute_moles_of()`")
+
+if SETTINGS['COMMENTS ON']:
+    comment("\n-------------------- LinearIterator output ---------------------", custom_delay=0)
+    comment("--- Searching for moles of NaOH and H2SO4: n ---")
 rc.compute_moles_of(NaOH, H2SO4)
+if SETTINGS['COMMENTS ON']:
+    comment("-------------------- LinearIterator finished ---------------------\n")
+
 comment('The moles of the reagents are:',
       rc.substance(NaOH).read('n', 'mole'),
       rc.substance(H2SO4).read('n', 'mole'), '\n',
@@ -52,7 +62,14 @@ comment('The moles of water are:', *H2O_moles, '\n', custom_delay=2)
 
 
 comment("Computing the mass of water formed during the reaction by using `rc.compute()`")
+if SETTINGS['COMMENTS ON']:
+    comment("\n-------------------- LinearIterator output ---------------------", custom_delay=0)
+    comment("--- Searching for mass of water: mps ---")
 mass_of_water = rc.compute(
-                                SSDatum(H2O, 'mps', 0.001, 'g')
+                                SSDatum(H2O, 'mps', 0.001, 'g'),
+                                rounding=True
                             )
+if SETTINGS['COMMENTS ON']:
+    comment("-------------------- LinearIterator finished ---------------------\n")
+
 comment('The mass of water is', *mass_of_water)
