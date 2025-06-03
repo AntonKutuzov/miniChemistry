@@ -1,0 +1,158 @@
+%PDF-1.4
+1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj
+3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >> endobj
+4 0 obj << /Length 8161 >> stream
+BT /F1 12 Tf 72 800 Td (# miniChemistry Documentation) Tj ET
+BT /F1 12 Tf 72 786 Td () Tj ET
+BT /F1 12 Tf 72 772 Td (This guide provides a high level overview of the project, its core packages and a brief reference of the most visible classes and functions.) Tj ET
+BT /F1 12 Tf 72 758 Td () Tj ET
+BT /F1 12 Tf 72 744 Td (## Project Structure) Tj ET
+BT /F1 12 Tf 72 730 Td () Tj ET
+BT /F1 12 Tf 72 716 Td (`miniChemistry` is organised into two major cores:) Tj ET
+BT /F1 12 Tf 72 702 Td () Tj ET
+BT /F1 12 Tf 72 688 Td (* **Core**  contains modelling primitives for chemical substances and reactions.  It is responsible for reading chemical databases, predicting reaction products and representing molecules, ions and reactions.) Tj ET
+BT /F1 12 Tf 72 674 Td (* **Computations**  builds on top of `Core` and performs stoichiometric calculations using linear algebra utilities.  It wraps the reaction objects to compute moles, ratios and other values.) Tj ET
+BT /F1 12 Tf 72 660 Td () Tj ET
+BT /F1 12 Tf 72 646 Td (The repository also includes a small **Utilities** package with helper functions and classes, an `EXAMPLES` package with usage examples and a command line entry point `cli.py`.) Tj ET
+BT /F1 12 Tf 72 632 Td () Tj ET
+BT /F1 12 Tf 72 618 Td (### Core subpackages) Tj ET
+BT /F1 12 Tf 72 604 Td () Tj ET
+BT /F1 12 Tf 72 590 Td (```) Tj ET
+BT /F1 12 Tf 72 576 Td (Core/) Tj ET
+BT /F1 12 Tf 72 562 Td ( Database/              # CSV databases \(solubility tables, activity series\)) Tj ET
+BT /F1 12 Tf 72 548 Td ( ReactionMechanisms/    # Functions that produce reaction products) Tj ET
+BT /F1 12 Tf 72 534 Td ( Tools/                 # Parser, reaction predictor and helpers) Tj ET
+BT /F1 12 Tf 72 520 Td ( Substances.py          # Particle, Simple, Ion and Molecule classes) Tj ET
+BT /F1 12 Tf 72 506 Td ( Reaction.py            # Reaction class describing reagents and products) Tj ET
+BT /F1 12 Tf 72 492 Td ( CoreExceptions/        # Custom exceptions) Tj ET
+BT /F1 12 Tf 72 478 Td (```) Tj ET
+BT /F1 12 Tf 72 464 Td () Tj ET
+BT /F1 12 Tf 72 450 Td (### Computations subpackages) Tj ET
+BT /F1 12 Tf 72 436 Td () Tj ET
+BT /F1 12 Tf 72 422 Td (```) Tj ET
+BT /F1 12 Tf 72 408 Td (Computations/) Tj ET
+BT /F1 12 Tf 72 394 Td ( ReactionCalculator.py        # Main class for stoichiometric calculations) Tj ET
+BT /F1 12 Tf 72 380 Td ( SSDatum.py                   # Datum with linked substance information) Tj ET
+BT /F1 12 Tf 72 366 Td ( ComputationExceptions/       # Exceptions for calculation modules) Tj ET
+BT /F1 12 Tf 72 352 Td ( CalculatorFiles/             # Text files with formulas and units) Tj ET
+BT /F1 12 Tf 72 338 Td (```) Tj ET
+BT /F1 12 Tf 72 324 Td () Tj ET
+BT /F1 12 Tf 72 310 Td (Both cores rely on a small `Utilities` package that provides input validation helpers and a tiny `File` abstraction to work with text files.) Tj ET
+BT /F1 12 Tf 72 296 Td () Tj ET
+BT /F1 12 Tf 72 282 Td (## Relations between cores) Tj ET
+BT /F1 12 Tf 72 268 Td () Tj ET
+BT /F1 12 Tf 72 254 Td (The `Computations` core uses the `Reaction` class and the substance classes from the `Core` package.  A simplified relation diagram is shown below.) Tj ET
+BT /F1 12 Tf 72 240 Td () Tj ET
+BT /F1 12 Tf 72 226 Td (```) Tj ET
+BT /F1 12 Tf 72 212 Td ([ReactionCalculator] --uses--> [Reaction]) Tj ET
+BT /F1 12 Tf 72 198 Td ([Reaction] --has--> [Molecule] / [Simple] / [Ion]) Tj ET
+BT /F1 12 Tf 72 184 Td ([Molecule] and [Simple] inherit from [Particle]) Tj ET
+BT /F1 12 Tf 72 170 Td (```) Tj ET
+BT /F1 12 Tf 72 156 Td () Tj ET
+BT /F1 12 Tf 72 142 Td (## UML diagrams) Tj ET
+BT /F1 12 Tf 72 128 Td () Tj ET
+BT /F1 12 Tf 72 114 Td (### Core) Tj ET
+BT /F1 12 Tf 72 100 Td () Tj ET
+BT /F1 12 Tf 72 86 Td (```) Tj ET
+BT /F1 12 Tf 72 72 Td (class Particle <<abstract>>) Tj ET
+BT /F1 12 Tf 72 58 Td (    +composition: Dict[Element, int]) Tj ET
+BT /F1 12 Tf 72 44 Td (    +charge: int) Tj ET
+BT /F1 12 Tf 72 30 Td (    +from_string\(...\)) Tj ET
+BT /F1 12 Tf 72 16 Td (    +formula\(\)) Tj ET
+BT /F1 12 Tf 72 2 Td (```) Tj ET
+BT /F1 12 Tf 72 -12 Td () Tj ET
+BT /F1 12 Tf 72 -26 Td (```) Tj ET
+BT /F1 12 Tf 72 -40 Td (class Simple extends Particle) Tj ET
+BT /F1 12 Tf 72 -54 Td (    +element: Element) Tj ET
+BT /F1 12 Tf 72 -68 Td (    +index: int) Tj ET
+BT /F1 12 Tf 72 -82 Td (```) Tj ET
+BT /F1 12 Tf 72 -96 Td () Tj ET
+BT /F1 12 Tf 72 -110 Td (```) Tj ET
+BT /F1 12 Tf 72 -124 Td (class Ion extends Particle) Tj ET
+BT /F1 12 Tf 72 -138 Td (    +is_cation) Tj ET
+BT /F1 12 Tf 72 -152 Td (    +is_anion) Tj ET
+BT /F1 12 Tf 72 -166 Td (```) Tj ET
+BT /F1 12 Tf 72 -180 Td () Tj ET
+BT /F1 12 Tf 72 -194 Td (```) Tj ET
+BT /F1 12 Tf 72 -208 Td (class Molecule extends Particle) Tj ET
+BT /F1 12 Tf 72 -222 Td (    +cation: Ion) Tj ET
+BT /F1 12 Tf 72 -236 Td (    +anion: Ion) Tj ET
+BT /F1 12 Tf 72 -250 Td (    +simple_class\(\)) Tj ET
+BT /F1 12 Tf 72 -264 Td (```) Tj ET
+BT /F1 12 Tf 72 -278 Td () Tj ET
+BT /F1 12 Tf 72 -292 Td (```) Tj ET
+BT /F1 12 Tf 72 -306 Td (class Reaction) Tj ET
+BT /F1 12 Tf 72 -320 Td (    +reagents: List[Particle]) Tj ET
+BT /F1 12 Tf 72 -334 Td (    +products: List[Particle]) Tj ET
+BT /F1 12 Tf 72 -348 Td (    +equation) Tj ET
+BT /F1 12 Tf 72 -362 Td (    +coefficients) Tj ET
+BT /F1 12 Tf 72 -376 Td (```) Tj ET
+BT /F1 12 Tf 72 -390 Td () Tj ET
+BT /F1 12 Tf 72 -404 Td (### Computations) Tj ET
+BT /F1 12 Tf 72 -418 Td () Tj ET
+BT /F1 12 Tf 72 -432 Td (```) Tj ET
+BT /F1 12 Tf 72 -446 Td (class SSDatum\(Datum\)) Tj ET
+BT /F1 12 Tf 72 -460 Td (    +substance: Molecule|Simple) Tj ET
+BT /F1 12 Tf 72 -474 Td (```) Tj ET
+BT /F1 12 Tf 72 -488 Td () Tj ET
+BT /F1 12 Tf 72 -502 Td (```) Tj ET
+BT /F1 12 Tf 72 -516 Td (class ReactionCalculator) Tj ET
+BT /F1 12 Tf 72 -530 Td (    +reaction: Reaction) Tj ET
+BT /F1 12 Tf 72 -544 Td (    +write\(...\)) Tj ET
+BT /F1 12 Tf 72 -558 Td (    +compute_moles_of\(...\)) Tj ET
+BT /F1 12 Tf 72 -572 Td (    +compute\(...\)) Tj ET
+BT /F1 12 Tf 72 -586 Td (```) Tj ET
+BT /F1 12 Tf 72 -600 Td () Tj ET
+BT /F1 12 Tf 72 -614 Td (## API Reference with examples) Tj ET
+BT /F1 12 Tf 72 -628 Td () Tj ET
+BT /F1 12 Tf 72 -642 Td (### Creating substances) Tj ET
+BT /F1 12 Tf 72 -656 Td () Tj ET
+BT /F1 12 Tf 72 -670 Td (```python) Tj ET
+BT /F1 12 Tf 72 -684 Td (from miniChemistry.Core.Substances import Simple, Ion, Molecule) Tj ET
+BT /F1 12 Tf 72 -698 Td (import miniChemistry.Core.Database.ptable as pt) Tj ET
+BT /F1 12 Tf 72 -712 Td () Tj ET
+BT /F1 12 Tf 72 -726 Td (h2 = Simple\(pt.H, 2\)) Tj ET
+BT /F1 12 Tf 72 -740 Td (na = Ion\({pt.Na:1}, 1\)) Tj ET
+BT /F1 12 Tf 72 -754 Td (cl = Ion\({pt.Cl:1}, -1\)) Tj ET
+BT /F1 12 Tf 72 -768 Td (NaCl = Molecule\(na, cl\)) Tj ET
+BT /F1 12 Tf 72 -782 Td (print\(NaCl.formula\(\)\)  # NaCl) Tj ET
+BT /F1 12 Tf 72 -796 Td (```) Tj ET
+BT /F1 12 Tf 72 -810 Td () Tj ET
+BT /F1 12 Tf 72 -824 Td (### Working with reactions) Tj ET
+BT /F1 12 Tf 72 -838 Td () Tj ET
+BT /F1 12 Tf 72 -852 Td (```python) Tj ET
+BT /F1 12 Tf 72 -866 Td (from miniChemistry.Core.Reaction import Reaction) Tj ET
+BT /F1 12 Tf 72 -880 Td (from miniChemistry.Core.Substances import Molecule, Simple) Tj ET
+BT /F1 12 Tf 72 -894 Td () Tj ET
+BT /F1 12 Tf 72 -908 Td (r = Reaction\(Simple\(pt.Na,1\), Molecule.water\)) Tj ET
+BT /F1 12 Tf 72 -922 Td (print\(r.equation\)  # balanced equation) Tj ET
+BT /F1 12 Tf 72 -936 Td (```) Tj ET
+BT /F1 12 Tf 72 -950 Td () Tj ET
+BT /F1 12 Tf 72 -964 Td (### Stoichiometric calculations) Tj ET
+BT /F1 12 Tf 72 -978 Td () Tj ET
+BT /F1 12 Tf 72 -992 Td (```python) Tj ET
+BT /F1 12 Tf 72 -1006 Td (from miniChemistry.Computations.ReactionCalculator import ReactionCalculator) Tj ET
+BT /F1 12 Tf 72 -1020 Td (from miniChemistry.Computations.SSDatum import SSDatum) Tj ET
+BT /F1 12 Tf 72 -1034 Td () Tj ET
+BT /F1 12 Tf 72 -1048 Td (rc = ReactionCalculator\("Na + H2O -> NaOH + H2"\)) Tj ET
+BT /F1 12 Tf 72 -1062 Td (rc.write\(SSDatum\(rc.reaction.products[0], 'mps', 25, 'g'\)\)) Tj ET
+BT /F1 12 Tf 72 -1076 Td (print\(rc.compute_moles_of\(rc.reaction.products[0]\)\)) Tj ET
+BT /F1 12 Tf 72 -1090 Td (```) Tj ET
+BT /F1 12 Tf 72 -1104 Td () Tj ET
+BT /F1 12 Tf 72 -1118 Td (The examples under `miniChemistry/EXAMPLES` provide more extensive scripts demonstrating these classes in action.) Tj ET
+endstream
+endobj
+5 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000008454 00000 n 
+trailer << /Root 1 0 R /Size 6 >>
+startxref
+8524
+%%EOF
