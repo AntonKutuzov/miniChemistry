@@ -1,5 +1,5 @@
 # About miniChemistry Project
-*miniChemistry Project* is a Python package designed yo simulate basics of chemistry, and to perform typical stoichiometric calculations over chemical reactions.
+*miniChemistry Project* is a Python package designed to simulate basics of chemistry, and to perform typical stoichiometric calculations over chemical reactions.
 
 ## Features
 The package consists of four main parts.
@@ -42,4 +42,4 @@ And follow the instructions.
 **NOTE: prior knowledge of chemistry is required to understand the exercises.**
 
 # Contributions Welcome
-The project is mostly written by a single chemical engineering student. Hence, despite many checks and tests, the code can contains some mistakes and can sometimes result in errors. Contributions, improvements or issue reports are always welcomed.
+The project is mostly written by a single chemical engineering student. Hence, despite many checks and tests, the code can contain some mistakes and can sometimes result in errors. Contributions, improvements or issue reports are always welcomed.
