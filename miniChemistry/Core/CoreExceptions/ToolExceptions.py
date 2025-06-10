@@ -7,9 +7,6 @@ class ParsingException(MiniChemistryException):
 class EqualizerException(MiniChemistryException):
     pass
 
-class EqualizerException(MiniChemistryException):
-    pass
-
 
 class CannotSelectCoefficients(EqualizerException):
     """Raised by an equalizer tool when it is not possible to equate a chemical reaction."""
