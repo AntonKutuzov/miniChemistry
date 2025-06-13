@@ -90,11 +90,7 @@ class Reaction:
         return self.substances[item]
 
     def __eq__(self, other: Reaction):
-        conditions = [
-            set(self.reagents) == set(other.reagents),
-            set(self.products) == set(other.products)
-        ]
-        return all(conditions)
+        return self.scheme == other.scheme
 
     def __hash__(self):
         return hash(self.scheme)
