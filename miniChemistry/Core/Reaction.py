@@ -83,6 +83,9 @@ class Reaction:
         else:
             raise WrongReactionConstructorParameters(variables=locals())
 
+        self._reagents.sort(key=lambda s: s.formula())  # needed for conistent __eq__ and __hash__ work
+        self._products.sort(key=lambda s: s.formula())  # to make them insensitive to order of reagents
+
     def __iter__(self):
         self.substances.__iter__()
 
