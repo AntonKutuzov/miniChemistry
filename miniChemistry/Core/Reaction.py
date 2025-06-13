@@ -36,6 +36,7 @@ __getitem__. Returns a substance. The indices are provided in the same order as 
 """
 
 
+from __future__ import annotations
 from typing import Union, Tuple, List
 from miniChemistry.Core.Substances import Molecule, Simple
 from miniChemistry.Utilities.Checks import type_check
@@ -88,8 +89,12 @@ class Reaction:
     def __getitem__(self, item):
         return self.substances[item]
 
-    def __eq__(self, other):
-        return self.scheme == other.scheme
+    def __eq__(self, other: Reaction):
+        conditions = [
+            set(self.reagents) == set(other.reagents),
+            set(self.products) == set(other.products)
+        ]
+        return all(conditions)
 
     def __hash__(self):
         return hash(self.scheme)

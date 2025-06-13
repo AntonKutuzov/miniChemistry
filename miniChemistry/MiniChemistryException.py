@@ -1,4 +1,4 @@
-class MiniChemistryException(BaseException):
+class MiniChemistryException(Exception):
     """
     The exception hierarchy here is quite simple. Every (almost) package has its own Exceptions file so that we can
     easily track from where did the exception come from. All exceptions start from this one – MiniChemistryException,
