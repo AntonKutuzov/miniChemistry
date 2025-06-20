@@ -8,9 +8,9 @@ class SubstanceException(MiniChemistryException):
 class MultipleElementCation(SubstanceException):
     """Raised when a cation containing more than one element is met. These cations are not supported by miniChemistry
     module."""
-    def __init__(self, cation, variables: dict):
+    def __init__(self, composition, charge, variables: dict):
         self._message = f'\nCurrent version of miniChemistry module supports only cations with one chemical element.'
-        self.description = (f'\nThe cation {cation.composition} you entered consists of more than one chemical element.\n'
+        self.description = (f'\nThe cation {composition}({charge}) you entered consists of more than one chemical element.\n'
                             f'Currently, miniChemistry does not support this kind of ions.')
         super().__init__(variables)
 

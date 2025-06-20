@@ -79,8 +79,7 @@ def single_element_cation_check(composition: Dict[Any, int], charge: int, raise_
     if charge > 0:
         if len(composition) > 1:
             if raise_exception:
-                raise MultipleElementCation(f'Only single-element cations are supported in the current version.',
-                                            variables=locals())
+                raise MultipleElementCation(composition, charge, variables=locals())
             else:
                 return False
         else:
