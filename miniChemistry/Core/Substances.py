@@ -517,6 +517,33 @@ class Molecule(Particle):
         anion_particle = Ion.from_string(anion_string, anion_charge, database_check)
         return Molecule(cation_particle, anion_particle)
 
+    @staticmethod
+    def _parentheses(i: Ion, index: int) -> str:
+        """
+        The logic here is quite simple. If an ion consists of only one element, we just append this number (index)
+        after the element's symbol into the formula. If the ion consists of more than one element, we need to
+        take the elements in parentheses and then put the index.
+
+        Finally, if the index itself is equal to 1, we don't put it there, so we just append the ion's formula.
+
+        :param i:
+        :param index:
+        :return:
+        """
+
+        if index > 1:
+            if i.size > 1:
+                return '(' + i.formula(remove_charge=True) + ')' + str(index)
+            else:
+                return i.formula(remove_charge=True) + str(index)
+        elif index == 1:
+            return i.formula(remove_charge=True)
+        else:
+            nsth = NotSupposedToHappen(variables=locals())
+            nsth.description(f'\nIndex of one of the ions used to create a molecule is less than 1, which \n'
+                             f'normally is not possible.')
+            raise nsth
+
     def formula(self) -> str:
         """
         Assembles a formula of a molecule from formulas of the two ions used to build it. The function includes an
@@ -530,39 +557,12 @@ class Molecule(Particle):
         :return:
         """
 
-        
-        def modification(i: Ion, index: int) -> str:
-            """
-            The logic here is quite simple. If an ion consists of only one element, we just append this number (index)
-            after the element's symbol into the formula. If the ion consists of more than one element, we need to
-            take the elements in parentheses and then put the index.
-
-            Finally, if the index itself is equal to 1, we don't put it there, so we just append the ion's formula.
-
-            :param i:
-            :param index:
-            :return:
-            """
-
-            if index > 1:
-                if i.size > 1:
-                    return '(' + i.formula(remove_charge=True) + ')' + str(index)
-                else:
-                    return i.formula(remove_charge=True) + str(index)
-            elif index == 1:
-                return i.formula(remove_charge=True)
-            else:
-                nsth = NotSupposedToHappen(variables=locals())
-                nsth.description (f'\nIndex of one of the ions used to create a molecule is less than 1, which \n'
-                                  f'normally is not possible.')
-                raise nsth
-
         if self == Molecule.water:
             return 'H2O'
 
         formula = ''
-        formula += modification(self.cation, self._cation_index)
-        formula += modification(self.anion, self._anion_index)
+        formula += self._parentheses(self.cation, self._cation_index)
+        formula += self._parentheses(self.anion, self._anion_index)
         return formula
 
     @property

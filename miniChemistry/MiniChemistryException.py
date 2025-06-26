@@ -15,7 +15,7 @@ class MiniChemistryException(Exception):
             self._message = 'this is a message of the miniChemistry base exception.'
             self.description = 'this is a description of the miniChemistry base exception.'
                 
-        self._relevant_variables = f'\n\n {''.join([str(item) + "\n" for item in variables.items()])}'
+        self._relevant_variables = f"\n\n {''.join([str(item) for item in variables.items()])}"
         super().__init__()
     
     def __str__(self):
@@ -29,7 +29,7 @@ class NotSupposedToHappen(MiniChemistryException):
                              f'a similar piece of code goes to the last possible (impossible in normal case) option\n'
                              f'of raising this exception. For example, if an element of pt.Element does not belong\n'
                              f'to neither METALS, not NONMETALS, which is not supposed to happen.')
-        self._relevant_variables = f'\n\n {''.join([str(item) + "\n" for item in variables.items()])}'
+        self._relevant_variables = f'\n\n {"".join([str(item) + " " for item in variables.items()])}'
         super().__init__(variables)
 
 
@@ -37,5 +37,5 @@ class NoArgumentForFunction(MiniChemistryException):
     def __init__(self, function_name: str, variables: dict):
         self._message = f'\nA function "{function_name}" expected to get some arguments, but it did not.'
         self.description = ''
-        self._relevant_variables = f'\n\n {''.join([str(item) + "\n" for item in variables.items()])}'
+        self._relevant_variables = f'\n\n {"".join([str(item) + " " for item in variables.items()])}'
         super().__init__(variables)

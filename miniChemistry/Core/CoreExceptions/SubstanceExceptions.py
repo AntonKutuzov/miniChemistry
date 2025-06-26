@@ -59,7 +59,7 @@ class UnsupportedSubstanceSize(SubstanceException):
 class ChargeError(SubstanceException):
     """Used to indicate that the charge is not as expected."""
     def __init__(self, charge: int, neutrality: bool):
-        self._message = f'\nThe substance is {('not ' if neutrality else '')} electrically neutral.'
-        self.description = (f'\nThe substance you are trying to create (or check) does not meet the set requirement\n'
-                            f' for charge: being {('not ' if neutrality else '')} electrically neutral.\n'
-                            f'The charge set is "{charge}".')
+        self._message = f"\nThe substance is {'not ' if neutrality else ''} electrically neutral."
+        self.description = (f"\nThe substance you are trying to create (or check) does not meet the set requirement\n"
+                            f" for charge: being {'not ' if neutrality else ''} electrically neutral.\n"
+                            f"The charge set is '{charge}'.")

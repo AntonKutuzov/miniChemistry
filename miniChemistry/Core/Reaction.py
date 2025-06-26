@@ -37,7 +37,7 @@ __getitem__. Returns a substance. The indices are provided in the same order as 
 
 
 from __future__ import annotations
-from typing import Union, Tuple, List
+from typing import Union, Tuple, List, Callable
 from miniChemistry.Core.Substances import Molecule, Simple
 from miniChemistry.Utilities.Checks import type_check
 from miniChemistry.Core.Tools.parser import parse
@@ -48,11 +48,12 @@ from miniChemistry.MiniChemistryException import NotSupposedToHappen
 
 
 class Reaction:
-    IGNORE_RESTRICTIONS: bool = False
-
     def __init__(self, *args: Union[Simple, Molecule],
                  reagents: Union[List[Union[Simple, Molecule]], None] = None,
-                 products: Union[List[Union[Simple, Molecule]], None] = None) -> None:
+                 products: Union[List[Union[Simple, Molecule]], None] = None,
+                 ignore_restrictions: bool = False,
+                 _RPT: Callable = predict
+                ) -> None:
         """
         The constructor can be called in two ways: first with both reagents and products given as lists in
         keyword arguments, or, second, as separate substances that will be interpreted as reagents. The constructor then
@@ -71,10 +72,12 @@ class Reaction:
         self._reagents = list()
         self._products = list()
 
+        self._predict =_RPT
+
         if reagents is products is None and args:
             if 1 <= len(args) <= 2:
                 self._reagents = list(args)
-                self._products = list(predict(*args, ignore_restrictions=Reaction.IGNORE_RESTRICTIONS))
+                self._products = list(self._predict(*args, ignore_restrictions=ignore_restrictions))
             else:
                 raise WrongNumberOfReagents(reagents=[arg.formula() for arg in args], variables=locals())
         elif reagents and products and not args:
