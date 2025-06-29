@@ -800,6 +800,24 @@ def molecule(substance: SolubilityTable.Substance) -> Molecule:
 
     return Molecule(cation, anion)
 
+def st_substance(m: Molecule) -> SolubilityTable.Substance:
+    sts = SolubilityTable.Substance(
+        m.cation.formula(remove_charge=True),
+        m._cation_index,
+        m.anion.formula(remove_charge=True),
+        m._anion_index
+    )
+
+    return sts
+
+def st_ion(i: Ion) -> SolubilityTable.Ion:
+    sti = SolubilityTable.Ion(
+        composition=i.formula(remove_charge=True),
+        charge=i.charge
+    )
+
+    return sti
+
 # ====================================================================================================== is_gas FUNCTION
 
 
@@ -830,7 +848,6 @@ def is_gas(substance: Union[Molecule, Simple]) -> bool:
             return False
     else:
         return False
-
 
 # ========================================================================================== CREATING SPECIAL SUBSTANCES
 

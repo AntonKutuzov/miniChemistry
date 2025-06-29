@@ -107,9 +107,9 @@ class Reaction:
         :return: string, representing a reaction scheme
         """
 
-        scheme = ' + '.join([r.formula() for r in self._reagents])
+        scheme = ' + '.join([r.formula() for r in self.reagents])
         scheme += ' -> '
-        scheme += ' + '.join([p.formula() for p in self._products])
+        scheme += ' + '.join([p.formula() for p in self.products])
         return scheme
 
     def _get_equation(self) -> str:
@@ -121,7 +121,7 @@ class Reaction:
 
         equation = ''
 
-        for reagent in self._reagents:
+        for reagent in self.reagents:
             coef = str(self.coefficients[reagent])
             equation += coef if not coef == '1' else ''
             equation += reagent.formula() + ' + '
@@ -129,7 +129,7 @@ class Reaction:
 
         equation += ' = '
 
-        for product in self._products:
+        for product in self.products:
             coef = str(self.coefficients[product])
             equation += coef if not coef == '1' else ''
             equation += product.formula() + ' + '
@@ -151,13 +151,13 @@ class Reaction:
         :return: string, one of the four: "addition", "decomposition", "exchange", "substitution"
         """
 
-        if len(self._reagents) > 1 and len(self._products) == 1:
+        if len(self.reagents) > 1 and len(self.products) == 1:
             return 'addition'
-        elif len(self._reagents) == 1 and len(self._products) > 1:
+        elif len(self.reagents) == 1 and len(self.products) > 1:
             return 'decomposition'
-        elif type_check([*self._reagents], [Molecule], raise_exception=False):
+        elif type_check([*self.reagents], [Molecule], raise_exception=False):
             return 'exchange'
-        elif type_check([*self._reagents], [Simple, Molecule], raise_exception=False):
+        elif type_check([*self.reagents], [Simple, Molecule], raise_exception=False):
             return 'substitution'
         else:
             nsth = NotSupposedToHappen(variables=locals())
@@ -236,11 +236,11 @@ class Reaction:
 
     @property
     def substances(self):
-        return self._reagents + (self._products if self._products is not None else [])
+        return self.reagents + (self.products if self.products is not None else [])
 
     @property
     def coefficients(self):
-        return Equalizer(reagents=self._reagents, products=self._products).coefficients
+        return Equalizer(reagents=self.reagents, products=self.products).coefficients
 
     @property
     def string_coefficients(self):

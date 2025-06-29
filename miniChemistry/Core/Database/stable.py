@@ -115,14 +115,14 @@ class SolubilityTable:
             key=lambda series:pd.Series(map(lambda element:eval(element)._atomic_number,series)),
             inplace=True
         )
-        self.data.to_csv(self._dbpath,index=False)
+        self.data.to_csv(self._dbpath, index=False)
 
     def __iter__(self) -> Iterable:
         """
         Returns the solubility table as an iterable.
         :return:
         """
-        return self.data.itertuples(name="Substance",index=False)
+        return self.data.itertuples(name="Substance", index=False)
 
     def write(self, cation: str, cation_charge: int, anion: str, anion_charge: int, solubility: str) -> None:
         """
