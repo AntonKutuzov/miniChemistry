@@ -37,7 +37,7 @@ __getitem__. Returns a substance. The indices are provided in the same order as 
 
 
 from __future__ import annotations
-from typing import Union, Tuple, List, Callable
+from typing import Dict, Any, Tuple, List, Callable, final, Optional
 from miniChemistry.Core.Substances import Molecule, Simple
 from miniChemistry.Utilities.Checks import type_check
 from miniChemistry.Core.Tools.parser import parse
@@ -45,80 +45,50 @@ from miniChemistry.Core.Tools.predict import predict
 from miniChemistry.Core.Tools.Equalizer import Equalizer
 from miniChemistry.Core.CoreExceptions.ReactionExceptions import WrongReactionConstructorParameters, WrongNumberOfReagents
 from miniChemistry.MiniChemistryException import NotSupposedToHappen
+from abc import ABC, abstractmethod
 
 
-class Reaction:
-    def __init__(self, *args: Union[Simple, Molecule],
-                 reagents: Union[List[Union[Simple, Molecule]], None] = None,
-                 products: Union[List[Union[Simple, Molecule]], None] = None,
-                 ignore_restrictions: bool = False,
-                 _RPT: Callable = predict
-                ) -> None:
-        """
-        The constructor can be called in two ways: first with both reagents and products given as lists in
-        keyword arguments, or, second, as separate substances that will be interpreted as reagents. The constructor then
-        uses predict.py to estimate reaction's products.
-        NOTE: if the products are provided, then the code does not check is the reaction is correct.
+class AbstractReaction(ABC):
+    def __init__(self,
+                 reagents: List,
+                 products: List,
+                 ) -> None:
 
-        Since the code supports only 1 or 2 reagents, and 1 to 3 products, this is tested before the reaction can
-        be considered valid. Wrong number of reagents causes an exception with the same name: WrongNumberOfReagents.
-        NOTE: if it is impossible to predict products (if only reagents are given), the code will raise an exception.
-
-        :param args: reagents, instances of Molecule or Simple
-        :param reagents: list of Simple and/or Molecule
-        :param products: list of Simple and/or Molecule
-        """
-
-        self._reagents = list()
-        self._products = list()
-
-        self._predict =_RPT
-
-        if reagents is products is None and args:
-            if 1 <= len(args) <= 2:
-                self._reagents = list(args)
-                self._products = list(self._predict(*args, ignore_restrictions=ignore_restrictions))
-            else:
-                raise WrongNumberOfReagents(reagents=[arg.formula() for arg in args], variables=locals())
-        elif reagents and products and not args:
-            self._reagents = reagents
-            self._products = products
-        else:
-            raise WrongReactionConstructorParameters(variables=locals())
+        self._reagents = reagents
+        self._products = products
 
         self._reagents.sort(key=lambda s: s.formula())  # needed for conistent __eq__ and __hash__ work
         self._products.sort(key=lambda s: s.formula())  # to make them insensitive to order of reagents
 
+
+    @final
     def __iter__(self):
-        self.substances.__iter__()
+        return self.substances.__iter__()
 
-    def __getitem__(self, item):
-        return self.substances[item]
-
-    def __eq__(self, other: Reaction):
+    @final
+    def __eq__(self, other: AbstractReaction):
         return self.scheme == other.scheme
 
+    @final
     def __hash__(self):
         return hash(self.scheme)
 
-    def _get_scheme(self) -> str:
-        """
-        The method composes a scheme of a reaction based on formulas of the reagents and products.
-        :return: string, representing a reaction scheme
-        """
+    @staticmethod
+    @abstractmethod
+    def from_string(reaction: str) -> AbstractReaction:
+        ...
 
+    @property
+    @abstractmethod
+    def scheme(self) -> str:
         scheme = ' + '.join([r.formula() for r in self.reagents])
         scheme += ' -> '
         scheme += ' + '.join([p.formula() for p in self.products])
         return scheme
 
-    def _get_equation(self) -> str:
-        """
-        The method composes reaction equation (scheme, but with coefficients) based on formulas and coefficients
-        obtained from Equalizer (used in self.coefficients property)
-        :return: string, representing a reaction equation
-        """
-
+    @property
+    @abstractmethod
+    def equation(self) -> str:
         equation = ''
 
         for reagent in self.reagents:
@@ -137,35 +107,74 @@ class Reaction:
 
         return equation
 
-    def _get_type(self) -> str:
-        """
-        In school chemistry, we can divide reactions in four types, based on the number of reacting substances.
-        Addition: two molecules add to one
-        Decomposition: one molecules splits into two (sometimes three) simpler molecules
-        Substitution: a Simple substance reacts with a Molecule to form another Simple and another Molecule
-        Exchange: reaction of two Molecules to form two another Molecules
-        NOTE: this classification is not the same as the one used in "ReactionMechanisms". The latter is a custom
-        classification for this package, and it is based on the one provided here, but is not exactly the same. Also,
-        this classification is real and is widely used in school chemistry.
+    @property
+    @abstractmethod
+    def reagents(self) -> List:
+        return self._reagents
 
-        :return: string, one of the four: "addition", "decomposition", "exchange", "substitution"
+    @property
+    @abstractmethod
+    def products(self) -> List:
+        return self._products
+
+    @property
+    @abstractmethod
+    def substances(self) -> List:
+        return self.reagents + self.products
+
+    @property
+    @abstractmethod
+    def coefficients(self) -> Dict[Any, float|int]:
+        ...
+
+
+
+class MolecularReaction(AbstractReaction):
+    ALLOWED_PARTICLES = Simple | Molecule
+
+    def __init__(self, *args: Simple|Molecule,
+                 reagents: Optional[ List[ALLOWED_PARTICLES] ] = None,
+                 products: Optional[ List[ALLOWED_PARTICLES] ] = None,
+                 ignore_restrictions: bool = False,
+                 _RPT: Callable = predict
+                ) -> None:
+        """
+        The constructor can be called in two ways: first with both reagents and products given as lists in
+        keyword arguments, or, second, as separate substances that will be interpreted as reagents. The constructor then
+        uses predict.py to estimate reaction's products.
+        NOTE: if the products are provided, then the code does not check is the reaction is correct.
+
+        Since the code supports only 1 or 2 reagents, and 1 to 3 products, this is tested before the reaction can
+        be considered valid. Wrong number of reagents causes an exception with the same name: WrongNumberOfReagents.
+        NOTE: if it is impossible to predict products (if only reagents are given), the code will raise an exception.
+
+        :param args: reagents, instances of Molecule or Simple
+        :param reagents: list of Simple and/or Molecule
+        :param products: list of Simple and/or Molecule
         """
 
-        if len(self.reagents) > 1 and len(self.products) == 1:
-            return 'addition'
-        elif len(self.reagents) == 1 and len(self.products) > 1:
-            return 'decomposition'
-        elif type_check([*self.reagents], [Molecule], raise_exception=False):
-            return 'exchange'
-        elif type_check([*self.reagents], [Simple, Molecule], raise_exception=False):
-            return 'substitution'
+        _reagents = list()
+        _products = list()
+
+        self._predict =_RPT
+
+        if reagents is products is None and args:
+            if 1 <= len(args) <= 2:
+                _reagents = list(args)
+                _products = list(self._predict(*args, ignore_restrictions=ignore_restrictions))
+            else:
+                raise WrongNumberOfReagents(reagents=[arg.formula() for arg in args], variables=locals())
+        elif reagents and products and not args:
+            _reagents = reagents
+            _products = products
         else:
-            nsth = NotSupposedToHappen(variables=locals())
-            nsth.description += f'\nThe reaction "{self.scheme}" has an unknown type.'
-            raise nsth
+            raise WrongReactionConstructorParameters(variables=locals())
+
+        super().__init__(reagents=_reagents, products=_products)
+
 
     @staticmethod
-    def split_reaction_string(reaction: str) -> Tuple[List[Union[Molecule, Simple]], List[Union[Molecule, Simple]]]:
+    def extract_substances(reaction: str) -> Tuple[ List[ALLOWED_PARTICLES], List[ALLOWED_PARTICLES] ]:
         """
         Method is used as a part of .from_string() method, also implemented for Reaction class. It takes in a full
         chemical reaction (scheme, so no coefficients) and returns two lists of substances.
@@ -178,16 +187,13 @@ class Reaction:
         reaction = reaction.replace('=', '->')  # does nothing if there is no '='
         reagent_str, product_str = reaction.split("->")
 
-        reagents_str_split = reagent_str.split('+')
-        products_str_split = product_str.split('+')
-
-        reagents = [parse(r) for r in reagents_str_split]
-        products = [parse(p) for p in products_str_split]
+        reagents = MolecularReaction.parse_side(reagent_str)
+        products = MolecularReaction.parse_side(product_str)
 
         return reagents, products
 
     @staticmethod
-    def split_RHS_or_LHS(substances: str) -> List[Union[Molecule, Simple]]:
+    def parse_side(substances: str) -> List[ALLOWED_PARTICLES]:
         """
         Used as a part of .from_string() method that is also implemented for Reaction class. This method splits
         (parses) one side of the scheme – either right-hand side, or left-hand side.
@@ -203,7 +209,7 @@ class Reaction:
 
 
     @staticmethod
-    def from_string(reaction: str) -> 'Reaction':
+    def from_string(reaction: str) -> MolecularReaction:
         """
         The .from_string() method takes in reaction's scheme and returns a Reaction instance.
 
@@ -212,27 +218,27 @@ class Reaction:
         """
 
         if '->' in reaction or '=' in reaction:
-            reagents, products = Reaction.split_reaction_string(reaction)
-            return Reaction(reagents=reagents, products=products)
+            reagents, products = MolecularReaction.extract_substances(reaction)
+            return MolecularReaction(reagents=reagents, products=products)
         else:
-            reagents = Reaction.split_RHS_or_LHS(reaction)
-            return Reaction(*reagents)
+            reagents = MolecularReaction.parse_side(reaction)
+            return MolecularReaction(*reagents)
 
     @property
     def scheme(self) -> str:
-        return self._get_scheme()
+        return super().scheme
 
     @property
     def equation(self) -> str:
-        return self._get_equation()
+        return super().equation
 
     @property
     def reagents(self):
-        return self._reagents
+        return super().reagents
 
     @property
     def products(self):
-        return self._products
+        return super().products
 
     @property
     def substances(self):
@@ -261,4 +267,28 @@ class Reaction:
 
     @property
     def reaction_type(self) -> str:
-        return self._get_type()
+        """
+        In school chemistry, we can divide reactions in four types, based on the number of reacting substances.
+        Addition: two molecules add to one
+        Decomposition: one molecules splits into two (sometimes three) simpler molecules
+        Substitution: a Simple substance reacts with a Molecule to form another Simple and another Molecule
+        Exchange: reaction of two Molecules to form two another Molecules
+        NOTE: this classification is not the same as the one used in "ReactionMechanisms". The latter is a custom
+        classification for this package, and it is based on the one provided here, but is not exactly the same. Also,
+        this classification is real and is widely used in school chemistry.
+
+        :return: string, one of the four: "addition", "decomposition", "exchange", "substitution"
+        """
+
+        if len(self.reagents) > 1 and len(self.products) == 1:
+            return 'addition'
+        elif len(self.reagents) == 1 and len(self.products) > 1:
+            return 'decomposition'
+        elif type_check([*self.reagents], [Molecule], raise_exception=False):
+            return 'exchange'
+        elif type_check([*self.reagents], [Simple, Molecule], raise_exception=False):
+            return 'substitution'
+        else:
+            nsth = NotSupposedToHappen(variables=locals())
+            nsth.description += f'\nThe reaction "{self.scheme}" has an unknown type.'
+            raise nsth

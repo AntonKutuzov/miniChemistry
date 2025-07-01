@@ -23,8 +23,7 @@ from sympy import Matrix, Rational
 from typing import List, Set, Union, Dict
 
 import miniChemistry.Core.Database.ptable as pt
-from miniChemistry.Core.Substances import Simple, Molecule
-
+from miniChemistry.Core.Substances import Particle
 from miniChemistry.Core.CoreExceptions.ToolExceptions import CannotEquateReaction
 
 
@@ -73,7 +72,7 @@ class Equalizer:
     """
 
 
-    def __init__(self, *, reagents: list, products: list) -> None:
+    def __init__(self, *, reagents: List, products: List) -> None:
         self._reagents = reagents
         self._products = products
         self._elements = tuple(self._elements(*self.reagents, *self.products))
@@ -83,7 +82,7 @@ class Equalizer:
         self._coefficients = self._get_coefficients()
 
 
-    def _elements(self, *substances: Union[Simple, Molecule]) -> Set[pt.Element]:
+    def _elements(self, *substances: Particle) -> Set[pt.Element]:
         """Extracts all the elements present on the given substances"""
         elements = set()
         for substance in substances:
@@ -134,7 +133,7 @@ class Equalizer:
         m = m.applyfunc(lambda x: lcm_for_d*x)
         return m
 
-    def _get_coefficients(self) -> Dict[Union[Simple, Molecule], int]:
+    def _get_coefficients(self) -> Dict[Particle, int]:
         """
         Creates a dict with formula–coefficient pairs. First, it solves the system of equations with Matrix.nullspace(),
         then checks that the nullspace contains one vector (otherwise, raises an exception) and converts it into a dict.
@@ -157,11 +156,11 @@ class Equalizer:
         return answer_dict
 
     @property
-    def reagents(self) -> List[Union[Simple, Molecule]]:
+    def reagents(self) -> List[Particle]:
         return self._reagents
 
     @property
-    def products(self) -> List[Union[Simple, Molecule]]:
+    def products(self) -> List[Particle]:
         return self._products
 
     @property
@@ -169,5 +168,5 @@ class Equalizer:
         return self._matrix
 
     @property
-    def coefficients(self) -> Dict[Simple|Molecule, int]:
+    def coefficients(self) -> Dict[Particle, int]:
         return self._coefficients

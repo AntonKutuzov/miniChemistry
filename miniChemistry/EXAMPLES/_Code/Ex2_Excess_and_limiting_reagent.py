@@ -6,7 +6,7 @@ from QCalculator import SETTINGS
 SETTINGS['COMMENTS ON'] = False
 
 comment('Importing necessary modules...')
-from miniChemistry.Core.Reaction import Reaction
+from miniChemistry.Core.MolecularReaction import MolecularReaction
 from miniChemistry.Computations.ReactionCalculator import ReactionCalculator
 from miniChemistry.Computations.SSDatum import SSDatum
 from miniChemistry.Core.Substances import Molecule
@@ -22,7 +22,7 @@ comment('H2O:', NaOH, '\n', no_delay=True)
 
 
 comment('Modelling the reaction by passing the substances as arguments: `r = Reaction(NaOH, H2SO4)`')
-r = Reaction(NaOH, H2SO4)
+r = MolecularReaction(NaOH, H2SO4)
 # also possible `r = Reaction.from_string('NaOH + H2SO4')`
 comment('Reaction equation by `r.equation`', r.equation, '\n')
 

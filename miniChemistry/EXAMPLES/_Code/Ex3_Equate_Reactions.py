@@ -10,7 +10,7 @@ SO3 + H2O -> ?
 
 
 from miniChemistry.EXAMPLES import comment
-from miniChemistry.Core.Reaction import Reaction
+from miniChemistry.Core.MolecularReaction import MolecularReaction
 
 reactions = (
     'H2 + O2',
@@ -26,5 +26,5 @@ comment('In this example a string, containing a reaction will be converted to a 
 
 for reaction in reactions:
     comment(f'Equating {reaction}...', no_delay=True)
-    r = Reaction.from_string(reaction)
+    r = MolecularReaction.from_string(reaction)
     comment(r.equation)

@@ -85,7 +85,7 @@ def split_to_elements(formula: str) -> List[str]:
                 element = symbol
 
         else:
-            raise Exception(f'Symbol "{symbol}" should not be in molecular formula of a compound.')
+            raise Exception(f'Symbol "{symbol}" should not be in molecular formula of a compound: {formula}.')
 
     if element:
         element_list.append(element)

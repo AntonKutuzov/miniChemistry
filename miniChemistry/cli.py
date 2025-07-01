@@ -1,7 +1,7 @@
 import sys
-from miniChemistry.Core.Reaction import Reaction
+from miniChemistry.Core.MolecularReaction import MolecularReaction
 
 def cli():
     print(
-        Reaction.from_string(" ".join(sys.argv[1:])).equation
+        MolecularReaction.from_string(" ".join(sys.argv[1:])).equation
     )

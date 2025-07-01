@@ -6,7 +6,7 @@ from QCalculator import Datum, LinearIterator, Assumption
 from miniChemistry.Computations.SSDatum import SSDatum
 from miniChemistry.Core.CoreExceptions.ReactionExceptions import WrongReactionConstructorParameters
 from miniChemistry.Computations.ComputationExceptions.ReactionCalculatorException import *
-from miniChemistry.Core.Reaction import Reaction
+from miniChemistry.Core.MolecularReaction import MolecularReaction
 from typing import List, Tuple, Dict, Any, Generator
 from miniChemistry.Core.Substances import Molecule, Simple, Particle
 from miniChemistry.Core.Tools.parser import parse
@@ -71,7 +71,7 @@ class ReactionCalculator:
     def __init__(self, *args, **kwargs):
         self._reaction = None
 
-        if len(args) == 1 and isinstance(args[0], Reaction):
+        if len(args) == 1 and isinstance(args[0], MolecularReaction):
             self._init_from_reaction(args[0])
         elif len(args) == 1 and isinstance(args[0], str):
             self._init_from_string(args[0])
@@ -85,24 +85,24 @@ class ReactionCalculator:
         self._substance_data = self._create_calculators()
         self._write_molar_masses()
 
-    def _init_from_reaction(self, r: Reaction) -> None:
+    def _init_from_reaction(self, r: MolecularReaction) -> None:
         self._reaction = r
 
     def _init_from_reagents(self, rs: Tuple[Molecule|Simple, ...]) -> None:
         try:
-            self._reaction = Reaction(reagents=list(rs))
+            self._reaction = MolecularReaction(reagents=list(rs))
         except WrongReactionConstructorParameters:
             raise InitializationError(init_type='reagents', variables=locals())
 
     def _init_from_substances(self, rs: List[Molecule|Simple], ps: List[Molecule|Simple]) -> None:
         try:
-            self._reaction = Reaction(reagents=list(rs), products=list(ps))
+            self._reaction = MolecularReaction(reagents=list(rs), products=list(ps))
         except WrongReactionConstructorParameters:
             raise InitializationError(init_type='reagents and products', variables=locals())
 
     def _init_from_string(self, string: str) -> None:
         try:
-            self._reaction = Reaction.from_string(string)
+            self._reaction = MolecularReaction.from_string(string)
         except WrongReactionConstructorParameters:
             raise InitializationError(init_type='reaction scheme as a string', variables=locals())
 
@@ -428,7 +428,7 @@ class ReactionCalculator:
 
     # ======================================================================================================= PROPERTIES
     @property
-    def reaction(self) -> Reaction:
+    def reaction(self) -> MolecularReaction:
         return self._reaction
 
     @property

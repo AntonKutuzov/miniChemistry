@@ -191,7 +191,7 @@ class Particle(ABC):
                 self.charge == other.charge
             ]
             return all(conditions)
-        except AttributeError:  # in case somebody decides to compare ints, strings or anything else to Particle
+        except AttributeError:
             return False
 
     @abstractmethod
@@ -262,6 +262,7 @@ class Simple(Particle):
     """
 
     hydrogen = _SpecialSubstance(None, name='hydrogen')
+    fluorine = _SpecialSubstance(None, name='fluorine')
     chlorine = _SpecialSubstance(None, name='chlorine')
     bromine = _SpecialSubstance(None, name='bromine')
     iodine = _SpecialSubstance(None, name='iodine')
@@ -288,6 +289,7 @@ class Simple(Particle):
     @classmethod
     def create_special_simples(cls) -> None:
         cls.hydrogen = Simple(pt.H, 2)
+        cls.fluorine = Simple(pt.F, 2)
         cls.chlorine = Simple(pt.Cl, 2)
         cls.bromine = Simple(pt.Br, 2)
         cls.iodine = Simple(pt.I, 2)

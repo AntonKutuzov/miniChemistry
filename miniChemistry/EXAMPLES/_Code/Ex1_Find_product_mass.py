@@ -17,7 +17,7 @@ comment(exercise_text, approval='Understood >>> ')
 """
 
 comment('Importing necessary modules...')
-from miniChemistry.Core.Reaction import Reaction
+from miniChemistry.Core.MolecularReaction import MolecularReaction
 from miniChemistry.Computations.ReactionCalculator import ReactionCalculator
 from miniChemistry.Computations.SSDatum import SSDatum
 from miniChemistry.Core.Substances import Molecule, Simple, Ion, ion
@@ -37,7 +37,7 @@ NaOH = Molecule(ion(Na), OH_minus)
 
 # comment('Creating a reaction instance via `Reaction(Na, H2O)`')
 comment('Equating the reaction "Na + H2O -> ?"...')
-r = Reaction(Na, water)
+r = MolecularReaction(Na, water)
 comment('The reaction is:', r.equation)
 
 comment("Creating ReactionCalculator instance for calculations over the reaction")

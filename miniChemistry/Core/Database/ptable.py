@@ -171,6 +171,12 @@ class Element:
     def __str__(self) -> str:
         return self.symbol
 
+    def __eq__(self, other: 'Element'):
+        return self.atomic_number == other.atomic_number
+
+    def __hash__(self):
+        return hash(self.atomic_number)
+
     # STATIC METHODS
     @staticmethod
     def get_by_symbol(symbol: str) -> 'Element':

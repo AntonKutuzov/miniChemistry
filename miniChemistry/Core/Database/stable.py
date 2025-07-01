@@ -96,6 +96,8 @@ class SolubilityTable:
         'cation, cation_charge, anion, anion_charge'
     )
 
+    AUTO_COMMIT: bool = True
+
 
     def __init__(self):
 
@@ -106,7 +108,7 @@ class SolubilityTable:
         # Only used in `begin():self._connect`.
         _cwd = os.path.dirname(os.path.abspath(__file__))
         self._dbpath = os.path.join(_cwd, 'SolubilityTable.csv')
-        self.data = pd.read_csv(self._dbpath,index_col=False)
+        self.data = pd.read_csv(self._dbpath, index_col=False)
 
     def commit(self):
         """Commit changes to the SolubilityTable csv database"""
@@ -143,6 +145,12 @@ class SolubilityTable:
 
         rowToAdd = (cation, cation_charge, anion, anion_charge, solubility)
 
+        self.data.loc[len(self.data)] = rowToAdd
+        self.data.drop_duplicates(inplace=True)
+
+        if SolubilityTable.AUTO_COMMIT:
+            self.commit()
+    """
         if rowToAdd in self.data.loc:
             # if got something, then raise an exception
             sap = SubstanceAlreadyPresent(substance_signature=[cation, cation_charge, anion, anion_charge], variables=locals())
@@ -150,7 +158,7 @@ class SolubilityTable:
         else:
             self.data.loc[len(self.data)] = rowToAdd
             self.data.drop_duplicates()
-
+    """
     def erase(self, cation: str, cation_charge: int, anion: str, anion_charge: int, solubility: str) -> None:
         pass
 
