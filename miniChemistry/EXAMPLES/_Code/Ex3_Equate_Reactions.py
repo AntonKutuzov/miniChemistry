@@ -10,7 +10,7 @@ SO3 + H2O -> ?
 
 
 from miniChemistry.EXAMPLES import comment
-from miniChemistry.Core.MolecularReaction import MolecularReaction
+from miniChemistry.Core.Reactions.MolecularReaction import MolecularReaction
 
 reactions = (
     'H2 + O2',

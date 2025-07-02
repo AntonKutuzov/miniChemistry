@@ -150,7 +150,11 @@ def metal_and_water_restriction(*products: Union[Molecule, Simple], raise_except
             if activity == 'active':
                 return True
             elif raise_exception:
-                raise WrongMetalActivity(metal=metal.symbol, variables=locals())
+                raise WrongMetalActivity(
+                    metal=metal.symbol,
+                    activity=activity,
+                    expected_activity='active',
+                    variables=locals())
             else:
                 return False
     else:

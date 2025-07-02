@@ -40,7 +40,7 @@ def type_check(parameters: list, types: list, strict_order: bool = False, raise_
             return True
 
 
-def keywords_check(keywords: Union[list, tuple], allowed_keywords: Union[list, tuple], function_name: str, variables: dict,
+def keywords_check(keywords: list|tuple, allowed_keywords: list|tuple, function_name: str, variables: dict,
                    raise_exception: bool = True) -> bool:
     """
     Checks if the keywords passed to a function are within the allowed keywords.

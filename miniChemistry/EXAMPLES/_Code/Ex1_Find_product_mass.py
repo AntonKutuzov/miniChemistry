@@ -17,7 +17,7 @@ comment(exercise_text, approval='Understood >>> ')
 """
 
 comment('Importing necessary modules...')
-from miniChemistry.Core.MolecularReaction import MolecularReaction
+from miniChemistry.Core.Reactions.MolecularReaction import MolecularReaction
 from miniChemistry.Computations.ReactionCalculator import ReactionCalculator
 from miniChemistry.Computations.SSDatum import SSDatum
 from miniChemistry.Core.Substances import Molecule, Simple, Ion, ion

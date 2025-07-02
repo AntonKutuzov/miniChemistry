@@ -54,7 +54,7 @@ def modify(confirmation: bool = True):
 
         for ost in oxidation_states:
             if ost != 0:
-                i = Ion.from_string(metal.symbol, ost)
+                i = Ion.from_string(metal.symbol, ost, database_check=False)
                 metals.append(i)
 
     print('Creating lists of nonmetal cations and anions...')
@@ -64,12 +64,12 @@ def modify(confirmation: bool = True):
     for nonmetal in pt.NONMETALS:
         # covering special cases
         if nonmetal == pt.F:    # the only possible non-zero oxidation state of fluorine is -1
-            i = Ion.from_string('F', -1)
+            i = Ion.from_string('F', -1, database_check=False)
             negative_nonmetals.append(i)
             continue
         elif nonmetal == pt.O:  # even though oxygen can have different oxidation states, here we assume the only non-zero
                                 # oxidation state it has is -2.
-            i = Ion.from_string('O', -2)
+            i = Ion.from_string('O', -2, database_check=False)
             negative_nonmetals.append(i)
             continue
 
@@ -77,10 +77,10 @@ def modify(confirmation: bool = True):
         oxidation_states = nonmetal.oxidation_states
         for ost in oxidation_states:
             if ost > 0:
-                i = Ion.from_string(nonmetal.symbol, ost)
+                i = Ion.from_string(nonmetal.symbol, ost, database_check=False)
                 positive_nonmetals.append(i)
             elif ost < 0:
-                i = Ion.from_string(nonmetal.symbol, ost)
+                i = Ion.from_string(nonmetal.symbol, ost, database_check=False)
                 negative_nonmetals.append(i)
             else:
                 # should be present for noble gases that can have only oxidation state of 0
@@ -134,7 +134,7 @@ def modify(confirmation: bool = True):
     # are not discovered. All three cases are covered in the code below
     print('Writing in nonmetal anions...')
     for nonmetal_ion in negative_nonmetals:
-        if not nonmetal_ion == Ion.from_string('O', -2):  # already there
+        if not nonmetal_ion == Ion.from_string('O', -2, database_check=False):  # already there
             if nonmetal_ion.elements[0] in {pt.trivials.HALOGENS, pt.S, pt.P, pt.C, pt.N}:
                 # print('H', 1, nonmetal_ion.formula(), nonmetal_ion.charge, 'SL')
                 st.write('H', 1, nonmetal_ion.formula(remove_charge=True), nonmetal_ion.charge, 'SL')
@@ -178,6 +178,7 @@ def modify(confirmation: bool = True):
         'H2PO4': -1,
         'C2O4': -2,
         'AsO4': -3,
+        'AsO3': -3,
         'HAsO4': -2,
         'H2AsO4': -1,
         'SeO4': -2,
@@ -185,15 +186,20 @@ def modify(confirmation: bool = True):
         'HPO3': -2,
         'P2O7': -4,
         'S2O7': -2,
+        'Cr2O7': -2,
+        'IO6': -5,
+        'MnO4': (-1, -2),
     }
 
     for formula, charge in two_atom_anions.items():
-        # print('Na', 1, formula, charge, 'SL')
-        if formula == 'SiO3':
-            st.write('H', 1, formula, charge, 'NS')
-        else:
-            st.write('H', 1, formula, charge, 'SL')
-        # st.write('Na', 1, formula, charge, 'SL')
+        if isinstance(charge, int):
+            if formula == 'SiO3':
+                st.write('H', 1, formula, charge, 'NS')
+            else:
+                st.write('H', 1, formula, charge, 'SL')
+        elif isinstance(charge, tuple):
+            for ch in charge:
+                st.write('H', 1, formula, ch, 'SL')
 
 
     # ========================================================================= READING THE EXCEL FILE WITH SOLUBILITY TABLE

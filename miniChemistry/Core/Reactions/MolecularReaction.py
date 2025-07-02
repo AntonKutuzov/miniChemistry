@@ -37,96 +37,15 @@ __getitem__. Returns a substance. The indices are provided in the same order as 
 
 
 from __future__ import annotations
-from typing import Dict, Any, Tuple, List, Callable, final, Optional
+from typing import Tuple, List, Callable, Optional
 from miniChemistry.Core.Substances import Molecule, Simple
 from miniChemistry.Utilities.Checks import type_check
 from miniChemistry.Core.Tools.parser import parse
-from miniChemistry.Core.Tools.predict import predict
+from miniChemistry.Core.Tools.ReactionPredictionTools.predict import predict
 from miniChemistry.Core.Tools.Equalizer import Equalizer
 from miniChemistry.Core.CoreExceptions.ReactionExceptions import WrongReactionConstructorParameters, WrongNumberOfReagents
 from miniChemistry.MiniChemistryException import NotSupposedToHappen
-from abc import ABC, abstractmethod
-
-
-class AbstractReaction(ABC):
-    def __init__(self,
-                 reagents: List,
-                 products: List,
-                 ) -> None:
-
-        self._reagents = reagents
-        self._products = products
-
-        self._reagents.sort(key=lambda s: s.formula())  # needed for conistent __eq__ and __hash__ work
-        self._products.sort(key=lambda s: s.formula())  # to make them insensitive to order of reagents
-
-
-    @final
-    def __iter__(self):
-        return self.substances.__iter__()
-
-    @final
-    def __eq__(self, other: AbstractReaction):
-        return self.scheme == other.scheme
-
-    @final
-    def __hash__(self):
-        return hash(self.scheme)
-
-    @staticmethod
-    @abstractmethod
-    def from_string(reaction: str) -> AbstractReaction:
-        ...
-
-    @property
-    @abstractmethod
-    def scheme(self) -> str:
-        scheme = ' + '.join([r.formula() for r in self.reagents])
-        scheme += ' -> '
-        scheme += ' + '.join([p.formula() for p in self.products])
-        return scheme
-
-    @property
-    @abstractmethod
-    def equation(self) -> str:
-        equation = ''
-
-        for reagent in self.reagents:
-            coef = str(self.coefficients[reagent])
-            equation += coef if not coef == '1' else ''
-            equation += reagent.formula() + ' + '
-        equation = equation.strip(' + ')
-
-        equation += ' = '
-
-        for product in self.products:
-            coef = str(self.coefficients[product])
-            equation += coef if not coef == '1' else ''
-            equation += product.formula() + ' + '
-        equation = equation.strip(' + ')
-
-        return equation
-
-    @property
-    @abstractmethod
-    def reagents(self) -> List:
-        return self._reagents
-
-    @property
-    @abstractmethod
-    def products(self) -> List:
-        return self._products
-
-    @property
-    @abstractmethod
-    def substances(self) -> List:
-        return self.reagents + self.products
-
-    @property
-    @abstractmethod
-    def coefficients(self) -> Dict[Any, float|int]:
-        ...
-
+from miniChemistry.Core.Reactions.AbstractReaction import AbstractReaction
 
 
 class MolecularReaction(AbstractReaction):

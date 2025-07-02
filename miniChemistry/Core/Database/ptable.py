@@ -42,7 +42,7 @@ numbers inside a molecule is equal to zero (for more see "Substance" file).
 2) Symbol, str. In addition to group and period, each element has a unique name composed of one or two letters. You can
 refer to every element in this code by using the symbols from periodic table. E.g.
 
-    >>> import Core.Database.ptable as pt
+    >>> import miniChemistry.Core.Database.ptable as pt
     >>> pt.O.atomic_number  # symbol "O" refers to oxygen. Period 2, group VI A
     8
 
@@ -103,8 +103,7 @@ from collections import namedtuple
 from typing import Union
 
 from miniChemistry.MiniChemistryException import NotSupposedToHappen
-
-from miniChemistry.Core.CoreExceptions.ptableExceptions import ElementNotFound
+from miniChemistry.Core.CoreExceptions.ptableExceptions import Pt_ElementNotFound
 
 
 class Element:
@@ -202,7 +201,7 @@ class Element:
             index = TABLE_STR.index(symbol)
             return TABLE[index]
         except ValueError:
-            enf = ElementNotFound(symbol, locals())
+            enf = Pt_ElementNotFound(symbol, locals())
             raise enf
 
     # PROPERTIES
@@ -506,7 +505,7 @@ def next_element(element: Element) -> Element:
     if Z < 118:
         return TABLE[Z]
     else:
-        enf = ElementNotFound(symbol="<unknown>", variables=locals())
+        enf = Pt_ElementNotFound(symbol="<unknown>", variables=locals())
         enf.description += (f'\n\nIMPORTANT:\nRemember that in programming counting starts from zero, so when Z = 118, that\n'
                             f'actually means "an element with atomic number of 119"!')
         raise enf
@@ -517,7 +516,7 @@ def prev_element(element: Element) -> Element:
     Z = element.atomic_number - 2
 
     if Z <= 0:
-        raise ElementNotFound(symbol="<unknown>", variables=locals())
+        raise Pt_ElementNotFound(symbol="<unknown>", variables=locals())
     else:
         return TABLE[Z]
 
@@ -541,7 +540,7 @@ def above(element: Element) -> Element:
     if i > 0:
         return g[i-1]
     else:
-        enf = ElementNotFound(symbol="<unknown>", variables=locals())
+        enf = Pt_ElementNotFound(symbol="<unknown>", variables=locals())
         enf.description += (f'\n\nThe element you are trying to address is expected to stay ABOVE {element.symbol}, but\n'
                             f"there's nothing in the periodic table in this place.")
         raise enf
@@ -555,7 +554,7 @@ def below(element: Element) -> Element:
     if i < len(g)-1:
         return g[i+1]
     else:
-        enf = ElementNotFound(symbol="<unknown>", variables=locals())
+        enf = Pt_ElementNotFound(symbol="<unknown>", variables=locals())
         enf.description += (f'\n\nThe element you are trying to address is expected to stay BELOW {element.symbol}, but\n'
                             f"there's nothing in the periodic table in this place.")
         raise enf

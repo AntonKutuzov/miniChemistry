@@ -17,7 +17,7 @@ class MultipleElementCation(SubstanceException):
     
 
 
-class ElementNotFound(SubstanceException):
+class Sub_ElementNotFound(SubstanceException):
     """Raised when an element with a certain symbol is not found in a periodic table, BUT the call of the exception
     happened from the Substance.py or related classes or methods."""
     def __init__(self, element, variables: dict):

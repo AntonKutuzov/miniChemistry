@@ -1,5 +1,5 @@
 import sys
-from miniChemistry.Core.MolecularReaction import MolecularReaction
+from miniChemistry.Core.Reactions.MolecularReaction import MolecularReaction
 
 def cli():
     print(

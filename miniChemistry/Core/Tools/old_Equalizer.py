@@ -7,6 +7,7 @@ equate(reagents: List[Union[Simple, Molecule]], products: List[Union[Simple, Mol
 So, it takes in instances of Simple or Molecule as reagents and products, and returns a dict with keys being substances'
 formulas and values being their coefficients. For example,
 
+>>> from miniChemistry.Core.Substances import Simple, Molecule
 >>> H2 = Simple.from_string('H2')
 >>> O2 = Simple.from_string('O2')
 >>> H2O = Molecule.water
@@ -20,7 +21,7 @@ In this class only keyword arguments are used to avoid confusion between reagent
 
 from math import lcm
 from sympy import Matrix, Rational
-from typing import List, Set, Union, Dict
+from typing import List, Set, Dict
 
 import miniChemistry.Core.Database.ptable as pt
 from miniChemistry.Core.Substances import Particle

@@ -6,9 +6,10 @@ from QCalculator import Datum, LinearIterator, Assumption
 from miniChemistry.Computations.SSDatum import SSDatum
 from miniChemistry.Core.CoreExceptions.ReactionExceptions import WrongReactionConstructorParameters
 from miniChemistry.Computations.ComputationExceptions.ReactionCalculatorException import *
-from miniChemistry.Core.MolecularReaction import MolecularReaction
+from miniChemistry.Core.Reactions.MolecularReaction import MolecularReaction
 from typing import List, Tuple, Dict, Any, Generator
-from miniChemistry.Core.Substances import Molecule, Simple, Particle
+from miniChemistry.Core.Substances import Molecule, Simple
+from miniChemistry.Core.Substances.Particle import Particle
 from miniChemistry.Core.Tools.parser import parse
 from miniChemistry.Utilities.File import File
 

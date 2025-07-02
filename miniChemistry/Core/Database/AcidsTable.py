@@ -1,11 +1,11 @@
 """
-In chemistry, there're pairs of substances based on their chemical behaviour. Thus, in chemistry we have acids bound to
+In chemistry, there are pairs of substances based on their chemical behaviour. Thus, in chemistry we have acids bound to
 acidic oxides and acid rests, and bases bound to their cations and basic oxides.
 
 ACIDS
 An acid in school chemistry is a molecule that possesses a proton (H(+) ion) and can easily give it away in chemical
 reactions. In miniChemistry then, an acid as any molecule that has H(+) as its cation. This is not entirely correct,
-as we can also define, say, ammonia as an acid then, but for majority of school chemistry molecules it works.
+as we can also define, say, ammonia as an acid then, but for a majority of school chemistry molecules it works.
 NOTE FOR CHEMISTS: just in case it wasn't clear. In this package the property of easily detaching a proton is omitted,
 so only possession is enough to call a molecule an acid.
 
@@ -36,7 +36,8 @@ from typing import Tuple, List
 from chemparse import parse_formula
 from miniChemistry.Core.Tools.parser import parse_ion
 from miniChemistry.Utilities.File import File
-from miniChemistry.Core.Substances import Molecule, Ion, _string_to_elementary_composition
+from miniChemistry.Core.Substances import Molecule, Ion
+from miniChemistry.Core.Substances._helpers import _string_to_elementary_composition
 from miniChemistry.Core.CoreExceptions.CompatibilityTableExceptions import AcidNotFound, AcidicOxideNotFound, WrongTextFileData
 from miniChemistry.Core.CoreExceptions.ToolExceptions import InvalidFormula
 
@@ -179,7 +180,7 @@ class AcidsTable:
         Converts string acid rests into instances of Ion (real acid rests). Does this by iterating over
         self._acid_rests_str and parsing the ion into string-ion and charge [e.g. SO4(-2) becomes "SO4" and -2 separately].
         The string-ion is then converted into string composition (by using chemparse.parse_formula()) and finally into
-        elementary composition by using _string_to_elementary_composition() from Substances.py.
+        elementary composition by using _string_to_elementary_composition() from Substances.
 
         The final (elementary) composition and charge are then passed to the constructor of Ion, and the obtained
         instance is appended to the list. After iterating is done, the list is returned.

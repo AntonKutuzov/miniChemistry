@@ -77,7 +77,7 @@ decision_dict = {}
 
 
 # =================================================================================== reading the data from the csv file
-p = Path(__file__).resolve().parent
+p = Path(__file__).resolve().parent.parent
 path = p / 'MechanismsAndRestrictions.csv'
 # file = open(str(p.parent) + '/MechanismsAndRestrictions.csv', mode='r')
 file = open(path, mode='r')

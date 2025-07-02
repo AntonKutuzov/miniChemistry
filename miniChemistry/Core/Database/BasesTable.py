@@ -22,7 +22,7 @@ zinc hydroxide          Zn(OH)2         Zn/Zn(2)            ZnO
 copper hydroxide        Cu(OH)2         Cu/Cu(2)            CuO
 
 This module provides only cations, because it is very easy to convert them to the respective instance of Simple (just
-use either simple() from Substances.py or ion.elements[0] to get a pt.Element instance.
+use either simple() from Substances or ion.elements[0] to get a pt.Element instance.
 
 It is important to note that the bases, cations, and basic oxides are located at the same position in their lists. I.e.
 if sodium hydroxide is the first one (index = 0), then the first basic oxide would be Na2O and the first cation would

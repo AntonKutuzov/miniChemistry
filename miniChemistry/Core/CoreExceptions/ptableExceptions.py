@@ -5,7 +5,7 @@ class PeriodicTableException(MiniChemistryException):
     pass
 
 
-class ElementNotFound(PeriodicTableException):
+class Pt_ElementNotFound(PeriodicTableException):
     def __init__(self, symbol: str, variables: dict):
         self._message = f'\nThe element with a symbol "{symbol}" is not found in the periodic table.'
         self.description = (f'Check for the typos and check for the case. The first letter of the symbol should be \n'
