@@ -1,5 +1,5 @@
 from miniChemistry.Core.Reactions.MolecularReaction import MolecularReaction
 from miniChemistry.Core.Reactions.HalfReaction import HalfReaction
 from miniChemistry.Core.Reactions.IonGroupReaction import IonGroupReaction
-from miniChemistry.Core.Reactions.OxredReaction import OxredReaction
+from miniChemistry.Core.Reactions.RedoxReaction import RedoxReaction
 from miniChemistry.Core.Reactions.MathReaction import MathReaction

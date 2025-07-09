@@ -41,7 +41,7 @@ from typing import Tuple, List, Callable, Optional
 from miniChemistry.Core.Substances import Molecule, Simple
 from miniChemistry.Utilities.Checks import type_check
 from miniChemistry.Core.Tools.parser import parse
-from miniChemistry.Core.Tools.ReactionPredictionTool.predict import predict
+from miniChemistry.Core.Tools.ReactionPredictionTool.predict import RPT
 from miniChemistry.Core.Tools.Equalizer import Equalizer
 from miniChemistry.Core.CoreExceptions.ReactionExceptions import WrongReactionConstructorParameters, WrongNumberOfReagents
 from miniChemistry.MiniChemistryException import NotSupposedToHappen
@@ -50,12 +50,13 @@ from miniChemistry.Core.Reactions.AbstractReaction import AbstractReaction
 
 class MolecularReaction(AbstractReaction):
     ALLOWED_PARTICLES = Simple | Molecule
+    _rpt = RPT(algorithm='molecular')
 
     def __init__(self, *args: Simple|Molecule,
                  reagents: Optional[ List[ALLOWED_PARTICLES] ] = None,
                  products: Optional[ List[ALLOWED_PARTICLES] ] = None,
                  ignore_restrictions: bool = False,
-                 _RPT: Callable = predict
+                 _RPT: Callable = _rpt.predict
                 ) -> None:
         """
         The constructor can be called in two ways: first with both reagents and products given as lists in
@@ -75,7 +76,7 @@ class MolecularReaction(AbstractReaction):
         _reagents = list()
         _products = list()
 
-        self._predict =_RPT
+        self._predict = _RPT
 
         if reagents is products is None and args:
             if 1 <= len(args) <= 2:
