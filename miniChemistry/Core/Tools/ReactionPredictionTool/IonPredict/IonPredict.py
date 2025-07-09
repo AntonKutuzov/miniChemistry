@@ -26,54 +26,6 @@ def solubility_check(m: Molecule,
 
 
 
-def dissociate(
-                    m: Molecule|IonGroup,
-                    completely: bool = False
-                ) -> Tuple[Ion, IonGroup|Ion]:
-    if m.cation_index == 1 or completely:
-        new_i1 = m.cation
-        new_i2 = m.anion
-    elif m.cation_index > 1:
-        new_i1 = m.cation
-        new_i2 = IonGroup(m.cation, m.cation_index - 1, m.anion, m.anion_index)
-    else:
-        raise Exception(f'Got non-positive cation index in molecule: {m.formula()}.')
-
-    return new_i1, new_i2
-
-
-def associate(
-                    cation: Ion, anion: Ion|IonGroup|Molecule,
-                    completely: bool = False
-                ) -> Molecule|IonGroup:
-    if isinstance(anion, IonGroup):
-        if completely:
-            return Molecule(cation, anion.anion)
-        else:
-            return IonGroup(cation=cation, cation_index=anion.cation_index+1, anion=anion.anion, anion_index=1)
-    elif isinstance(anion, Ion):
-        if completely or abs(cation.charge) == abs(anion.charge):
-            return Molecule(cation, anion)
-        else:
-            return IonGroup(cation=cation, cation_index=1, anion=anion, anion_index=1)
-    else:
-        raise Exception(f'Wrong anion type: expected Ion or IonGroup, got {type(anion)}.')
-
-
-def _ionic_addition(i1: Ion, i2: Ion) -> Molecule:
-    return Molecule(i1, i2)  # only if m is insoluble
-
-def _ionic_substitution(m: Molecule, i: Ion) -> Tuple[Molecule, Ion]:
-    if i.charge > 0:  # for cations
-        new_m = _ionic_addition(i, m.anion)
-        new_i = m.cation
-    else:             # for anions
-        new_m = _ionic_addition(m.cation, i)
-        new_i = m.anion
-
-    return new_m, new_i
-
-
 def ion_predict(*reagents,
                 ignore_restrictions: bool = False,
                 complete_reaction: bool = False,

@@ -1,0 +1,8 @@
+Effective class 1;Effective class 2;mechanism;restriction
+ion;ion;IA;WER
+ion;molecule;IP;WER
+molecule;ion group;IE;None
+ion;ion group;IIGD;None
+ion group;ion group;IE;None
+molecule;ID;None
+ion group;ID;None

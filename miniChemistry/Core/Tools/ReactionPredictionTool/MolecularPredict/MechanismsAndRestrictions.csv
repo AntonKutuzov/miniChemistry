@@ -22,20 +22,20 @@ Ternary salt;Metal;SS;MAR
 Binary acid;Metal;SS;MAR
 Ternary acid;Metal;SS;MAR
 Water;Metal;SS;MAW
-Binary salt;None;SD;None
-Binary acid;None;SD;None
-Acidic oxide;None;SD;None
-Basic oxide;None;SD;None
-Water;None;SD;None
+Binary salt;SD;None
+Binary acid;SD;None
+Acidic oxide;SD;None
+Basic oxide;SD;None
+Water;SD;None
 Metal;nonmetal;SA;None
 nonmetal;nonmetal;SA;None
-Ternary salt;None;CD;None
+Ternary salt;CD;None
 Base;None;CD;None
-Ternary acid;None;CD;None
+Ternary acid;CD;None
 base;Acidic oxide;CN;None
 Basic oxide;Ternary acid;CN;None
 Basic oxide;Binary acid;CN;None
 Basic oxide;Acidic oxide;CA;None
-Nitrate;None;ND;None
+Nitrate;ND;None
 Basic oxide;water;CA;None
 Acidic oxide;water;CA;None

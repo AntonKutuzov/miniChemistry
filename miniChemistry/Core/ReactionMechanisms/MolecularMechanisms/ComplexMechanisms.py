@@ -53,7 +53,7 @@ consistency: in fact this reaction falls equally well to both kinds of reactions
 """
 
 
-from miniChemistry.Core.ReactionMechanisms.SimpleMechanisms import simple_exchange
+from miniChemistry.Core.ReactionMechanisms.MolecularMechanisms.SimpleMechanisms import simple_exchange
 from miniChemistry.Core.CoreExceptions.MechanismExceptions import WrongSimpleClass, WrongSimpleSubclass
 from miniChemistry.MiniChemistryException import NotSupposedToHappen
 from miniChemistry.Core.Database.AcidsTable import AcidsTable
@@ -89,7 +89,11 @@ def _oxide_to_molecule(sub: Molecule) -> Molecule:
 
 
 
-def complex_decomposition(sub: Molecule, *args: Any) -> Tuple[Molecule, Molecule]:
+def complex_decomposition(
+        sub: Molecule,
+        *args: Any,
+        **kwargs
+        ) -> Tuple[Molecule, Molecule]:
     """
     Computes the products of decomposition of three-element molecule into oxides. The algorithm is based on an
     observation that
@@ -126,7 +130,11 @@ def complex_decomposition(sub: Molecule, *args: Any) -> Tuple[Molecule, Molecule
 
 
 
-def complex_addition(acidic_oxide: Molecule, basic_oxide: Molecule) -> Tuple[Molecule]:
+def complex_addition(
+        acidic_oxide: Molecule,
+        basic_oxide: Molecule,
+        **kwargs
+        ) -> Tuple[Molecule]:
     """
     Takes in two instances of Molecule, always oxides, and returns a single molecule, the result of their reaction.
     For reaction involving water the mechanism returns just the acid or base, corresponding to the non-water oxide.
@@ -200,7 +208,11 @@ def complex_addition(acidic_oxide: Molecule, basic_oxide: Molecule) -> Tuple[Mol
 
 
 
-def complex_neutralization(acidic_substance: Molecule, basic_substance: Molecule) -> Tuple[Molecule, ...]:
+def complex_neutralization(
+        acidic_substance: Molecule,
+        basic_substance: Molecule,
+        **kwargs
+        ) -> Tuple[Molecule, ...]:
     """
     The method takes two molecules – one of acidic nature, one of basic nature – and returns the product of their
     reaction. The algorithm involves three possible scenarios: the classes are ordered correctly, the classes are

@@ -41,14 +41,12 @@ would not happen in real life.
 
 
 import csv
-from miniChemistry.Core.ReactionMechanisms.ExceptionalMechanisms import nitrate_decomposition, _is_nitrate
-from miniChemistry.Core.ReactionMechanisms.SimpleMechanisms import *
-from miniChemistry.Core.ReactionMechanisms.ComplexMechanisms import *
-from miniChemistry.Core.ReactionMechanisms.Restrictions import *
-
-from miniChemistry.Core.Substances import Molecule, Simple
-
+from miniChemistry.Core.ReactionMechanisms.MolecularMechanisms.ExceptionalMechanisms import nitrate_decomposition, _is_nitrate
+from miniChemistry.Core.ReactionMechanisms.MolecularMechanisms.SimpleMechanisms import *
+from miniChemistry.Core.ReactionMechanisms.MolecularMechanisms.ComplexMechanisms import *
+from miniChemistry.Core.ReactionMechanisms.MolecularMechanisms.Restrictions import *
 from miniChemistry.Core.CoreExceptions.MechanismExceptions import *
+from miniChemistry.Core.Substances import Molecule, Simple
 
 from pathlib import Path
 
@@ -77,10 +75,12 @@ decision_dict = {}
 
 
 # =================================================================================== reading the data from the csv file
+
 p = Path(__file__).resolve().parent.parent
 path = p / 'MechanismsAndRestrictions.csv'
 # file = open(str(p.parent) + '/MechanismsAndRestrictions.csv', mode='r')
 file = open(path, mode='r')
+
 reader = csv.reader(file)
 next(reader)  # skip table's header
 
@@ -155,46 +155,3 @@ def predict(
     no_proceed = restriction(*products, raise_exception = not ignore_restrictions)
 
     return products
-
-"""
-# NOTE: in some cases the "could not predict products" also means that in reality the reaction just does not happen
-
-H2SO4 = Molecule.from_string('H', 1, 'SO4', -2)
-HCl = Molecule.from_string('H', 1, 'Cl', -1)
-BaNO3 = Molecule.from_string('Ba', 2, 'NO3', -1)
-H2O = Molecule.water
-K3PO4 = Molecule.from_string('K', 1, 'PO4', -3)
-KCl = Molecule.from_string('K', 1, 'Cl', -1)
-BaCl2 = Molecule.from_string('Ba', 2, 'Cl', -1)
-S = Simple.from_string('S')
-Mg = Simple.from_string('Mg')
-SO2 = Molecule.from_string('S', 4, 'O', -2)
-Na2O = Molecule.from_string('Na', 1, 'O', -2)
-KOH = Molecule.from_string('K', 1, 'OH', -1)
-
-subs = [H2SO4, HCl, BaNO3, H2O, K3PO4, KCl, S, Mg, SO2, Na2O, KOH]
-
-for s in subs:
-    print(s.formula() + ' -> ', end='')
-    try:
-        products = predict(s)
-        print(' + '.join([p.formula() for p in products]), end='')
-    except CannotPredictProducts:
-        print('cannot predict products', end='')
-    finally:
-        print()
-
-
-for s1 in subs:
-    for s2 in subs:
-        print(f'{s1.formula()} + {s2.formula()} -> ', end='')
-        try:
-            products = predict(s1, s2)
-            print(' + '.join([p.formula() for p in products]), end='')
-        except CannotPredictProducts:
-            print('could not predict products', end='')
-        except (WeakElectrolyteNotFound, LessActiveMetalReagent, WrongMetalActivity):
-            print('no reaction', end='')
-        finally:
-            print()
-"""

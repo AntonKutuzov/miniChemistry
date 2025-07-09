@@ -38,8 +38,14 @@ class Particle(ABC):
     cause problems later.
     """
 
-    def __init__(self, composition: Dict[pt.Element, int], charge: int) -> None:
-        single_element_cation_check(composition, charge, raise_exception=True)
+    def __init__(self,
+                 composition: Dict[pt.Element, int],
+                 charge: int,
+                 _secc_disable: bool = False
+                 ) -> None:
+
+        if not _secc_disable:
+            single_element_cation_check(composition, charge, raise_exception=True)
 
         self._composition = composition
         self._charge = charge

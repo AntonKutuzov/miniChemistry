@@ -31,10 +31,8 @@ NOTE: some reactions do not need restrictions and always proceed.
 """
 
 
-from miniChemistry.Core.CoreExceptions.stableExceptions import SubstanceNotFound
 from miniChemistry.Core.Database.MetalActivitySeries import MetalActivitySeries
-from miniChemistry.Core.Substances import Molecule, Simple, is_gas, simple
-from miniChemistry.Core.Database.stable import SolubilityTable
+from miniChemistry.Core.Substances import Molecule, Simple, is_gas, simple, st_substance
 from miniChemistry.MiniChemistryException import NotSupposedToHappen
 
 from miniChemistry.Core.CoreExceptions.MechanismExceptions import WeakElectrolyteNotFound, LessActiveMetalReagent, WrongSimpleClass, \
@@ -42,34 +40,8 @@ from miniChemistry.Core.CoreExceptions.MechanismExceptions import WeakElectrolyt
 from typing import Union
 
 
-def _molecule_to_stable_substance(m: Molecule) -> SolubilityTable.Substance:
-    """
-    Converts the instance of Molecule into an instance of SolubilityTable.Substance.
-
-    :param m: instance of Molecule to convert into SolubilityTable.Substance
-    :return: an instance of SolubilityTable.Substance
-    """
-
-    cation = m.cation.formula(remove_charge=True)
-    anion = m.anion.formula(remove_charge=True)
-    cation_charge = m.cation.charge
-    anion_charge = m.anion.charge
-
-    st = SolubilityTable()
-    molecules = st.select_substance(cation, cation_charge, anion, anion_charge)
-
-    if len(molecules) > 1:
-        nsth = NotSupposedToHappen(variables=locals())
-        nsth.description += (f'\nIt seems like there are two identical substances in the solubility table database.\n'
-                             f'The formula is {m.formula()}.')
-        raise nsth
-    elif not molecules:
-        raise SubstanceNotFound(substance_signature=[m.formula()], variables=locals())
-    else:
-        molecule = molecules[0]
-        return molecule
-
-def weak_electrolyte_restriction(*products: Union[Simple, Molecule], raise_exception: bool = False) -> bool:
+# ==================================================================================================== MolecularReaction
+def weak_electrolyte_restriction(*products: Simple|Molecule, raise_exception: bool = False) -> bool:
     """
     Checks the product for presence of a weak electrolyte (water, gas or precipitate)
     NOTE: due to implementation of a function is_gas, this check may sometimes give false results.
@@ -85,7 +57,7 @@ def weak_electrolyte_restriction(*products: Union[Simple, Molecule], raise_excep
         elif is_gas(product):
             return True
         else:
-            m = _molecule_to_stable_substance(product)
+            m = st_substance(product)
             if m.solubility in {'NS', 'SS'}:
                 return True
             else:
@@ -162,3 +134,6 @@ def metal_and_water_restriction(*products: Union[Molecule, Simple], raise_except
                                simple_class=','.join([p.simple_class for p in products]),
                                expected_class='base',
                                variables=locals())
+
+
+# ===================================================================================================== IonGroupReaction

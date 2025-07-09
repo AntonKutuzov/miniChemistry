@@ -50,7 +50,12 @@ def _select_ions(element: pt.Element, ion_type: str = 'both') -> List[Solubility
 
 # ================================================================================================== REACTION MECHANISMS
 
-def simple_addition(sub1: Simple, sub2: Simple, large_charge_difference: bool = True) -> Tuple[Molecule]:
+def simple_addition(
+        sub1: Simple,
+        sub2: Simple,
+        large_charge_difference: bool = True,
+        **kwargs  # needed due to the way RPT.predict() function works
+        ) -> Tuple[Molecule]:
     """
     Simple addition reaction by its definition is Simple + Simple -> Molecule. That means
     1) Only Molecules with two chemical elements can be formed in this reaction
@@ -96,7 +101,11 @@ def simple_addition(sub1: Simple, sub2: Simple, large_charge_difference: bool = 
 
 
 
-def simple_decomposition(sub: Molecule, *args: Any) -> Tuple[Simple, Simple]:
+def simple_decomposition(
+        sub: Molecule,
+        *args: Any,
+        **kwargs
+        ) -> Tuple[Simple, Simple]:
     """
     Simple decomposition reaction is defined as Molecule -> Simple + Simple. Since the simple() function from Substance.py
     can convert ions to simples, the implementation is very simple.
@@ -119,7 +128,11 @@ def simple_decomposition(sub: Molecule, *args: Any) -> Tuple[Simple, Simple]:
 
 
 
-def simple_substitution(sub1: (Simple, Molecule), sub2: (Simple, Molecule)) -> Tuple[Simple, Molecule]:
+def simple_substitution(
+        sub1: Simple|Molecule,
+        sub2: Simple|Molecule,
+        **kwargs
+        ) -> Tuple[Simple, Molecule]:
     """
     Simple substitution is defined as Simple + Molecule -> Simple + Molecule. In this reaction type an instance in
     Simple becomes a cation for Molecule reagent, and Molecule reagent's cation becomes an instance of Simple.
@@ -140,11 +153,19 @@ def simple_substitution(sub1: (Simple, Molecule), sub2: (Simple, Molecule)) -> T
         return simple_substitution(sub2, sub1)
     else:
         # in fact, this should be never called due to type_check_decorator
-        raise CannotPredictProducts(reagents=[sub1, sub2], function_name='simple_substitution', variables=locals())
+        raise CannotPredictProducts(
+            reagents=[sub1.formula(), sub2.formula()],
+            function_name='simple_substitution',
+            variables=locals()
+        )
 
 
 
-def simple_exchange(sub1: Molecule, sub2: Molecule) -> Tuple[Molecule, Molecule]:
+def simple_exchange(
+        sub1: Molecule,
+        sub2: Molecule,
+        **kwargs
+        ) -> Tuple[Molecule, Molecule]:
     """
     Simple exchange reaction is defined as Molecule + Molecule -> Molecule + Molecule. Since this is just an ion
     exchange reaction, the ions just have to be swapped.

@@ -4,7 +4,7 @@ from miniChemistry.Core.Reactions import MolecularReaction, HalfReaction
 from miniChemistry.Core.Reactions.AbstractReaction import AbstractReaction
 from typing import Optional, List, Tuple, Dict, Any
 
-from miniChemistry.Core.Tools.old_Equalizer import Equalizer
+from miniChemistry.Core.Tools.Equalizer import Equalizer
 
 
 """

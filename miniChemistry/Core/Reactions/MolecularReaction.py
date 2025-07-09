@@ -41,7 +41,7 @@ from typing import Tuple, List, Callable, Optional
 from miniChemistry.Core.Substances import Molecule, Simple
 from miniChemistry.Utilities.Checks import type_check
 from miniChemistry.Core.Tools.parser import parse
-from miniChemistry.Core.Tools.ReactionPredictionTools.predict import predict
+from miniChemistry.Core.Tools.ReactionPredictionTool.predict import predict
 from miniChemistry.Core.Tools.Equalizer import Equalizer
 from miniChemistry.Core.CoreExceptions.ReactionExceptions import WrongReactionConstructorParameters, WrongNumberOfReagents
 from miniChemistry.MiniChemistryException import NotSupposedToHappen

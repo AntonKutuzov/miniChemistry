@@ -1,11 +1,77 @@
 import miniChemistry.Core.Database.ptable as pt
+from miniChemistry.Core.CoreExceptions.stableExceptions import SubstanceNotFound
 from miniChemistry.Core.Database.stable import SolubilityTable
 from miniChemistry.Core.CoreExceptions.SubstanceExceptions import UnsupportedSubstanceSize, SubstanceConvertionError
 from miniChemistry.Core.Substances._helpers import _select_suitable_charge, _string_to_elementary_composition
 from miniChemistry.MiniChemistryException import NotSupposedToHappen
-from miniChemistry.Core.Substances import Ion, Simple, Molecule
+from miniChemistry.Core.Substances import Ion, Simple, Molecule, IonGroup
 
 from chemparse import parse_formula
+
+
+
+def add_group(iig: Ion | IonGroup) -> IonGroup | Molecule:
+    if isinstance(iig, (Ion, IonGroup)):
+        return _alter_group(iig, inc=True)
+    else:
+        raise Exception(f'Wrong type: expected "Ion" or "IonGroup", got {type(iig)}.')
+
+def remove_group(mig: Molecule | IonGroup) -> Ion | IonGroup:
+    if isinstance(mig, (Molecule, IonGroup)):
+        return _alter_group(mig, inc=False)
+    else:
+        raise Exception(f'Wrong type: expected "Molecule" or "IonGroup", got {type(mig)}.')
+
+# circular import problem. Importing inside the method breaks isinstance() which is needed later
+def _alter_group(mig: Molecule|IonGroup|Ion,
+                 inc: bool
+                 ) -> Molecule|IonGroup|Ion:
+
+    # from miniChemistry.Core.Substances import IonGroup, Molecule, Ion
+
+    if isinstance(mig, Molecule):
+        alter = (1 if mig.simple_class == 'acid' else 0, 1 if mig.simple_class == 'base' else 0)
+
+        if alter == (0, 0):
+            raise Exception(f'Wrong simple class: expected "acid" or "base", got: {type(mig.simple_class)}.')
+
+        cation_index = mig.cation_index
+        anion_index = mig.anion_index
+        cation = mig.cation
+        anion = mig.anion
+        ion = mig.anion if mig.simple_class == 'acid' else mig.cation
+
+    elif isinstance(mig, IonGroup):
+        alter = (1 if mig.is_anion else 0, 1 if mig.is_cation else 0)
+        cation_index = mig.cation_index
+        anion_index = mig.anion_index
+        cation = mig.cation
+        anion = mig.anion
+        ion = mig.ion
+
+    elif isinstance(mig, Ion):
+        cation_index = 1 if mig.is_cation else 0
+        anion_index = 1 if mig.is_anion else 0
+        alter = (anion_index, cation_index)  # we increase the one that the ion is NOT (i.e. we increase H(1) for anions and OH(-1) for cations
+        ion = mig
+        cation = (mig if mig.is_cation else Ion.proton)
+        anion = (mig if mig.is_anion else Ion.hydroxide)
+
+    else:
+        raise Exception(f'Wrong type: expected "Ion", "Molecule" or "IonGroup", got {type(mig)}.')
+
+
+    sign = 1 if inc else -1
+    cation_index, anion_index = cation_index + sign*alter[0], anion_index + sign*alter[1]
+    charge = cation_index * cation.charge + anion_index * anion.charge
+
+
+    if any([cation_index == 0, anion_index == 0]):
+        return ion
+    elif not charge == 0:
+        return IonGroup(ion, cation_index, anion_index)
+    else:
+        return Molecule(cation, anion)
 
 
 def simple(substance: Ion|pt.Element) -> Simple:
@@ -92,19 +158,31 @@ def molecule(substance: SolubilityTable.Substance) -> Molecule:
     return Molecule(cation, anion)
 
 def st_substance(m: Molecule) -> SolubilityTable.Substance:
+    """
+        Converts the instance of Molecule into an instance of SolubilityTable.Substance.
+
+        :param m: instance of Molecule to convert into SolubilityTable.Substance
+        :return: an instance of SolubilityTable.Substance
+        """
+
+    cation = m.cation.formula(remove_charge=True)
+    anion = m.anion.formula(remove_charge=True)
+    cation_charge = m.cation.charge
+    anion_charge = m.anion.charge
+
     st = SolubilityTable()
-    sts = st.select_substance(
-        m.cation.formula(remove_charge=True),
-        m.cation_index,
-        m.anion.formula(remove_charge=True),
-        m.anion_index
-    )
+    molecules = st.select_substance(cation, cation_charge, anion, anion_charge)
 
-    if len(sts) > 1:
-        raise Exception(
-            f'More than one substance found for the given conditions.')
-
-    return sts[0]
+    if len(molecules) > 1:
+        nsth = NotSupposedToHappen(variables=locals())
+        nsth.description += (f'\nIt seems like there are two identical substances in the solubility table database.\n'
+                             f'The formula is {m.formula()}.')
+        raise nsth
+    elif not molecules:
+        raise SubstanceNotFound(substance_signature=[m.formula()], variables=locals())
+    else:
+        molecule = molecules[0]
+        return molecule
 
 def st_ion(i: Ion) -> SolubilityTable.Ion:
     sti = SolubilityTable.Ion(
