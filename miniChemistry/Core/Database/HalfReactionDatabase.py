@@ -25,12 +25,17 @@ class HalfReactionDatabase:
 
         return df
 
-    def save_dataframe(self) -> None:
-        self._file.write('scheme,potential\n', add_splitter=False)
+    def _erase_database(self) -> None:
+        self._file.erase_all()
 
-        for i in range(len(self._df)):
-            self._file.append(self._df.loc[i, 'scheme'], add_splitter=True)
-            self._file.append(str(self._df.loc[i, 'potential']) + '\n', add_splitter=False)
+    def save_dataframe(self) -> None:
+        self._df.drop_duplicates(inplace=True, subset='scheme')
+
+        self._file.write('scheme,potential')
+
+        for row in self._df.iterrows():
+            self._file.append(row[1]['scheme'] + ',', add_splitter=False)
+            self._file.append(str(row[1]['potential']))
 
     @staticmethod
     def _parse_reaction(df: pd.DataFrame) -> Tuple[str, float, List, List]:
@@ -89,6 +94,13 @@ class HalfReactionDatabase:
 
         self._df.drop_duplicates(inplace=True, subset='scheme')
         self.save_dataframe()
+
+    def rewrite_halfreaction(self, hr: HalfReaction, potential: float) -> None:
+        if self.halfreaction_present(hr):
+            self.remove_halfreaction(hr)
+            self.add_halfreaction(hr, potential)
+        else:
+            raise Exception(f'Half-reaction {hr.scheme} is not found in the database.')
 
     def remove_halfreaction(self, hr: HalfReaction) -> None:
         self._df = self._df[ self._df['scheme'] != hr.scheme ]

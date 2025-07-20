@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from miniChemistry.Core.Reactions import MolecularReaction
+from miniChemistry.Core.Reactions.MathReaction import MathReaction
 from miniChemistry.Core.Reactions.AbstractReaction import AbstractReaction
 from miniChemistry.Core.Substances import Ion, IonGroup
 from miniChemistry.Core.ElementaryParticle import *
@@ -86,6 +87,12 @@ class HalfReaction(AbstractReaction):
         if '->' in reaction or '=' in reaction:
             reagents, products = HalfReaction.extract_substances(reaction)
             return HalfReaction(reagents=reagents, products=products)
+
+    def reversed(self) -> HalfReaction:
+        mr = MathReaction(self)
+        mr.reverse()
+        new_hr = HalfReaction(mr.reagents, mr.products)
+        return new_hr
 
     @property
     def reagents(self) -> List[ALLOWED_PARTICLES]:
