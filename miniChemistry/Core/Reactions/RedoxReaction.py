@@ -9,7 +9,7 @@ from typing import Optional, List, Tuple, Dict, Any
 
 
 """
-OXRED REACTION IS NOT YET READY.
+REDOX REACTION IS NOT YET READY.
 The prediction tool must take two half-reactions or only reagents and predict
 the products.
 """

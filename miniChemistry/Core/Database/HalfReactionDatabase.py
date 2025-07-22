@@ -68,10 +68,10 @@ class HalfReactionDatabase:
 
             if potential < min_pot:
                 min_hr = hr
+                min_pot = potential
             elif potential > max_pot:
                 max_hr = hr
-            else:
-                raise Exception()
+                max_pot =potential
 
         if condition == 'min':
             return min_hr

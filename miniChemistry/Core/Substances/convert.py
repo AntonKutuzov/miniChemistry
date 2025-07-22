@@ -9,7 +9,6 @@ from miniChemistry.Core.Substances import Ion, Simple, Molecule, IonGroup
 from chemparse import parse_formula
 
 
-
 def add_group(iig: Ion | IonGroup) -> IonGroup | Molecule:
     if isinstance(iig, (Ion, IonGroup)):
         return _alter_group(iig, inc=True)
