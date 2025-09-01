@@ -7,7 +7,7 @@ The package consists of four main parts.
 - **Periodic table, metal activity series and some other chemical data as well as simple description of molecule and ion**.
 	- Each database is implemented in a form of .csv file
 	- Molecule and ion (particles from chemistry) are simulated by using classes, inheriting from an abstract class Particle (see "Substances.py")
-
+ 
 - **Reaction prediction tool**
 	- A chemical reaction is described in a single class that can balance and predict reactions as well as converting strings to Reaction instance
 	- "ReactionMechanisms" directory contains description of all functions used to convert reaction reagents to products
