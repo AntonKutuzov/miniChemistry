@@ -1,6 +1,6 @@
 from miniChemistry.Core.Substances import Molecule, IonGroup, Ion
 from miniChemistry.Core.Substances.convert import add_group, remove_group
-from typing import Tuple
+from typing import Tuple, List
 
 
 def _join_identical_ion(
@@ -41,11 +41,22 @@ def ionic_decomposition(
         elif m.simple_class == "salt":
             return m.cation, m.anion
 
+        elif m == Molecule.water:
+            return Ion.proton, Ion.hydroxide
+
         else:
             raise Exception(f'The provided substance does not dissociate into ions: {m.formula()}.')
 
     elif isinstance(m, IonGroup):
-        return m.ion, remove_group(m)
+        if m._type == 'acid':
+            return remove_group(m), m.cation
+        elif m._type == 'base':
+            return remove_group(m), m.anion
+        else:
+            raise Exception(f'Unknown type of IonGroup. Expected "acid" or "base", got {m._type}.')
+
+    else:
+        raise TypeError(f'Wrong type of a substance: expected IonGroup or Molecule, got {type(m)}.')
 
 
 def ionic_addition(
@@ -77,3 +88,16 @@ def ionic_addition(
 
     else:
         raise Exception(f'Wrong types: expected "Ion" and "Ion" or "IonGroup", got {type(i1), type(i2)}.')
+
+
+def complete_dissociation(*ions: IonGroup|Ion|Molecule) -> List[Ion]:
+    ions = list( ions )
+
+    while any([isinstance(i, (IonGroup, Molecule)) for i in ions]):
+        for i in ions:
+            if isinstance(i, (IonGroup, Molecule)):
+                ions.remove(i)
+                ions += list( ionic_decomposition(i) )
+
+    ions = list(set(ions))
+    return ions

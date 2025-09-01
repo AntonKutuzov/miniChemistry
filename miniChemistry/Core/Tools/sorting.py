@@ -34,7 +34,7 @@ def reduction_and_oxidation(
         return reduction, oxidation
 
 
-def sort_particles(
+def filter_particles(
         *particles: Ion|IonGroup|Molecule|Simple,
         get: Literal['ions', 'ion groups', 'molecules', 'simples']
 ) -> List[Ion|IonGroup|Molecule|Simple]:

@@ -12,11 +12,6 @@ from miniChemistry.Core.Tools.ReactionPredictionTool.IonPredict import restricti
 from miniChemistry.Core.Tools.ReactionPredictionTool.IonPredict import effective_class as ionic_effective_class
 from miniChemistry.Core.Tools.ReactionPredictionTool.IonPredict import file as ionic_file
 
-from miniChemistry.Core.Tools.ReactionPredictionTool.RedoxPredict import mechanism_dict as redox_mechanism_dict
-from miniChemistry.Core.Tools.ReactionPredictionTool.RedoxPredict import restriction_dict as redox_restriction_dict
-from miniChemistry.Core.Tools.ReactionPredictionTool.RedoxPredict import effective_class as redox_effective_class
-from miniChemistry.Core.Tools.ReactionPredictionTool.RedoxPredict import file as redox_file
-
 
 from typing import List, Dict, Any, Tuple, Literal, Callable
 import csv
@@ -26,25 +21,22 @@ import csv
 class RPT:
     MECHANISMS: Dict[str, Dict[str, Callable]] = {
         'molecular': molecular_mechanism_dict,
-        'ionic': ionic_mechanism_dict,
-        'redox': redox_mechanism_dict
+        'ionic': ionic_mechanism_dict
     }
 
     RESTRICTIONS: Dict[str, Dict[str, Callable]] = {
         'molecular': molecular_restriction_dict,
-        'ionic': ionic_restriction_dict,
-        'redox': redox_restriction_dict
+        'ionic': ionic_restriction_dict
     }
 
     CLASS_FUNCTIONS: Dict[str, Callable] = {
         'molecular': molecular_effective_class,
-        'ionic': ionic_effective_class,
-        'redox': redox_effective_class
+        'ionic': ionic_effective_class
     }
 
 
     def __init__(self,
-                 algorithm: Literal['molecular', 'ionic', 'redox']
+                 algorithm: Literal['molecular', 'ionic']
                  ) -> None:
 
         match algorithm:
@@ -52,8 +44,6 @@ class RPT:
                 self._mr_file = str(molecular_file.path)
             case 'ionic':
                 self._mr_file = str(ionic_file.path)
-            case 'redox':
-                self._mr_file = str(redox_file.path)
             case _:
                 raise Exception(f'Wrong reaction prediction algorithm: {algorithm}.')
 
